@@ -5,42 +5,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/styles.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
 </head>
 <body>
-        <!-- Testing -->
-      <div class="row">
-      <div class="col-md-1">.col-md-1</div>
-      <div class="col-md-1">.col-md-1</div>
-      <div class="col-md-1">.col-md-1</div>
-      <div class="col-md-1">.col-md-1</div>
-      <div class="col-md-1">.col-md-1</div>
-      <div class="col-md-1">.col-md-1</div>
-      <div class="col-md-1">.col-md-1</div>
-      <div class="col-md-1">.col-md-1</div>
-      <div class="col-md-1">.col-md-1</div>
-      <div class="col-md-1">.col-md-1</div>
-      <div class="col-md-1">.col-md-1</div>
-      <div class="col-md-1">.col-md-1</div>
-    </div>
-    <div class="row">
-      <div class="col-md-8">.col-md-8</div>
-      <div class="col-md-4">.col-md-4</div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">.col-md-4</div>
-      <div class="col-md-4">.col-md-4</div>
-      <div class="col-md-4">.col-md-4</div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">.col-md-6</div>
-      <div class="col-md-6">.col-md-6</div>
-    </div>
+<<<<<<< HEAD
+    <nav class="navbar navbar-light bg-faded" style="background-color: #eae3ed !important; border-radius: 0 !important;">
+      <a class="navbar-brand" href="#">Navbar</a>
+    </nav>
 </body>
 </html>
 
 
 
+=======
+>>>>>>> e8a9e3d72d1add786cfd56f6781a7af15c9c72d2
 
+    <ul class="nav nav-tabs">
+        {% for server in servers %}
+            <li><a data-toggle="tab" href={{ server }}>{{ server }}</a></li>
+        {% endfor %}
+    </ul>
 
+</body>
+</html>
