@@ -10,15 +10,28 @@
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
 </head>
 <body>
+
     <nav class="navbar navbar-light bg-faded" style="background-color: #eae3ed !important; border-radius: 0 !important;">
       <a class="navbar-brand" href="#">Navbar</a>
     </nav>
-</body>
-</html>
+
     <ul class="nav nav-tabs">
-        {% for server in servers %}
-            <li><a data-toggle="tab" href={{ server }}>{{ server }}</a></li>
+        {% for result in results %}
+            <li value="{{ result.id }}"><a data-toggle="tab">{{ result.name }}</a></li>
         {% endfor %}
     </ul>
+
+    <div class="tab-content">
+        <div id="menu2" class="tab-pane fade in active">
+            {% for key, result in results %}
+                <h3>{{ result.name }}</h3>
+            {% endfor %}
+
+            {% for key, result in results %}
+                <p>{{ result.properties }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
 </body>
 </html>

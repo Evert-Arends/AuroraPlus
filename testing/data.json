@@ -1,0 +1,23 @@
+[
+	{
+		"id": "1",
+		"type": "server",
+		"name": "server1",
+		"data": "All Data of server 1",
+		"properties":"All props of server 1"
+	},
+	{
+		"id": "2",
+		"type": "server",
+		"name": "server2",
+		"data": "All Data of server 2",
+		"properties":"All props of server 2"
+	},
+	{
+		"id": "3",
+		"type": "server",
+		"name": "server3",
+        "data": "All Data of server 3",
+		"properties":"All props of server 3"
+	}
+]
