@@ -1,0 +1,30 @@
+    <nav class="navbar navbar-light bg-faded" style="background-color: #eae3ed !important; border-radius: 0 !important;">
+        {% comment %}Left side menu{% endcomment %}
+        <a class="navbar-brand" href="">Aurora</a>
+
+        {% comment %}right side menu{% endcomment %}
+        <a class="navbar-brand navbar-right" href="#menu-toggle" id="menu-toggle">View servers</a>
+    </nav>
+
+    <div id="wrapper">
+
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                {% for name in server_names %}
+                    <li>
+                        <a href="/server/{{ name.id }}" >{{ name.name }}</a>
+                    </li>
+                    {% empty %}
+                    <li>No servers found.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>

@@ -21,4 +21,5 @@ from AuroraPlus import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
+    url(r'^server/(?P<id>\w{1,50})$', views.server_page, name='server'),
 ]

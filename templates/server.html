@@ -1,0 +1,36 @@
+{% load static from staticfiles %}
+{% load current_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aurora</title>
+    <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/styles.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
+    <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+</head>
+<body>
+
+    {% include 'top.html' %}
+
+    <div class="col-lg-10 col-lg-offset-1">
+        <div class="serverdata">
+            {% for data in server_data %}
+                <h1>{{ data.name }}</h1>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Properties</h2>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            {{ data.properties }}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

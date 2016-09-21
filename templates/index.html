@@ -1,37 +1,16 @@
 {% load static from staticfiles %}
+{% load current_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Aurora</title>
     <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "custom/styles.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
 </head>
 <body>
-
-    <nav class="navbar navbar-light bg-faded" style="background-color: #eae3ed !important; border-radius: 0 !important;">
-      <a class="navbar-brand" href="#">Navbar</a>
-    </nav>
-
-    <ul class="nav nav-tabs">
-        {% for result in results %}
-            <li value="{{ result.id }}"><a data-toggle="tab">{{ result.name }}</a></li>
-        {% endfor %}
-    </ul>
-
-    <div class="tab-content">
-        <div id="menu2" class="tab-pane fade in active">
-            {% for key, result in results %}
-                <h3>{{ result.name }}</h3>
-            {% endfor %}
-
-            {% for key, result in results %}
-                <p>{{ result.properties }}</p>
-            {% endfor %}
-        </div>
-    </div>
-
+    {% include 'top.html' %}
 </body>
 </html>
