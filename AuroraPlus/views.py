@@ -21,7 +21,8 @@ def index(request):
 
 
 def server_page(request, id):
-    print id
     decoded_data = data
     decoded_names = names
-    return render_to_response('server.html', {'server_names': decoded_names, 'server_data': decoded_data})
+    req = id
+    print req
+    return render_to_response('server.html', {'server_names': decoded_names, 'server_data': decoded_data, 'id': req})
