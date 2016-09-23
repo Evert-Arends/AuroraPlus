@@ -1,6 +1,11 @@
 from django.shortcuts import render, render_to_response
 import json
 
+from django.contrib.auth.models import User
+import arrow
+
+from django.views.generic import TemplateView
+
 # Create your views here.
 from django.template import RequestContext
 
@@ -26,3 +31,8 @@ def server_page(request, id):
     req = id
     print req
     return render_to_response('server.html', {'server_names': decoded_names, 'server_data': decoded_data, 'id': req})
+
+
+def test(request):
+    return render_to_response('test.html')
+

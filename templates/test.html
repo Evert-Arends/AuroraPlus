@@ -1,0 +1,42 @@
+{% load static from staticfiles %}
+
+<script src="{% static "chart/Chart.js" %}"></script>
+
+<div class="col-md-6">
+    <div class="panel panel-default Chart1">
+        <div class="panel-heading">
+            <h3 class="panel-title">Users 2016</h3>
+        </div>
+        <div class="panel-body">
+            <canvas id="UserChart" style="max-width: 100%;"></canvas>
+
+
+            <script>
+                var LineChartData = {
+                    labels : ["January","February","March","April","May","June","July","August","September","October","November","December"],
+                    datasets : [
+                    {
+                        fillColor : "rgba(144,145,250,0.5)",
+                        strokeColor : "rgba(144,145,250,0.8)",
+                        highlightFill: "rgba(144,145,250,0.75)",
+                        highlightStroke: "rgba(144,145,250,1)",
+                        data : [10,10,10,11,11,11,11,11,11,11,11,11]
+                    }
+                    ]
+                }
+            </script>
+        </div>
+        <div class='panel-footer'>
+            Total of all registered users.
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = function() {
+        var ctx = document.getElementById("UserChart").getContext("2d");
+        window.myBar = new Chart(ctx).Bar(LineChartData, {
+            responsive: true
+        });
+    }
+</script>

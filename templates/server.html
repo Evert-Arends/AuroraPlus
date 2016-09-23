@@ -4,35 +4,138 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ id }}</title>
+    <title>Aurora</title>
     <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "custom/styles.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
+    <script src="{% static "chart/Chart.js" %}"></script>
 </head>
 <body>
 
     {% include 'top.html' %}
 
-    <div class="col-lg-10 col-lg-offset-1">
-        <div class="serverdata">
-            {% for data in server_data %}
-                {% if id == data.id %}
-                    <h1>{{ data.name }}</h1>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h2 class="panel-title">Properties</h2>
-                        </div>
+    {% for data in server_data %}
+        {% if id == data.id %}
+
+        <div class="col-lg-10 col-lg-offset-1">
+
+            <h2 class="page-header">{{ data.name }}</h2>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="panel panel-default ServerOnline">
                         <div class="panel-body">
-                            <p>
-                                {{ data.properties }}
-                            </p>
+                            <div class="row row-table">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-server fa-5x"></i>
+                                </div>
+                                <div class="col-xs-8">
+                                    <p>Server online: Yes</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default ServerTraffic">
+                        <div class="panel-body">
+                            <div class="row row-table">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-car fa-5x"></i>
+                                </div>
+                                <div class="col-xs-8">
+                                    <p>Network traffic this month: 200GB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default ServerUsers">
+                        <div class="panel-body">
+                            <div class="row row-table">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-users fa-5x"></i>
+                                </div>
+                                <div class="col-xs-8">
+                                    <p>Users on server: 5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default ServerPing">
+                        <div class="panel-body">
+                            <div class="row row-table">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-signal fa-5x"></i>
+                                </div>
+                                <div class="col-xs-8">
+                                    <p>Ping server: 200MS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-md-9">
+                    <div class="serverdata">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">Properties</h2>
+                            </div>
+                            <div class="panel-body">
+                                <p>
+                                    {{ data.properties }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="averagecpu">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">Average cpu</h2>
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="UserChart" style="max-width: 100%;"></canvas>
+                                <script>
+                                    var LineChartData = {
+                                        labels : ["today","yesterday","last 15 days"],
+                                        datasets : [
+                                        {
+                                            fillColor : "rgba(144,145,250,0.5)",
+                                            strokeColor : "rgba(144,145,250,0.8)",
+                                            highlightFill: "rgba(144,145,250,0.75)",
+                                            highlightStroke: "rgba(144,145,250,1)",
+                                            data : [3,5,7]
+                                        }
+                                        ]
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        {% endif %}
+    {% endfor %}
+
+<script>
+    window.onload = function() {
+        var ctx = document.getElementById("UserChart").getContext("2d");
+        window.myBar = new Chart(ctx).Bar(LineChartData, {
+            responsive: true
+        });
+    }
+</script>
 </body>
 </html>

@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
     url(r'^server/(?P<id>\w{1,50})$', views.server_page, name='server'),
+    url(r'^test/', views.test, name='test'),
 ]
