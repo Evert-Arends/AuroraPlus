@@ -6,7 +6,7 @@ html {
 }
 
 body{
-    background-color: #fff !important;
+    background-color: rgb(102, 105, 124) !important;
     overflow: hidden!important;
 }
 
@@ -32,11 +32,12 @@ body{
     height: 100%;
     margin-right: -250px;
     overflow-y: auto;
-    background: #000;
+    background: rgb(36, 34, 47);
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+    margin-top: -20px;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -73,7 +74,7 @@ body{
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: rgb(250, 248, 233);
 }
 
 .sidebar-nav li a:hover {
@@ -111,23 +112,28 @@ body{
 }
 
 .panel-default > .panel-heading{
-    background-color: rgb(234, 227, 237) !important;
+    background-color: rgb(36, 34, 47) !important;
+    border-radius: 0px!important;
+}
+
+.panel-default > .panel-heading > .panel-title{
+    color: rgb(250, 248, 233) !important;
     border-radius: 0px!important;
 }
 
 .panel-default > .panel-body{
-    background-color: rgb(242, 235, 245) !important;
+    background-color: rgb(250, 248, 233) !important;
     border-style: none!important;
 }
 
 .panel-default > .panel-footer{
-    background-color: rgb(242, 235, 245) !important;
+    background-color: rgb(250, 248, 233) !important;
     border-radius: 0px!important;
 }
 
 /* Index panels style */
 .indexbutton{
-    background-color: #333 !important;
+    background-color: rgb(36, 34, 47) !important;
     color: #fff !important;
     border-radius: 0px !important;
 }
@@ -136,7 +142,20 @@ body{
     border-radius: 0px !important;
 }
 
+.page-header{
+    color: #3c3c3c !important;
+}
+
+/* navbar */
 .navbar-light{
-    background-color: #1f1f1f !important;
+    background-color: rgb(250, 248, 233) !important;
     border-radius: 0 !important;
+}
+
+.navbar-light > a{
+    color: rgb(36, 34, 47) !important;
+}
+
+.navbar-light > a:hover{
+    color: rgb(65, 63, 71) !important;
 }

@@ -16,12 +16,12 @@
 
     {% include 'top.html' %}
 
-    {% for data in server_data %}
-        {% if id == data.id %}
+    {% for item in info %}
+        {% if id == item.id %}
 
         <div class="col-lg-10 col-lg-offset-1">
 
-            <h2 class="page-header">{{ data.name }}</h2>
+            <h2 class="page-header">{{ item.name }}</h2>
 
             <div class="row">
                 <div class="col-md-3">
@@ -89,7 +89,7 @@
                             </div>
                             <div class="panel-body">
                                 <p>
-                                    {{ data.properties }}
+                                    {{ item.properties }}
                                 </p>
                             </div>
                         </div>
@@ -100,24 +100,26 @@
                     <div class="averagecpu">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h2 class="panel-title">Average cpu</h2>
+                                <h2 class="panel-title">Average cpu use (percentages)</h2>
                             </div>
                             <div class="panel-body">
+
                                 <canvas id="UserChart" style="max-width: 100%;"></canvas>
                                 <script>
                                     var LineChartData = {
-                                        labels : ["today","yesterday","last 15 days"],
+                                        labels : ["1 min. ago","5 min. ago","15 min. ago"],
                                         datasets : [
                                         {
                                             fillColor : "rgba(144,145,250,0.5)",
                                             strokeColor : "rgba(144,145,250,0.8)",
                                             highlightFill: "rgba(144,145,250,0.75)",
                                             highlightStroke: "rgba(144,145,250,1)",
-                                            data : [3,5,7]
+                                            data : {{ chart_data }}
                                         }
                                         ]
                                     }
                                 </script>
+
                             </div>
                         </div>
                     </div>
