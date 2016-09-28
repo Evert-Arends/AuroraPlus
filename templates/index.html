@@ -124,11 +124,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            {% for server in info %}
+                            {% for item in server_all %}
                                 <tr class="info">
-                                    <td>{{ server.id }}</td>
-                                    <td>{{ server.name }}</td>
-                                    <td>{{ server.type }}</td>
+                                    <td>{{ item.serverinfo.id }}</td>
+                                    <td>{{ item.serverinfo.name }}</td>
+                                    <td>{{ item.serverinfo.type }}</td>
                                     <td><a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a></td>
                                     <td><a class="btn btn-warning" href="#"><i class="fa fa-edit"></i></a></td>
                                 </tr>

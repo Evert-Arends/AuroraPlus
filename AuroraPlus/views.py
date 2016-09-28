@@ -10,27 +10,12 @@ from django.template import RequestContext
 
 with open('./testing/data.json', 'r') as f:
     json_data = json.load(f)
-
-    for item in json_data['serverlist']['serverdata']:
-
-        servernames = item['servername']
-        print servernames
-
-        serverinfo = item['serverinfo']
-        print serverinfo
-
-        serverdata = item['serverdata']
-        print serverdata
-
-        servercpu = item['servercpu']
-        print servercpu
+    string_server = json_data['serverlist']['servers']
 
 
 def index(request):
-    print serverinfo
-    print serverdata
-    return render_to_response('index.html', {'names': servernames, 'info': serverinfo, 'data': serverdata,
-                                             'cpu': servercpu})
+    print string_server
+    return render_to_response('index.html', {'server_all': string_server})
 
 
 def server_page(request, id):
@@ -45,8 +30,7 @@ def server_page(request, id):
     item3 = float(final[2]) * 100
     data_array = [item1, item2, item3]
     print data_array
-    return render_to_response('server.html', {'id': req, 'names': servernames, 'info': serverinfo, 'data': serverdata,
-                                              'cpu': servercpu})
+    return render_to_response('server.html', {'id': req, 'server_all': string_server, 'chart_data': data_array})
 
 
 def test(request):
