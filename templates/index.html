@@ -27,7 +27,9 @@
                                 <i class="fa fa-server fa-5x"></i>
                             </div>
                             <div class="col-xs-8">
-                                <p>Total servers: 6</p>
+                                {% for item in totalservers %}
+                                    <p>Total servers: {{ item }}</p>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -125,12 +127,12 @@
                             </thead>
                             <tbody>
                             {% for item in server_all %}
-                                <tr class="info">
-                                    <td>{{ item.serverinfo.id }}</td>
-                                    <td>{{ item.serverinfo.name }}</td>
-                                    <td>{{ item.serverinfo.type }}</td>
-                                    <td><a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a></td>
-                                    <td><a class="btn btn-warning" href="#"><i class="fa fa-edit"></i></a></td>
+                                <tr class="default">
+                                    <td>{{ item.ServerInfo.ID }}</td>
+                                    <td>{{ item.ServerInfo.Name }}</td>
+                                    <td>{{ item.ServerInfo.Type }}</td>
+                                    <td><a class="btn btn-danger deletebutton" href="#"><i class="fa fa-trash"></i></a></td>
+                                    <td><a class="btn btn-warning editbutton" href="#"><i class="fa fa-edit"></i></a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>

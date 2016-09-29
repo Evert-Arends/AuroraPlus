@@ -136,6 +136,7 @@ body{
     background-color: rgb(36, 34, 47) !important;
     color: #fff !important;
     border-radius: 0px !important;
+    border: none!important;
 }
 
 .form-control{
@@ -144,6 +145,20 @@ body{
 
 .page-header{
     color: #3c3c3c !important;
+}
+
+.deletebutton{
+    border: none !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+
+}
+
+.editbutton{
+    border: none !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+
 }
 
 /* navbar */

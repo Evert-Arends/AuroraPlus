@@ -12,7 +12,7 @@
             <ul class="sidebar-nav">
                 {% for name in server_all %}
                     <li>
-                        <a href="/server/{{ name.serverinfo.id }}" >{{ name.serverinfo.name }}</a>
+                        <a href="/server/{{ name.ServerInfo.ID }}" >{{ name.ServerInfo.Name }}</a>
                     </li>
                     {% empty %}
                     <li>No servers found.</li>

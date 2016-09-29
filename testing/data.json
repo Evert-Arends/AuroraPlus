@@ -1,71 +1,91 @@
 {
-    "serverlist": {
-        "totalresultsonaccount": "3",
-        "servers": [
+    "ServerList": {
+        "Servers": [
             {
-                "servername":
+                "ServerName":
                 {
-                    "name": "server1"
+                    "Name": "server1"
                 },
-                "serverinfo":
+                "ServerInfo":
                 {
-                    "name": "server1",
-                    "id": "1",
-		            "type": "HTTP",
-                    "properties":"All props of server 1",
-                    "status":"Online"
+                    "Name": "server1",
+                    "ID": "1",
+		            "Type": "HTTP",
+                    "Properties":
+                    {
+                        "Name": "HP ProLiant MicroServer Gen8",
+                        "Proc": "Intel Dual Core Ivy Bridge i3 Core",
+                        "CpuSlots": "5"
+                    },
+                    "Status":"Online"
                 },
-                "serverdata":
+                "ServerData":
                 {
-                    "usersonserver":"3"
+                    "UsersOnServer":"3",
+                    "Cpu": "0,30;0,40;1,12"
                 },
-		        "servercpu":
+                "NetworkUsage":
                 {
-                  "cpu": "0,30;0,40;1,12"
+                    "Sent": "3245",
+                    "Received": "327112"
                 }
             },
             {
-                "servername":
+                "ServerName":
                 {
-                    "name": "server2"
+                    "Name": "server2"
                 },
-                "serverinfo":
+                "ServerInfo":
                 {
-                    "name": "server2",
-                    "id": "2",
-		            "type": "SSH",
-                    "properties":"All props of server 2",
-                    "status":"Online"
+                    "Name": "server2",
+                    "ID": "2",
+		            "Type": "SSH",
+                    "Properties":
+                    {
+                        "Name": "HP ProLiant MicroServer Gen8",
+                        "Proc": "Intel Dual Core Ivy Bridge i3 Core",
+                        "CpuSlots": "5"
+                    },
+                    "Status":"Online"
                 },
-                "serverdata":
+                "ServerData":
                 {
-                    "usersonserver":"3"
+                    "UsersOnServer":"3",
+                    "Cpu": "0,30;0,40;1,12"
                 },
-		        "servercpu":
+                "NetworkUsage":
                 {
-                  "cpu": "0,30;0,40;1,12"
+                    "Sent": "3245",
+                    "Received": "327112"
                 }
             },
             {
-                "servername":
+                "ServerName":
                 {
-                    "name": "server3"
+                    "Name": "server3"
                 },
-                "serverinfo":
+                "ServerInfo":
                 {
-                    "name": "server3",
-                    "id": "3",
-		            "type": "DataServer",
-                    "properties":"All props of server 3",
-                    "status":"Online"
+                    "Name": "server3",
+                    "ID": "3",
+		            "Type": "DataServer",
+                    "Properties":
+                    {
+                        "Name": "HP ProLiant MicroServer Gen8",
+                        "Proc": "Intel Dual Core Ivy Bridge i3 Core",
+                        "CpuSlots": "5"
+                    },
+                    "Status":"Online"
                 },
-                "serverdata":
+                "ServerData":
                 {
-                    "usersonserver":"3"
+                    "UsersOnServer":"3",
+                    "Cpu": "0,30;0,40;1,12"
                 },
-		        "servercpu":
+                "NetworkUsage":
                 {
-                  "cpu": "0,30;0,40;1,12"
+                    "Sent": "3245",
+                    "Received": "327112"
                 }
             }
         ]

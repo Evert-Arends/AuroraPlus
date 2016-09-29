@@ -13,15 +13,14 @@
     <script src="{% static "chart/Chart.js" %}"></script>
 </head>
 <body>
-
     {% include 'top.html' %}
 
     {% for item in server_all %}
-        {% if id == item.serverinfo.id %}
+        {% if server_id == item.ServerInfo.ID %}
 
         <div class="col-lg-10 col-lg-offset-1">
 
-            <h2 class="page-header">{{ item.serverinfo.name }}</h2>
+            <h2 class="page-header">{{ item.ServerInfo.Name }}</h2>
 
             <div class="row">
                 <div class="col-md-3">
@@ -89,7 +88,8 @@
                             </div>
                             <div class="panel-body">
                                 <p>
-                                    {{ item.serverinfo.properties }}
+                                    Name: {{ item.ServerInfo.Properties.Name }}<br>
+                                    Processor: {{ item.ServerInfo.Properties.Proc }}<br>
                                 </p>
                             </div>
                         </div>
