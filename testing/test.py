@@ -1,8 +1,8 @@
-import json
+import serverjson
 
 
 with open('data.json') as data_file:
-    data = json.load(data_file)
+    data = serverjson.load(data_file)
 
     for post in data:
         data_name = post['name']

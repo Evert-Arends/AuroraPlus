@@ -9,7 +9,7 @@
                 "ServerInfo":
                 {
                     "Name": "server1",
-                    "ID": "1",
+                    "ID": "0",
 		            "Type": "HTTP",
                     "Properties":
                     {
@@ -38,7 +38,7 @@
                 "ServerInfo":
                 {
                     "Name": "server2",
-                    "ID": "2",
+                    "ID": "1",
 		            "Type": "SSH",
                     "Properties":
                     {
@@ -51,7 +51,7 @@
                 "ServerData":
                 {
                     "UsersOnServer":"3",
-                    "Cpu": "0,30;0,40;1,12"
+                    "Cpu": "0,60;0,40;1,12"
                 },
                 "NetworkUsage":
                 {
@@ -67,7 +67,7 @@
                 "ServerInfo":
                 {
                     "Name": "server3",
-                    "ID": "3",
+                    "ID": "2",
 		            "Type": "DataServer",
                     "Properties":
                     {
@@ -80,7 +80,7 @@
                 "ServerData":
                 {
                     "UsersOnServer":"3",
-                    "Cpu": "0,30;0,40;1,12"
+                    "Cpu": "0,90;0,40;1,12"
                 },
                 "NetworkUsage":
                 {
