@@ -10,7 +10,7 @@
                 {
                     "Name": "server1",
                     "ID": "0",
-		            "Type": "HTTP",
+		            "Description": "Cloud storage",
                     "Properties":
                     {
                         "Name": "HP ProLiant MicroServer Gen8",
@@ -22,7 +22,7 @@
                 "ServerData":
                 {
                     "UsersOnServer":"3",
-                    "Cpu": "0,30;0,40;1,12"
+                    "Cpu": "0,30"
                 },
                 "NetworkUsage":
                 {
@@ -39,7 +39,7 @@
                 {
                     "Name": "server2",
                     "ID": "1",
-		            "Type": "SSH",
+		            "Description": "Website hosting",
                     "Properties":
                     {
                         "Name": "HP ProLiant MicroServer Gen8",
@@ -51,7 +51,7 @@
                 "ServerData":
                 {
                     "UsersOnServer":"3",
-                    "Cpu": "0,60;0,40;1,12"
+                    "Cpu": "0,60"
                 },
                 "NetworkUsage":
                 {
@@ -68,7 +68,7 @@
                 {
                     "Name": "server3",
                     "ID": "2",
-		            "Type": "DataServer",
+		            "Description": "Document sharing",
                     "Properties":
                     {
                         "Name": "HP ProLiant MicroServer Gen8",
@@ -80,7 +80,7 @@
                 "ServerData":
                 {
                     "UsersOnServer":"3",
-                    "Cpu": "0,90;0,40;1,12"
+                    "Cpu": "0,90"
                 },
                 "NetworkUsage":
                 {

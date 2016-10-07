@@ -19,10 +19,10 @@
         {% if server_id == item.ServerInfo.ID %}
 
         <div class="col-lg-10 col-lg-offset-1">
-
             <h2 class="page-header">{{ item.ServerInfo.Name }}</h2>
-
             <div class="row">
+
+                {% comment %}Start Header{% endcomment %}
                 <div class="col-md-3">
                     <div class="panel panel-default ServerOnline">
                         <div class="panel-body">
@@ -79,51 +79,160 @@
                         </div>
                     </div>
                 </div>
+                {% comment %}End Header{% endcomment %}
 
-                <div class="col-md-9">
-                    <div class="serverdata">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h2 class="panel-title">Properties</h2>
+                {% comment %}Start LeftSidePanels{% endcomment %}
+                <div class="col-md-9 IndexColumn">
+                    <div class="col-md-12">
+                        <div class="serverdata">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title">Properties</h2>
+                                </div>
+                                <div class="panel-body">
+                                    <p>
+                                        Name: {{ item.ServerInfo.Properties.Name }}<br>
+                                        Processor: {{ item.ServerInfo.Properties.Proc }}<br>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="panel-body">
-                                <p>
-                                    Name: {{ item.ServerInfo.Properties.Name }}<br>
-                                    Processor: {{ item.ServerInfo.Properties.Proc }}<br>
-                                </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="cpupanel">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title">Average cpu usage (percentages).</h2>
+                                </div>
+                                <div class="panel-body HasToScroll">
+                                    <canvas id="averagecpu" width="800" height="400"></canvas>
+                                    <script>
+                                        var CpuData = {
+                                            labels : ["Now", "5 min. ago","10 min. ago","15 min. ago","20 min. ago","25 min. ago","30 min. ago"],
+                                            datasets : [
+                                                {
+                                                    fillColor : "rgba(172,194,132,0.4)",
+                                                    strokeColor : "#ACC26D",
+                                                    pointColor : "#fff",
+                                                    pointStrokeColor : "#9DB86D",
+                                                    data : [276,203,156,99,251,305,247]
+                                                }
+                                            ]
+                                        };
+                                        var averagecpu = document.getElementById('averagecpu').getContext('2d');
+                                        new Chart(averagecpu).Line(CpuData);
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="networktraffic">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title">Average network traffic (in bytes).</h2>
+                                </div>
+                                <div class="panel-body HasToScroll">
+                                    <canvas id="buyers" width="800" height="400"></canvas>
+                                    <script>
+                                        var buyerData = {
+                                            labels : ["Now", "5 min. ago","10 min. ago","15 min. ago","20 min. ago","25 min. ago","30 min. ago"],
+                                            datasets : [
+                                                {
+                                                    fillColor : "rgba(172,194,132,0.4)",
+                                                    strokeColor : "#ACC26D",
+                                                    pointColor : "#fff",
+                                                    pointStrokeColor : "#9DB86D",
+                                                    data : [276,203,156,99,251,305,247]
+                                                }
+                                            ]
+                                        };
+                                        var buyers = document.getElementById('buyers').getContext('2d');
+                                        new Chart(buyers).Line(buyerData);
+                                    </script>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% comment %}End LeftSidePanels{% endcomment %}
 
-                <div class="col-md-3">
-                    <div class="averagecpu">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h2 class="panel-title">Average cpu use (percentages)</h2>
-                            </div>
-                            <div class="panel-body">
+                {% comment %}Start RightSidePanels{% endcomment %}
+                <div class="col-md-3 IndexColumn">
+                    <div class="col-md-12">
+                        <div class="livecpu">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title">Live cpu use (percentages) </h2>
+                                </div>
+                                <div class="panel-body HasToScroll">
 
-                                <canvas id="UserChart" style="max-width: 100%;"></canvas>
-                                <script>
-                                    var LineChartData = {
-                                        labels : ["1 min. ago","5 min. ago","15 min. ago"],
-                                        datasets : [
-                                        {
-                                            fillColor : "rgba(144,145,250,0.5)",
-                                            strokeColor : "rgba(144,145,250,0.8)",
-                                            highlightFill: "rgba(144,145,250,0.75)",
-                                            highlightStroke: "rgba(144,145,250,1)",
-                                            data : {{ chart_data }}
+                                    <canvas id="CpuChart" style="max-width: 100%;"></canvas>
+                                    <script>
+                                        var CpuChartData = {
+                                            labels : ["CPU usage"],
+                                            datasets : [
+                                            {
+                                                fillColor : "{{ coloring.0 }}",
+                                                strokeColor : "{{ coloring.1 }}",
+                                                highlightFill: "{{ coloring.2 }}",
+                                                highlightStroke: "{{ coloring.3 }}",
+                                                data: [{{ chart_data }}]
+                                            }
+                                            ]
                                         }
-                                        ]
-                                    }
-                                </script>
+                                    </script>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="averagecpu">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title">Live network usage</h2>
+                                </div>
+                                <div class="panel-body HasToScroll">
+
+                                    <canvas id="NetworkChart" style="max-width: 100%;"></canvas>
+                                    <script>
+                                        var NetworkChartData = {
+                                            labels : ["latency in MS."],
+                                            datasets : [
+                                            {
+                                                fillColor : "#8797D8",
+                                                strokeColor : "#7277D8",
+                                                highlightFill: "#7277D8",
+                                                highlightStroke: "#8797D8",
+                                                data: ["70"]
+                                            }
+                                            ]
+                                        }
+                                    </script>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="serverlatency">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title">Server latency (ping).</h2>
+                                </div>
+                                <div class="panel-body">
+                                    <p>Here comes server latency.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% comment %}End RightSidePanels{% endcomment %}
 
             </div>
         </div>
@@ -133,8 +242,13 @@
 
 <script>
     window.onload = function() {
-        var ctx = document.getElementById("UserChart").getContext("2d");
-        window.myBar = new Chart(ctx).Bar(LineChartData, {
+        var cpu = document.getElementById("CpuChart").getContext("2d");
+        window.myBar = new Chart(cpu).Bar(CpuChartData, {
+            responsive: true
+        });
+
+        var network = document.getElementById("NetworkChart").getContext("2d");
+        window.myBar = new Chart(network).Bar(NetworkChartData, {
             responsive: true
         });
     }

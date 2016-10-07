@@ -23,12 +23,38 @@ class CPUUsage:
         chart_data = CPUUsage.get_usage(server_id)
 
         escaped = chart_data.replace(",", ".")
-        splitted = escaped.replace(";", ",")
-        final = splitted.split(',')
+        final = escaped.split(',')
 
         item1 = float(final[0]) * 100
-        item2 = float(final[1]) * 100
-        item3 = float(final[2]) * 100
-        data_array = [item1, item2, item3]
+        data_array = item1
 
         return data_array
+
+    @staticmethod
+    def chart_color(server_id):
+        chart_data = CPUUsage.cpu_chart(server_id)
+        print chart_data
+
+        if chart_data <= 50.0:
+            fillcolor = "lightgreen"
+            strokecolor = "#00D851"
+            highlightfill = "#00D851"
+            highlightstroke = "lightgreen"
+        elif 50.0 < chart_data <= 75.0:
+            fillcolor = "#FFA446"
+            strokecolor = "orange"
+            highlightfill = "orange"
+            highlightstroke = "#FFA446"
+        elif 75.0 < chart_data <= 100.0:
+            fillcolor = "#FF6870"
+            strokecolor = "#D85C4D"
+            highlightfill = "#D85C4D"
+            highlightstroke = "#FF6870"
+        else:
+            fillcolor = "#FF6870"
+            strokecolor = "#D85C4D"
+            highlightfill = "#D85C4D"
+            highlightstroke = "#FF6870"
+
+        chart_colors = [fillcolor, strokecolor, highlightfill, highlightstroke]
+        return chart_colors

@@ -7,7 +7,7 @@ html {
 
 body{
     background-color: rgb(102, 105, 124) !important;
-    overflow: hidden!important;
+    overflow: auto!important;
 }
 
 /* sidebar servers */
@@ -131,6 +131,10 @@ body{
     border-radius: 0px!important;
 }
 
+.HasToScroll{
+    overflow-x: scroll !important;
+}
+
 /* Index panels style */
 .indexbutton{
     background-color: rgb(36, 34, 47) !important;
@@ -150,14 +154,14 @@ body{
 .deletebutton{
     border: none !important;
     border-radius: 0 !important;
-    width: 100% !important;
+    width: 40px !important;
 
 }
 
 .editbutton{
     border: none !important;
     border-radius: 0 !important;
-    width: 100% !important;
+    width: 40px !important;
 
 }
 
@@ -173,4 +177,27 @@ body{
 
 .navbar-light > a:hover{
     color: rgb(65, 63, 71) !important;
+}
+
+/* server page css*/
+
+.IndexColumn{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: rgb(250, 248, 233);
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: rgb(36, 34, 47);
 }

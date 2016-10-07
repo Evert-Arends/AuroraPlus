@@ -1,42 +1,62 @@
 {% load static from staticfiles %}
-
-<script src="{% static "chart/Chart.js" %}"></script>
+{% load current_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aurora</title>
+    <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/styles.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
+    <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
+    <script src="{% static "chart/Chart.js" %}"></script>
+</head>
+<body>
 
 <div class="col-md-6">
-    <div class="panel panel-default Chart1">
+    <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Users 2016</h3>
+            <h2 class="panel-title">Average network traffic (in bytes).</h2>
         </div>
         <div class="panel-body">
-            <canvas id="UserChart" style="max-width: 100%;"></canvas>
-
-
+            <canvas id="myChart" width="400" height="150"></canvas>
             <script>
-                var LineChartData = {
-                    labels : ["January","February","March","April","May","June","July","August","September","October","November","December"],
-                    datasets : [
-                    {
-                        fillColor : "rgba(144,145,250,0.5)",
-                        strokeColor : "rgba(144,145,250,0.8)",
-                        highlightFill: "rgba(144,145,250,0.75)",
-                        highlightStroke: "rgba(144,145,250,1)",
-                        data : [10,10,10,11,11,11,11,11,11,11,11,11]
-                    }
-                    ]
-                }
+                $(document).ready(function(){
+                  var data = {
+                      labels : ["1"],
+                        datasets : [
+                          {
+                              fillColor : "rgba(220,220,220,0.5)",
+                              strokeColor : "rgba(220,220,220,1)",
+                              pointColor : "rgba(220,220,220,1)",
+                              pointStrokeColor : "#fff",
+                              data : [{{ chart_data }}]
+                            }
+                        ]
+                  }
+
+                  var optionsAnimation = {
+                    scaleOverride : true,
+                    scaleSteps : 10,
+                    scaleStepWidth : 10,
+                    scaleStartValue : 0
+                  }
+
+                  var ctx = document.getElementById("myChart").getContext("2d");
+                  var optionsNoAnimation = {animation : false}
+                  var myNewChart = new Chart(ctx);
+                  myNewChart.Line(data, optionsAnimation);
+
+                  setInterval(function(){
+                    var ctx = document.getElementById("myChart").getContext("2d");
+                    ctx.destroy();
+                    var myNewChart = new Chart(ctx);
+                    myNewChart.Line(data, optionsNoAnimation)
+                    ;}, 2000
+                  );
+                });
             </script>
-        </div>
-        <div class='panel-footer'>
-            Total of all registered users.
         </div>
     </div>
 </div>
-
-<script>
-    window.onload = function() {
-        var ctx = document.getElementById("UserChart").getContext("2d");
-        window.myBar = new Chart(ctx).Bar(LineChartData, {
-            responsive: true
-        });
-    }
-</script>
