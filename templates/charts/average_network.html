@@ -1,0 +1,55 @@
+<script>
+var NetworkDataChart = {
+    type: 'line',
+    data: {
+        labels: ["Now", "5 min. ago","10 min. ago","15 min. ago","20 min. ago","25 min. ago","30 min. ago"],
+        datasets: [{
+            label: "Usage",
+            data: [45, 76, 56, 24, 19, 45, 37],
+            fill: true,
+            backgroundColor: "rgba(75,192,192,0.2) ",
+            borderColor: "#eebcde",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            spanGaps: false
+        }]
+    },
+    options: {
+        responsive: true,
+        legend: {
+            position: 'bottom'
+        },
+        hover: {
+            mode: 'label'
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Network'
+                }
+            }],
+            yAxes: [{
+                display: true,
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+};
+var average_network = document.getElementById('averagenetwork').getContext('2d');
+new Chart(average_network, NetworkDataChart);
+</script>

@@ -10,53 +10,65 @@
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
-    <script src="{% static "chart/Chart.js" %}"></script>
+    <script src="{% static "Chart/chart.js/dist/Chart.bundle.js" %}"></script>
+    <style>body{background-color: white!important;}</style>
 </head>
 <body>
-
-<div class="col-md-6">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h2 class="panel-title">Average network traffic (in bytes).</h2>
-        </div>
-        <div class="panel-body">
-            <canvas id="myChart" width="400" height="150"></canvas>
-            <script>
-                $(document).ready(function(){
-                  var data = {
-                      labels : ["1"],
-                        datasets : [
-                          {
-                              fillColor : "rgba(220,220,220,0.5)",
-                              strokeColor : "rgba(220,220,220,1)",
-                              pointColor : "rgba(220,220,220,1)",
-                              pointStrokeColor : "#fff",
-                              data : [{{ chart_data }}]
-                            }
-                        ]
-                  }
-
-                  var optionsAnimation = {
-                    scaleOverride : true,
-                    scaleSteps : 10,
-                    scaleStepWidth : 10,
-                    scaleStartValue : 0
-                  }
-
-                  var ctx = document.getElementById("myChart").getContext("2d");
-                  var optionsNoAnimation = {animation : false}
-                  var myNewChart = new Chart(ctx);
-                  myNewChart.Line(data, optionsAnimation);
-
-                  setInterval(function(){
-                    var ctx = document.getElementById("myChart").getContext("2d");
-                    ctx.destroy();
-                    var myNewChart = new Chart(ctx);
-                    myNewChart.Line(data, optionsNoAnimation)
-                    ;}, 2000
-                  );
-                });
-            </script>
-        </div>
-    </div>
+<div class="col-md-6 col-md-offset-3" >
+    <canvas id="canvas"></canvas>
 </div>
+<script>
+var config = {
+            type: 'line',
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [{
+                        label: "My First dataset",
+                        data: [10, 80, 56, 60, 6, 45, 15],
+                        fill: false,
+                        backgroundColor: "#eebcde ",
+                        borderColor: "#eebcde",
+                        borderCapStyle: 'butt',
+                        borderDash: [5, 5],
+                    }]
+            },
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'bottom',
+                },
+                hover: {
+                    mode: 'label'
+                },
+                scales: {
+                    xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Month'
+                            }
+                        }],
+                    yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                steps: 10,
+                                stepValue: 5,
+                                max: 100
+                            }
+                        }]
+                },
+                title: {
+                    display: true,
+                    text: 'Chart.js Line Chart - Legend'
+                }
+            }
+        };
+
+        var ctx = document.getElementById("canvas").getContext("2d");
+       new Chart(ctx, config);
+</script>
+
+
+</body>
+</html>

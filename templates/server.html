@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
-    <script src="{% static "chart/Chart.js" %}"></script>
+    <script src="{% static "Chart/chart.js/dist/Chart.bundle.js" %}"></script>
 </head>
 <body>
     {% include 'top.html' %}
@@ -107,22 +107,7 @@
                                 </div>
                                 <div class="panel-body HasToScroll">
                                     <canvas id="averagecpu" width="800" height="400"></canvas>
-                                    <script>
-                                        var CpuData = {
-                                            labels : ["Now", "5 min. ago","10 min. ago","15 min. ago","20 min. ago","25 min. ago","30 min. ago"],
-                                            datasets : [
-                                                {
-                                                    fillColor : "rgba(172,194,132,0.4)",
-                                                    strokeColor : "#ACC26D",
-                                                    pointColor : "#fff",
-                                                    pointStrokeColor : "#9DB86D",
-                                                    data : [276,203,156,99,251,305,247]
-                                                }
-                                            ]
-                                        };
-                                        var averagecpu = document.getElementById('averagecpu').getContext('2d');
-                                        new Chart(averagecpu).Line(CpuData);
-                                    </script>
+                                    {% include './charts/average_cpu.html' %}
                                 </div>
                             </div>
                         </div>
@@ -135,23 +120,8 @@
                                     <h2 class="panel-title">Average network traffic (in bytes).</h2>
                                 </div>
                                 <div class="panel-body HasToScroll">
-                                    <canvas id="buyers" width="800" height="400"></canvas>
-                                    <script>
-                                        var buyerData = {
-                                            labels : ["Now", "5 min. ago","10 min. ago","15 min. ago","20 min. ago","25 min. ago","30 min. ago"],
-                                            datasets : [
-                                                {
-                                                    fillColor : "rgba(172,194,132,0.4)",
-                                                    strokeColor : "#ACC26D",
-                                                    pointColor : "#fff",
-                                                    pointStrokeColor : "#9DB86D",
-                                                    data : [276,203,156,99,251,305,247]
-                                                }
-                                            ]
-                                        };
-                                        var buyers = document.getElementById('buyers').getContext('2d');
-                                        new Chart(buyers).Line(buyerData);
-                                    </script>
+                                    <canvas id="averagenetwork" width="800" height="400"></canvas>
+                                    {% include './charts/average_network.html' %}
                                 </div>
                             </div>
                         </div>
@@ -168,23 +138,8 @@
                                     <h2 class="panel-title">Live cpu use (percentages) </h2>
                                 </div>
                                 <div class="panel-body HasToScroll">
-
                                     <canvas id="CpuChart" style="max-width: 100%;"></canvas>
-                                    <script>
-                                        var CpuChartData = {
-                                            labels : ["CPU usage"],
-                                            datasets : [
-                                            {
-                                                fillColor : "{{ coloring.0 }}",
-                                                strokeColor : "{{ coloring.1 }}",
-                                                highlightFill: "{{ coloring.2 }}",
-                                                highlightStroke: "{{ coloring.3 }}",
-                                                data: [{{ chart_data }}]
-                                            }
-                                            ]
-                                        }
-                                    </script>
-
+                                    {% include './charts/cpu_chart.html' %}
                                 </div>
                             </div>
                         </div>
@@ -197,23 +152,8 @@
                                     <h2 class="panel-title">Live network usage</h2>
                                 </div>
                                 <div class="panel-body HasToScroll">
-
                                     <canvas id="NetworkChart" style="max-width: 100%;"></canvas>
-                                    <script>
-                                        var NetworkChartData = {
-                                            labels : ["latency in MS."],
-                                            datasets : [
-                                            {
-                                                fillColor : "#8797D8",
-                                                strokeColor : "#7277D8",
-                                                highlightFill: "#7277D8",
-                                                highlightStroke: "#8797D8",
-                                                data: ["70"]
-                                            }
-                                            ]
-                                        }
-                                    </script>
-
+                                    {% include './charts/network_chart.html' %}
                                 </div>
                             </div>
                         </div>
@@ -240,18 +180,5 @@
         {% endif %}
     {% endfor %}
 
-<script>
-    window.onload = function() {
-        var cpu = document.getElementById("CpuChart").getContext("2d");
-        window.myBar = new Chart(cpu).Bar(CpuChartData, {
-            responsive: true
-        });
-
-        var network = document.getElementById("NetworkChart").getContext("2d");
-        window.myBar = new Chart(network).Bar(NetworkChartData, {
-            responsive: true
-        });
-    }
-</script>
 </body>
 </html>
