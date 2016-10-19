@@ -1,3 +1,4 @@
+{% load static from staticfiles %}
     <nav class="navbar navbar-light bg-faded">
         {% comment %}Left side menu{% endcomment %}
         <a class="navbar-brand" href="../../">Aurora</a>
@@ -10,6 +11,13 @@
 
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
+                <li>
+                    <h2 class="sidepaneltitle">Aurora+</h2>
+                </li>
+                <li>
+                    <img style="max-width: 230px; margin-left: -10px;" src="{% static 'images/image.png' %}"/>
+                </li>
+                <hr class="sidebardivider"/>
                 {% for name in server_all %}
                     <li>
                         <a href="/server/{{ name.ServerInfo.ID }}" >{{ name.ServerInfo.Name }}</a>

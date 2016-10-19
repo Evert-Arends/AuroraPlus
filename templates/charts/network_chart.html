@@ -1,35 +1,44 @@
 <script>
-var network = document.getElementById("NetworkChart").getContext("2d");
-var rand_int = Math.floor(Math.random() * 30) + 20;
-var NetworkChart = new Chart(network, {
-    type: 'bar',
-    data: {
-        labels: ["traffic in bytes"],
-        datasets: [{
-            label: 'Traffic',
-            data: [rand_int],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
+function drawNetwork() {
+    var network = document.getElementById("NetworkChart").getContext("2d");
+    var rand_int = Math.floor(Math.random() * 30) + 20;
+    NetworkChart = new Chart(network, {
+        type: 'bar',
+        data: {
+            labels: ["traffic in bytes"],
+            datasets: [{
+                label: 'Traffic',
+                data: [rand_int],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)'
+                ],
+                borderWidth: 1
             }]
         },
-        responsive : true,
-        legend : {
-            display : false
-        },
-        animation : false
-    }
-});
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            responsive: true,
+            legend: {
+                display: false
+            },
+            animation: false
+        }
+    });
+}
+
+drawNetwork();
+
+setInterval(function refreshNetwork() {
+    NetworkChart.destroy();
+    drawNetwork();
+}, 1000);
 </script>

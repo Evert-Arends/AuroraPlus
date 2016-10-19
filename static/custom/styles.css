@@ -42,6 +42,8 @@ body{
 
 #wrapper.toggled #sidebar-wrapper {
     width: 250px;
+    margin-top: -72px;
+    margin-bottom: -20px;
 }
 
 #page-content-wrapper {
@@ -169,6 +171,7 @@ body{
 .navbar-light{
     background-color: rgb(250, 248, 233) !important;
     border-radius: 0 !important;
+    z-index: 2000!important;
 }
 
 .navbar-light > a{
@@ -199,5 +202,15 @@ body{
 
 ::-webkit-scrollbar-thumb {
     border-radius: 0px;
-    background-color: rgb(36, 34, 47);
+    background-color: rgba(75,192,192,0.2)
+}
+
+.sidepaneltitle{
+    color: rgb(250, 248, 233);
+}
+
+.sidebardivider{
+    margin-left: 10px;
+    margin-right: 10px;
+    color: rgba(255,255,255,0.2);
 }

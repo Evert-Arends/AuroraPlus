@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Aurora</title>
+    <link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">
     <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "custom/styles.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
@@ -105,7 +106,7 @@
                                 <div class="panel-heading">
                                     <h2 class="panel-title">Average cpu usage (percentages).</h2>
                                 </div>
-                                <div class="panel-body HasToScroll">
+                                <div class="panel-body HasToScroll Refresh">
                                     <canvas id="averagecpu" width="800" height="400"></canvas>
                                     {% include './charts/average_cpu.html' %}
                                 </div>
@@ -119,7 +120,7 @@
                                 <div class="panel-heading">
                                     <h2 class="panel-title">Average network traffic (in bytes).</h2>
                                 </div>
-                                <div class="panel-body HasToScroll">
+                                <div class="panel-body HasToScroll Refresh">
                                     <canvas id="averagenetwork" width="800" height="400"></canvas>
                                     {% include './charts/average_network.html' %}
                                 </div>
@@ -137,7 +138,7 @@
                                 <div class="panel-heading">
                                     <h2 class="panel-title">Live cpu use (percentages) </h2>
                                 </div>
-                                <div class="panel-body HasToScroll">
+                                <div class="panel-body HasToScroll Refresh">
                                     <canvas id="CpuChart" style="max-width: 100%;"></canvas>
                                     {% include './charts/cpu_chart.html' %}
                                 </div>
@@ -151,7 +152,7 @@
                                 <div class="panel-heading">
                                     <h2 class="panel-title">Live network usage</h2>
                                 </div>
-                                <div class="panel-body HasToScroll">
+                                <div class="panel-body HasToScroll Refresh1">
                                     <canvas id="NetworkChart" style="max-width: 100%;"></canvas>
                                     {% include './charts/network_chart.html' %}
                                 </div>
@@ -179,6 +180,5 @@
 
         {% endif %}
     {% endfor %}
-
 </body>
 </html>
