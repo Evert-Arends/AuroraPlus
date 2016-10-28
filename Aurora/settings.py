@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'AuroraPlus',
     'AuroraPlus.templatetags.current_tags',
-    'chartjs'
 ]
 
 MIDDLEWARE = [
