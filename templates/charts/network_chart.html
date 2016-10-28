@@ -2,18 +2,21 @@
 function drawNetwork() {
     var network = document.getElementById("NetworkChart").getContext("2d");
     var rand_int = Math.floor(Math.random() * 30) + 20;
+    var rand_int2 = Math.floor(Math.random() * 30) + 20;
     NetworkChart = new Chart(network, {
         type: 'bar',
         data: {
-            labels: ["traffic in bytes"],
+            labels: ["Incoming traffic", "Outgoing traffic"],
             datasets: [{
                 label: 'Traffic',
-                data: [rand_int],
+                data: [rand_int, rand_int2],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)'
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(63, 191, 191, 0.2)'
                 ],
                 borderColor: [
-                    'rgba(255,99,132,1)'
+                    'rgba(255,99,132,1)',
+                    'rgba(63, 191, 191, 1)'
                 ],
                 borderWidth: 1
             }]
@@ -26,7 +29,7 @@ function drawNetwork() {
                     }
                 }]
             },
-            responsive: true,
+            responsive: false,
             legend: {
                 display: false
             },

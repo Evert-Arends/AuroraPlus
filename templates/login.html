@@ -1,0 +1,38 @@
+{% load static from staticfiles %}
+{% load current_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aurora</title>
+    {% comment %}<link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">{% endcomment %}
+    <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/styles.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
+    <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
+</head>
+<body>
+    {% include 'top.html' %}
+
+    <div class="col-lg-10 col-lg-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title"></h2>
+            </div>
+            <div class="panel-body">
+
+                <form id="login_form" method="post" action="/test/">{% csrf_token %}
+                    <label for="UserName">Username</label>
+                    <input id="UserName" type="text" name="username" value="" size="50" />
+                    <br />
+                    <label for="PassWord">Username</label>
+                    <input id="PassWord" type="password" name="password" value="" size="50" />
+                    <br />
+                    <input type="submit" value="submit" />
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

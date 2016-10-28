@@ -12,40 +12,12 @@
     <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
     <script src="{% static "Chart/chart.js/dist/Chart.bundle.js" %}"></script>
     <style>body{background-color: white!important;}</style>
-    <script type="text/javascript" charset="utf-8">
-        window.chartOptions = {
-            segmentShowStroke: false,
-            percentageInnerCutout: 75,
-            animation: false
-        };
-
-        var chartUpdate = function(value) {
-            console.log("Updating Chart: ", value);
-
-            $('#chart').replaceWith('<canvas id="chart" width="300" height="300"></canvas>');
-
-            var ctx = $('#chart').get(0).getContext("2d");
-            new Chart(ctx).Doughnut([
-            {
-                value: value,
-                color: '#4FD134'
-            },
-            {
-                value: 100-value,
-                color: '#DDDDDD'
-            }],
-
-            window.chartOptions);
-
-            setTimeout (function() { chartUpdate(value - 1); }, 1000);
-        };
-
-        $(document).ready(function() {
-        setTimeout (function() { chartUpdate(99); }, 1000);
-        });
-    </script>
 </head>
 <body>
-    <canvas id="chart" width="300" height="300"></canvas>
+{% if user.is_authenticated %}
+<h1>Rango says... hello {{ user.username }}!</h1>
+{% else %}
+<h1>Rango says... hello world!</h1>
+{% endif %}
 </body>
 </html>
