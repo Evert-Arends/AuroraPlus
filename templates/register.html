@@ -1,0 +1,63 @@
+{% load static from staticfiles %}
+{% load current_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aurora</title>
+    {% comment %}<link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">{% endcomment %}
+    <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/styles.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
+    <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
+</head>
+<body>
+    <div class="col-lg-10 col-lg-offset-1">
+
+        <h1 class="page-header">Aurora+</h1>
+
+        <div class="panel landing-page-heading" style="border-radius: 0;">
+            <div class="panel-body landing-page-heading">
+
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Register</h3>
+                        </div>
+                        <div class="panel-body base-page-panel">
+                            {% if registered %}
+                                <strong>Successfully registered.</strong>
+                                <a href="/">Return to the homepage.</a><br>
+                            {% else %}
+                                <form class="form-outline" id="user_form" method="post" action="/register/" enctype="multipart/form-data">
+
+                                    {% csrf_token %}
+
+                                    {% comment %} {{ user_form.as_p }} _p wraps tag in <p> tag{% endcomment %}
+
+                                    <label for="id_username">Username:</label>
+                                    <input class="form-control" id="id_username" maxlength="150" name="username" type="text" required />
+                                    <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+                                    <br>
+                                    <br>
+                                    <label for="id_email">Email address:</label>
+                                    <input class="form-control" id="id_email" maxlength="254" name="email" type="email" />
+                                    <br>
+                                    <label for="id_password">Password:</label>
+                                    <input class="form-control" id="id_password" name="password" type="password" required />
+                                    <br>
+                                    <input class="btn btn-default landing-page-button" type="submit" name="submit" value="Register" />
+                                    <a class="btn btn-default landing-page-button" href="/">Login</a>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

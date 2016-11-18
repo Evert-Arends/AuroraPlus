@@ -1,0 +1,106 @@
+{% load static from staticfiles %}
+{% load current_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aurora</title>
+    {% comment %}<link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">{% endcomment %}
+    <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/styles.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
+    <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
+</head>
+<body>
+    <div class="col-lg-10 col-lg-offset-1">
+
+        <h1 class="page-header">Aurora+</h1>
+
+        <div class="panel landing-page-heading" style="border-radius: 0;">
+            <div class="panel-body landing-page-heading">
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="panel landing-page-desc" style="border-radius: 0;">
+                            <div class="panel-body landing-page-desc">
+                                <div class="col-md-6">
+                                    <img src="{% static "images/home_page.png" %}" style="width: 100%;">
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        Clean overview of all your servers.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="panel landing-page-desc" style="border-radius: 0;">
+                            <div class="panel-body landing-page-desc">
+                                <div class="col-md-6">
+                                    <p>
+                                        blablablablablabla......
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="{% static "images/live_stats.png" %}" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Landing page</h3>
+                            </div>
+                            <div class="panel-body base-page-panel">
+                                <p class="landing-page-text">
+                                    Aurora+ is a server manager that easy manages multiple servers
+                                    at once for the server manager.
+                                    The fact you see this landing page means Aurora+ is the
+                                    management tool for this server.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if user.is_authenticated %}
+                        <div class="col-md-6">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Logged in</h3>
+                                </div>
+                                <div class="panel-body base-page-panel">
+                                    <p>
+                                        You are already logged in.
+                                    </p>
+                                    <a href="/home/">Go back to dashboard.</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-md-6">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Log in</h3>
+                                </div>
+                                <div class="panel-body base-page-panel">
+                                    {% include "login.html" %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

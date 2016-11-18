@@ -8,7 +8,7 @@ function drawCpu() {
             labels: ["CPU usage"],
             datasets: [{
                 label: 'Usage',
-                data: [rand_int],
+                data: [{{ chart_data }}],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)'
                 ],

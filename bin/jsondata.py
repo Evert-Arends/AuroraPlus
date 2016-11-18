@@ -1,6 +1,5 @@
 import json
 
-
 class JsonData:
 
     def __init__(self):

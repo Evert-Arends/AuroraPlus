@@ -10,7 +10,7 @@ class Communication:
         pass
 
     # There still must be a time backwards
-    # the parameters have a default value, for testing, if you assign this method with different parmeters
+    # the parameters have a default value, for testing, if you assign this method with different parameters
     # those standard values will be overwritten.
     @staticmethod
     def get_json_data(server='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=0):
@@ -32,8 +32,3 @@ class Communication:
 if __name__ == "__main__":
     Collector = Communication()
     print Collector.get_json_data()
-
-
-
-
-
