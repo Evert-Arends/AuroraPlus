@@ -16,7 +16,7 @@ body{
     background-color: rgba(0,0,0,0.4)
 }
 
-.login-button{
+.register-button{
     width: 100%;
     border-radius: 0 !important;
     background-color: rgba(0,0,0,0.4) !important;
@@ -24,7 +24,7 @@ body{
     color: white !important;
 }
 
-.login-input{
+.register-input{
     border-radius: 0 !important;
     background-color: rgba(0,0,0,0.4)  !important;
     border-style: none !important;
@@ -41,4 +41,8 @@ h1{
     float: none;
     text-align: center;
     font-size: 50px;
+}
+
+.helptext{
+    color: white;
 }
