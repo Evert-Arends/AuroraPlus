@@ -46,19 +46,25 @@ def server_page(request, server_id):
 
 def test(request):
     images = LandingPageImages.objects.all().order_by('ID')
-
+    img_array = []
     for image in images:
-        images_array = image.ID, image.PictureLink, image.DescText
+        img_array.append(image.ID)
+        img_array.append(image.PictureLink)
+        img_array.append(image.DescText)
 
-    print images_array
-    return render_to_response('test.html', {'images': images})
+    print img_array
+    return render_to_response('test.html', {'images': img_array})
 
 
 def landing_page(request):
-    images_object = LandingPageImages
-    print images_object
     context = RequestContext(request)
-    return render_to_response('base.html', context)
+    images = LandingPageImages.objects.all().order_by('ID')
+    img_array = []
+    for image in images:
+        img_array.append([image.ID, image.PictureLink, image.DescText])
+
+    print img_array
+    return render_to_response('base.html', {'images': img_array}, context)
 
 
 def register(request):
