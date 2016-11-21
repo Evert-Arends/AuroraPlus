@@ -21,40 +21,6 @@
             <div class="panel-body landing-page-heading">
 
                 <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="panel landing-page-desc" style="border-radius: 0;">
-                            <div class="panel-body landing-page-desc">
-                                <div class="col-md-6">
-                                    <img src="{% static "images/home_page.png" %}" style="width: 100%;">
-                                </div>
-                                <div class="col-md-6">
-                                    <p>
-                                        Clean overview of all your servers.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="panel landing-page-desc" style="border-radius: 0;">
-                            <div class="panel-body landing-page-desc">
-                                <div class="col-md-6">
-                                    <p>
-                                        blablablablablabla......
-                                    </p>
-                                </div>
-                                <div class="col-md-6">
-                                    <img src="{% static "images/live_stats.png" %}" style="width: 100%;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
                     <div class="col-md-6">
                         <div class="panel panel-danger">
                             <div class="panel-heading">
@@ -98,6 +64,27 @@
                         </div>
                     {% endif %}
                 </div>
+
+                <div class="row">
+                    {% for image in images %}
+                        <div class="col-md-4" style="height: 400px;">
+                            <div class="panel landing-page-desc" style="border-radius: 0; height: 325px;">
+                                <div class="panel-body landing-page-desc">
+                                    <div class="col-md-12">
+                                        <img src="{{ image.1 }}" style="max-width: 100%; max-height: 200px;">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p>
+                                            <br>
+                                            {{ image.2 }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
             </div>
         </div>
 
