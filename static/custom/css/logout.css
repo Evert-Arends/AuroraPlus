@@ -3,13 +3,26 @@ html, body{
     background-size: cover !important;
     height: 100%;
     width: 100%;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
+    overflow: hidden;
 }
 .centered {
   position: fixed;
-  top: 50%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
   transform: -webkit-translate(-50%, -50%);
   transform: -ms-translate(-50%, -50%);
+}
+h1 {
+    font-family: Lato, serif;
+    color: white;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 26px;
+}
+a:link{
+    text-decoration: none;
 }
