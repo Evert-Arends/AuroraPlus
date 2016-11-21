@@ -1,12 +1,12 @@
-<form class="form form-outline" id="login_form" method="post" action="/login/">
-    {% csrf_token %}
-
-    <label for="username">Username:</label>
-    <input class="form-control" id="username" type="text" name="username" value="" />
-    <br>
-    <label for="password">Password:</label>
-    <input class="form-control" id="password" type="password" name="password" value="" />
-    <br>
-    <input class="btn btn-default landing-page-button" type="submit" value="Login" />
-    <a class="btn btn-default landing-page-button" href="/register/">Register</a>
-</form>
+<html>
+    <form class="form form-outline" id="login_form" method="post" action="/login/">{% csrf_token %}
+        <label for="username">Username:</label>
+        <input class="form-control" id="username" type="text" name="username" value="" />
+        <br>
+        <label for="password">Password:</label>
+        <input class="form-control" id="password" type="password" name="password" value="" />
+        <br>
+        <input class="btn btn-default landing-page-button" type="submit" value="Login" />
+        <a class="btn btn-default landing-page-button" href="/register/">Register</a>
+    </form>
+</html>

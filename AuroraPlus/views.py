@@ -3,8 +3,13 @@ from array import array
 
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
+from django.template.loader import get_template
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators import csrf
+from django.views.decorators.csrf import csrf_protect
+
 from bin import cpu, jsondata, collector
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from AuroraPlus.forms import UserForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
@@ -74,12 +79,13 @@ def register(request):
     else:
         user_form = UserForm()
 
-    return render_to_response('register.html', {'user_form': user_form, 'registered': registered}, context)
+    return render(request, 'register.html', {'user_form': user_form, 'registered': registered}, context)
 
 
+@csrf_protect
 def user_login(request):
     context = RequestContext(request)
-
+    c = {}
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -87,9 +93,9 @@ def user_login(request):
         user = authenticate(username=username, password=password)
 
         if user:
-            if user.is_active:
+            if user is not None:
                 login(request, user)
-                return HttpResponseRedirect('/base/')
+                return HttpResponse('Logged in!')
             else:
                 return HttpResponse("Your Rango account is disabled.")
         else:
@@ -97,7 +103,7 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
 
     else:
-        return render_to_response('login.html', {}, context)
+        return render(request, 'login.html', c)
 
 
 @login_required
