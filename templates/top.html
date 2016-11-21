@@ -1,38 +1,45 @@
 {% load static from staticfiles %}
-    <nav class="navbar navbar-light bg-faded">
-        {% comment %}Left side menu{% endcomment %}
-        <a class="navbar-brand" href="../../">Aurora</a>
+<nav class="navbar navbar-light bg-faded">
+    {% comment %}Left side menu{% endcomment %}
+    <a class="navbar-brand" href="../../">Aurora</a>
 
-        {% comment %}right side menu{% endcomment %}
-        <a class="navbar-brand navbar-right" href="#menu-toggle" id="menu-toggle"style="margin-right: 10px;">View servers</a>
-    </nav>
+    {% comment %}right side menu{% endcomment %}
+    <div class="navbar-right col-md-4">
+        <a class="pull-right" href="#menu-toggle" id="menu-toggle"
+           style="margin: auto !important;"><i class="fa fa-server fa-2x"></i></a>
+        <a class="pull-right" href="/logout/" id="logout"
+           style="margin: auto !important;"><i
+                class="fa fa-sign-out fa-3x"
+                aria-hidden="true"></i></a>
+    </div>
+</nav>
 
-    <div id="wrapper">
+<div id="wrapper">
 
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li>
+                <h2 class="sidepaneltitle">Aurora+</h2>
+            </li>
+            <li>
+                <img style="max-width: 230px; margin-left: -15px;" src="{% static 'images/logo.png' %}"/>
+            </li>
+            <hr class="sidebardivider"/>
+            {% for name in server_all %}
                 <li>
-                    <h2 class="sidepaneltitle">Aurora+</h2>
+                    <a href="/server/{{ name.ServerInfo.ID }}">{{ name.ServerInfo.Name }}</a>
                 </li>
-                <li>
-                    <img style="max-width: 230px; margin-left: -15px;" src="{% static 'images/logo.png' %}"/>
-                </li>
-                <hr class="sidebardivider"/>
-                {% for name in server_all %}
-                    <li>
-                        <a href="/server/{{ name.ServerInfo.ID }}" >{{ name.ServerInfo.Name }}</a>
-                    </li>
-                    {% empty %}
-                    <li>No servers found.</li>
-                {% endfor %}
-            </ul>
-        </div>
-
+            {% empty %}
+                <li>No servers found.</li>
+            {% endfor %}
+        </ul>
     </div>
 
-    <script>
-    $("#menu-toggle").click(function(e) {
+</div>
+
+<script>
+    $("#menu-toggle").click(function (e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-    </script>
+</script>
