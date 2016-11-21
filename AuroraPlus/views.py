@@ -90,9 +90,12 @@ def register(request):
 
 @csrf_protect
 def user_login(request):
-    context = RequestContext(request)
-    c = {}
+    if request.user.is_authenticated():
+            return HttpResponseRedirect('/')
+
     if request.method == 'POST':
+        if request.user.is_authenticated():
+            return HttpResponse('You are already logged in.')
         username = request.POST['username']
         password = request.POST['password']
 
@@ -109,11 +112,13 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
 
     else:
-        return render(request, 'login.html', c)
+        return render(request, 'login.html')
 
 
 @login_required
 def user_logout(request):
-    logout(request)
+    # logout(request)
+    # return HttpResponseRedirect('/')
+    return render(request, 'logout.html')
 
-    return HttpResponseRedirect('/base/')
+

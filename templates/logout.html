@@ -1,0 +1,38 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
+</head>
+<body>
+        <a id="retry" href="../" class="button success radius large"><h1>Redirecting in ... </h1><i class="fi-refresh"></i></a>
+    	<span id="counter" class="label alert round">1</span>
+
+</body>
+</html>
+
+<script>
+   sec = 300;
+   counter = document.getElementById('counter');
+   counter.innerText = sec;
+   i = setInterval(function(){
+   	    --sec;
+   	    if (sec === 1){
+   		    clearInterval(i);
+   		    window.location = document.getElementById('retry').href;
+   	    }
+   	    counter.innerText=sec;
+   	},1000);
+</script>
+<style>
+    h1 {
+        font-family: Lato, serif;
+        font-size: 24px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 500;
+        line-height: 26px;
+    }
+</style>
