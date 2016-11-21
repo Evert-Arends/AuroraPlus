@@ -9,13 +9,12 @@ from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_protect
 
 from bin import cpu, jsondata, collector
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render_to_response, render, redirect
 from AuroraPlus.forms import UserForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import logout
 from models import LandingPageImages
-
 
 # classes
 CPU = cpu.CPUUsage
@@ -23,6 +22,7 @@ JsonAction = jsondata.JsonData
 Communication = collector.Communication
 
 
+@login_required
 def index(request):
     string_server = JsonAction.all_server_data()
     if not string_server:
@@ -33,6 +33,7 @@ def index(request):
     return render_to_response('index.html', {'server_all': string_server, 'totalservers': count_servers})
 
 
+@login_required
 def server_page(request, server_id):
     string_server = JsonAction.all_server_data()
     if not string_server:
@@ -91,7 +92,7 @@ def register(request):
 @csrf_protect
 def user_login(request):
     if request.user.is_authenticated():
-            return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/dashboard/')
 
     if request.method == 'POST':
         if request.user.is_authenticated():
@@ -102,23 +103,18 @@ def user_login(request):
         user = authenticate(username=username, password=password)
 
         if user:
-            if user is not None:
-                login(request, user)
-                return HttpResponse('Logged in!')
-            else:
-                return HttpResponse("Your Rango account is disabled.")
+            login(request, user)
+            return HttpResponseRedirect('/dashboard/')
         else:
             print "Invalid login details: {0}, {1}".format(username, password)
             return HttpResponse("Invalid login details supplied.")
-
     else:
         return render(request, 'login.html')
 
 
-@login_required
 def user_logout(request):
-    # logout(request)
-    # return HttpResponseRedirect('/')
+    if request.user.is_authenticated():
+        logout(request)
+    else:
+        return render(request, 'login.html')
     return render(request, 'logout.html')
-
-

@@ -1,5 +1,5 @@
 function startCounter(){
-    sec = 5;
+    sec = 3;
     counter = document.getElementById('counter');
     counter.innerText = sec;
     i = setInterval(function(){
