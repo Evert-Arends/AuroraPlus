@@ -8,21 +8,6 @@ html, body {
     width: 100% !important;
 }
 
-@media screen and (max-width: 991px) {
-    body {
-        background: url("http://i.huffpost.com/gen/1549065/images/o-KIRUNA-SWEDEN-STARS-facebook.jpg") no-repeat !important;
-        background-size: cover !important;
-        height: 100% !important;
-        width: 100% !important;
-    }
-}
-
-@media screen and (min-width: 992px) {
-    body {
-        background: url("http://i.huffpost.com/gen/1549065/images/o-KIRUNA-SWEDEN-STARS-facebook.jpg") no-repeat !important;
-    }
-}
-
 .landing-page-heading {
     background-color: transparent !important;
     border-radius: 0 !important;

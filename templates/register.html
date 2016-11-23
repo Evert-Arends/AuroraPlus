@@ -1,27 +1,30 @@
 {% load static from staticfiles %}
 {% load current_tags %}
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Login</title>
-        <link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">
-        <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
-        <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
-        <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
-        <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
-        <link rel="stylesheet" type="text/css" href="{% static "custom/css/register.css" %}"/>
-    </head>
-    <body>
-        <div class="col-md-3 centered">
-            <h1>AuroraPlus</h1>
-            {% if registered %}
-                <strong>Successfully registered.</strong>
-                <a href="/">Return to the homepage.</a><br>
-            {% else %}
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">
+    <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
+    <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/register.css" %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Armata|Bangers|Harmattan|Lato|Orbitron" rel="stylesheet">
+</head>
+<body>
+    <div class="col-md-3 centered">
+        <div class="col-md-12 centered-logo">
+            <h1 style="text-align: left;">AuroraPlus</h1>
+        </div>
+        {% if registered %}
+            <strong>Successfully registered.</strong>
+            <a href="/">Return to the homepage.</a><br>
+        {% else %}
+            <div class="col-md-12 centered-form">
                 <form class="form-outline" id="user_form" method="post" action="/register/" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% comment %} {{ user_form.as_p }} _p wraps tag in <p> tag{% endcomment %}
-
                     <label for="id_username">Username:</label>
                     <input class="register-input form-control" id="id_username" maxlength="150" name="username" type="text" required />
                     <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
@@ -35,7 +38,8 @@
                     <br>
                     <input class="btn btn-default register-button" type="submit" name="submit" value="Register" />
                 </form>
-            {% endif %}
-        </div>
-    </body>
+            </div>
+        {% endif %}
+    </div>
+</body>
 </html>
