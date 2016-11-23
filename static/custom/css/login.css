@@ -47,7 +47,6 @@ body {
 }
 
 .login-input {
-    /*border-radius: 0 !important;*/
     background-color: rgba(0, 0, 0, 0.4) !important;
     border-style: none !important;
     color: white !important;
