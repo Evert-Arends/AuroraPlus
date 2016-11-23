@@ -15,7 +15,6 @@ html, body {
     transform: -webkit-translate(-50%, -50%);
     transform: -ms-translate(-50%, -50%);
     padding: 30px 30px 30px 30px;
-    /*background-color: rgba(0, 0, 0, 0.4);*/
 }
 
 h1 {

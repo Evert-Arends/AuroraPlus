@@ -13,90 +13,89 @@
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/landing_page.css" %}"/>
 </head>
 <body>
-    <div class="col-lg-10 col-lg-offset-1">
+<div class="col-lg-10 col-lg-offset-1">
+    <div class="panel landing-page-heading" style="border-radius: 0;">
+        <div class="panel-body landing-page-heading">
 
-        <div class="panel landing-page-heading" style="border-radius: 0;">
-            <div class="panel-body landing-page-heading">
+            <h1 class="page-header">Aurora+</h1>
 
-                <h1 class="page-header">Aurora+</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Landing page</h3>
+                        </div>
+                        <div class="panel-body base-page-panel">
+                            <p class="landing-page-text">
+                                Aurora+ is a server manager that easy manages multiple servers
+                                at once for the server manager.
+                                The fact you see this landing page means Aurora+ is the
+                                management tool for this server.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="row">
+                {% if user.is_authenticated %}
                     <div class="col-md-6">
                         <div class="panel panel-danger">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Landing page</h3>
+                                <h3 class="panel-title">Status</h3>
                             </div>
                             <div class="panel-body base-page-panel">
-                                <p class="landing-page-text">
-                                    Aurora+ is a server manager that easy manages multiple servers
-                                    at once for the server manager.
-                                    The fact you see this landing page means Aurora+ is the
-                                    management tool for this server.
+                                <p>
+                                    You are already logged in.
                                 </p>
+                                <a href="/dashboard/" class="btn btn-primary landing-page-button"
+                                   role="button" aria-pressed="true">Go back to dashboard.</a>
+                                <a href="/logout/" class="btn btn-primary landing-page-button"
+                                   role="button" aria-pressed="true">Logout.</a>
                             </div>
                         </div>
                     </div>
-
-                    {% if user.is_authenticated %}
-                        <div class="col-md-6">
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Status</h3>
-                                </div>
-                                <div class="panel-body base-page-panel">
-                                    <p>
-                                        You are already logged in.
-                                    </p>
-                                    <a href="/home/" class="btn btn-primary landing-page-button"
-                                       role="button" aria-pressed="true">Go back to dashboard.</a>
-                                    <a href="/logout/" class="btn btn-primary landing-page-button"
-                                       role="button" aria-pressed="true">Logout.</a>
-                                </div>
+                {% else %}
+                    <div class="col-md-6">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Status</h3>
+                            </div>
+                            <div class="panel-body base-page-panel">
+                                <p>
+                                    You are not logged in.
+                                </p>
+                                <a href="/login/" class="btn btn-primary landing-page-button"
+                                   role="button" aria-pressed="true">Login.</a>
+                                <a href="/register/" class="btn btn-primary landing-page-button"
+                                   role="button" aria-pressed="true">Register.</a>
                             </div>
                         </div>
-                    {% else %}
-                        <div class="col-md-6">
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Status</h3>
-                                </div>
-                                <div class="panel-body base-page-panel">
-                                    <p>
-                                        You are not logged in.
-                                    </p>
-                                    <a href="/login/" class="btn btn-primary landing-page-button"
-                                       role="button" aria-pressed="true">Login.</a>
-                                    <a href="/register/" class="btn btn-primary landing-page-button"
-                                       role="button" aria-pressed="true">Register.</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                </div>
-
-                <div class="row">
-                    {% for image in images %}
-                        <div class="col-md-4">
-                            <div class="panel landing-page-desc" style="border-radius: 0; height: 325px;">
-                                <div class="panel-body">
-                                    <div class="col-md-12">
-                                        <img src="{{ image.1 }}" style="max-width: 100%; max-height: 200px;">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <p>
-                                            <br>
-                                            {{ image.2 }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-
+                    </div>
+                {% endif %}
             </div>
-        </div>
 
+            <div class="row">
+                {% for image in images %}
+                    <div class="col-md-4">
+                        <div class="panel landing-page-desc" style="border-radius: 0; height: 325px;">
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <img src="{{ image.1 }}" style="max-width: 100%; max-height: 200px;">
+                                </div>
+                                <div class="col-md-12">
+                                    <p>
+                                        <br>
+                                        {{ image.2 }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
     </div>
+
+</div>
 </body>
 </html>

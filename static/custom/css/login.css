@@ -20,7 +20,6 @@ body {
     background-color: rgba(0, 0, 0, 0.4);
     border: 3px solid rgba(0, 0, 0, 0.4);
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
-
 }
 
 .centered-form {
@@ -29,12 +28,10 @@ body {
 
 .centered-logo {
     padding-bottom: 1%;
-    /*border: 3px solid rgba(0, 0, 0, 0.4);*/
 }
 
 .login-button {
     width: 100%;
-    /*border-radius: 0 !important;*/
     background-color: rgba(202, 113, 113, 0.4) !important;
     font-size: 18px;
     border-style: none !important;
