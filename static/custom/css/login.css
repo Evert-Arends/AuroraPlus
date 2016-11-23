@@ -1,5 +1,6 @@
 body{
-    background: url("http://i.imgur.com/ZKtcxG5.png") no-repeat !important;
+    /*background: url("http://i.imgur.com/ZKtcxG5.png") no-repeat !important;*/
+    background: url("http://i.huffpost.com/gen/1549065/images/o-KIRUNA-SWEDEN-STARS-facebook.jpg") no-repeat !important;
     background-size: cover !important;
     height: 100%;
     width: 100%;
@@ -7,13 +8,29 @@ body{
 
 .centered {
     position: fixed;
-    top: 50%;
+    top: 53%;
     left: 50%;
     transform: translate(-50%, -50%);
     transform: -webkit-translate(-50%, -50%);
     transform: -ms-translate(-50%, -50%);
     padding: 10px;
-    background-color: rgba(0,0,0,0.4)
+    background-color: rgba(0,0,0,0.4);
+    border: 3px solid rgba(0, 0, 0, 0.4);
+    /*box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);*/
+
+}
+.centered-logo{
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: -webkit-translate(-50%, -50%);
+    transform: -ms-translate(-50%, -50%);
+    padding: 10px;
+    background-color: rgba(0,0,0,0.4);
+    border: 3px solid rgba(0, 0, 0, 0.4);
+    /*box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);*/
+
 }
 
 .login-button{
