@@ -10,21 +10,30 @@
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/login.css" %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Armata|Bangers|Harmattan|Lato|Orbitron" rel="stylesheet">
+
 </head>
 <body>
-<div class="col-md-3 centered-logo">
-    <h1 style="text-align: left;">AuroraPlus</h1>
-</div>
 <div class="col-md-3 centered">
-    <form class="form form-outline" id="login_form" method="post" action="/login/">{% csrf_token %}
-        <label for="username">Username:</label>
-        <input class="form-control login-input" id="username" type="text" name="username" value=""/>
-        <br>
-        <label for="password">Password:</label>
-        <input class="form-control login-input" id="password" type="password" name="password" value=""/>
-        <br>
-        <input class="btn btn-default login-button" type="submit" value="Login"/>
-    </form>
+    <div class="col-md-12 centered-logo">
+        <h1 style="text-align: left;">AuroraPlus</h1>
+    </div>
+    <div class="col-md-12 centered-form">
+        <form class="form form-outline" id="login_form" method="post" autocomplete="off"
+              action="/login/">{% csrf_token %}
+            <label for="username">Username:</label>
+            <input class="form-control login-input" id="username" type="text" autocomplete="off" name="username"
+                   value=""/>
+            <br>
+            <label for="password">Password:</label>
+            <input class="form-control login-input" id="password" type="password" autocomplete="off" auto
+                   name="password" value=""/>
+            <br>
+            <input class="btn btn-default login-button" type="submit" value="Login"/>
+            <br/>
+            <span><a href="/register/" class="register-link">Register here</a></span>
+        </form>
+    </div>
 </div>
 </body>
 </html>

@@ -1,5 +1,8 @@
-body{
-    /*background: url("http://i.imgur.com/ZKtcxG5.png") no-repeat !important;*/
+* {
+    box-sizing: border-box;
+}
+
+body {
     background: url("http://i.huffpost.com/gen/1549065/images/o-KIRUNA-SWEDEN-STARS-facebook.jpg") no-repeat !important;
     background-size: cover !important;
     height: 100%;
@@ -8,54 +11,67 @@ body{
 
 .centered {
     position: fixed;
-    top: 53%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     transform: -webkit-translate(-50%, -50%);
     transform: -ms-translate(-50%, -50%);
     padding: 10px;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     border: 3px solid rgba(0, 0, 0, 0.4);
-    /*box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);*/
-
-}
-.centered-logo{
-    position: fixed;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transform: -webkit-translate(-50%, -50%);
-    transform: -ms-translate(-50%, -50%);
-    padding: 10px;
-    background-color: rgba(0,0,0,0.4);
-    border: 3px solid rgba(0, 0, 0, 0.4);
-    /*box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);*/
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
 
 }
 
-.login-button{
+.centered-form {
+    top: 20%;
+}
+
+.centered-logo {
+    padding-bottom: 1%;
+    /*border: 3px solid rgba(0, 0, 0, 0.4);*/
+}
+
+.login-button {
     width: 100%;
-    border-radius: 0 !important;
-    background-color: rgba(0,0,0,0.4) !important;
+    /*border-radius: 0 !important;*/
+    background-color: rgba(202, 113, 113, 0.4) !important;
+    font-size: 18px;
     border-style: none !important;
     color: white !important;
+    font-family: 'Harmattan', sans-serif;
 }
 
-.login-input{
-    border-radius: 0 !important;
-    background-color: rgba(0,0,0,0.4)  !important;
+.login-button:hover {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.login-input {
+    /*border-radius: 0 !important;*/
+    background-color: rgba(0, 0, 0, 0.4) !important;
     border-style: none !important;
     color: white !important;
+    font-family: 'Harmattan', sans-serif;
+
 }
 
-label{
+.register-link {
     color: white !important;
 }
 
-h1{
-    font-family: Century Gothic, Arial;
+label {
+    color: white !important;
+    font-family: 'Harmattan', sans-serif;
+    font-size: 18px;
+!important;
+
+}
+
+h1 {
+    font-family: 'Harmattan', sans-serif !important;
+    text-decoration: solid;
     color: white;
     float: none;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
 }
