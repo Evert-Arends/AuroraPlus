@@ -57,6 +57,7 @@ def test(request):
     return render_to_response('test.html', {'images': img_array})
 
 
+@csrf_protect
 def landing_page(request):
     context = RequestContext(request)
     images = LandingPageImages.objects.all().order_by('ID')
@@ -65,7 +66,7 @@ def landing_page(request):
         img_array.append([image.ID, image.PictureLink, image.DescText])
 
     print img_array
-    return render_to_response('base.html', {'images': img_array}, context)
+    return render(request, 'base.html', {'images': img_array}, context)
 
 
 def register(request):
