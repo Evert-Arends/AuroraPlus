@@ -118,3 +118,7 @@ def user_logout(request):
     else:
         return render(request, 'login.html')
     return render(request, 'logout.html')
+
+
+def page_not_found(request):
+    return render(request, '404.html')
