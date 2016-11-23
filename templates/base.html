@@ -7,18 +7,18 @@
     <title>Aurora</title>
     {% comment %}<link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">{% endcomment %}
     <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static "custom/css/styles.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/landing_page.css" %}"/>
 </head>
 <body>
     <div class="col-lg-10 col-lg-offset-1">
 
-        <h1 class="page-header">Aurora+</h1>
-
         <div class="panel landing-page-heading" style="border-radius: 0;">
             <div class="panel-body landing-page-heading">
+
+                <h1 class="page-header">Aurora+</h1>
 
                 <div class="row">
                     <div class="col-md-6">
@@ -41,14 +41,16 @@
                         <div class="col-md-6">
                             <div class="panel panel-danger">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Logged in</h3>
+                                    <h3 class="panel-title">Status</h3>
                                 </div>
                                 <div class="panel-body base-page-panel">
                                     <p>
                                         You are already logged in.
                                     </p>
-                                    <a href="/home/">Go back to dashboard.</a>
-                                    <a href="/logout/">Logout.</a>
+                                    <a href="/home/" class="btn btn-primary landing-page-button"
+                                       role="button" aria-pressed="true">Go back to dashboard.</a>
+                                    <a href="/logout/" class="btn btn-primary landing-page-button"
+                                       role="button" aria-pressed="true">Logout.</a>
                                 </div>
                             </div>
                         </div>
@@ -56,14 +58,16 @@
                         <div class="col-md-6">
                             <div class="panel panel-danger">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Logged in</h3>
+                                    <h3 class="panel-title">Status</h3>
                                 </div>
                                 <div class="panel-body base-page-panel">
                                     <p>
                                         You are not logged in.
                                     </p>
-                                    <a href="/login/">Login.</a>
-                                    <a href="/register/">Register.</a>
+                                    <a href="/login/" class="btn btn-primary landing-page-button"
+                                       role="button" aria-pressed="true">Login.</a>
+                                    <a href="/register/" class="btn btn-primary landing-page-button"
+                                       role="button" aria-pressed="true">Register.</a>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +78,7 @@
                     {% for image in images %}
                         <div class="col-md-4">
                             <div class="panel landing-page-desc" style="border-radius: 0; height: 325px;">
-                                <div class="panel-body landing-page-desc">
+                                <div class="panel-body">
                                     <div class="col-md-12">
                                         <img src="{{ image.1 }}" style="max-width: 100%; max-height: 200px;">
                                     </div>

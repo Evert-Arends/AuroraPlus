@@ -3,14 +3,24 @@
 html {
   position: relative;
   min-height: 100%;
+    overflow-x: hidden !important;
 }
 
 body{
     background-color: rgb(102, 105, 124) !important;
-    overflow: auto!important;
 }
 
 /* sidebar servers */
+
+#menu-toggle{
+    margin-top: 10px!important;
+    margin-right: 20px;
+}
+
+#logout{
+    margin-top: 10px!important;
+    margin-right: 20px;
+}
 
 #wrapper {
     padding-left: 0;
@@ -138,11 +148,12 @@ body{
 }
 
 /* Index panels style */
-.indexbutton{
+.indexbutton {
     background-color: rgb(36, 34, 47) !important;
     color: #fff !important;
-    border-radius: 0px !important;
-    border: none!important;
+    border-radius: 0 !important;
+    border: none !important;
+
 }
 
 .form-control{
@@ -212,58 +223,5 @@ body{
     margin-left: 10px;
     margin-right: 10px;
     color: rgba(255,255,255,0.2);
-}
-
-/* landing page */
-
-.landing-page-heading{
-    background-color: rgba(0, 0, 0, 0.1) !important;
-    border-radius: 0 !important;
-    border: none !important;
-}
-
-.landing-page-text{
-    font-size: 15px !important;
-}
-
-.landing-page-button{
-    background-color: rgb(36, 34, 47) !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 0 !important;
-}
-
-.landing-page-button:hover{
-    background-color: rgb(83, 84, 100)!important
-}
-
-
-
-/* Panel styles landing page */
-
-.panel-danger{
-  border-style: none !important;
-  border-radius: 0!important;
-  box-shadow: none!important;
-}
-
-.panel-danger > .panel-heading{
-    background-color: rgb(36, 34, 47) !important;
-    border-radius: 0px!important;
-}
-
-.panel-danger > .panel-heading > .panel-title{
-    color: rgb(250, 248, 233) !important;
-    border-radius: 0px!important;
-}
-
-.panel-danger > .panel-body{
-    background-color: rgb(250, 248, 233) !important;
-    border-style: none!important;
-}
-
-.panel-danger > .panel-footer{
-    background-color: rgb(250, 248, 233) !important;
-    border-radius: 0px!important;
 }
 

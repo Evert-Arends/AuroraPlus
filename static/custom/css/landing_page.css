@@ -1,0 +1,75 @@
+/* landing page */
+
+@media screen and (max-width: 991px) {
+    body {
+        background: url("http://i.huffpost.com/gen/1549065/images/o-KIRUNA-SWEDEN-STARS-facebook.jpg") no-repeat !important;
+        background-size: cover !important;
+        height: 100% !important;
+        width: 100% !important;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    body {
+        background: url("http://i.huffpost.com/gen/1549065/images/o-KIRUNA-SWEDEN-STARS-facebook.jpg") no-repeat !important;
+    }
+}
+
+.landing-page-heading{
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none;
+}
+
+.landing-page-text{
+    font-size: 15px !important;
+}
+
+.landing-page-button{
+    background-color: rgba(36, 34, 47, 0.6) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.landing-page-button:hover{
+    background-color: rgba(83, 84, 100, 0.6)!important
+}
+
+.page-header{
+    color: rgba(250, 248, 233, 0.6)
+}
+
+/* Panel styles landing page */
+
+.panel-danger{
+  border-style: none !important;
+  border-radius: 0!important;
+  box-shadow: none!important;
+  background-color: rgba(250, 248, 233, 0.2) !important;
+}
+
+.panel-danger > .panel-heading{
+    background-color: rgba(36, 34, 47, 0.6) !important;
+    border-radius: 0px!important;
+}
+
+.panel-danger > .panel-heading > .panel-title{
+    color: rgb(250, 248, 233) !important;
+    border-radius: 0px!important;
+}
+
+.panel-danger > .panel-body{
+    background-color: rgba(250, 248, 233, 0.6) !important;
+    border-style: none!important;
+    min-height: 105px;
+}
+
+.panel-danger > .panel-footer{
+    background-color: rgba(250, 248, 233, 0.6) !important;
+    border-radius: 0px!important;
+}
+
+.landing-page-desc{
+    background-color: rgba(250, 248, 233, 0.6) !important;
+}
