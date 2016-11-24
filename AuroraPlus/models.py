@@ -18,3 +18,12 @@ class LandingPageImages(models.Model):
     PictureLinkName = models.TextField(max_length=100)
     PictureLink = models.FilePathField()
     DescText = models.TextField(max_length=600, default=0)
+
+
+class Servers(models.Model):
+    ID = models.AutoField(primary_key=True)
+    User_ID = models.TextField(max_length=10)
+    Server_key = models.TextField(max_length=255)
+    Server_Name = models.TextField(max_length=50)
+    Server_Description = models.TextField(max_length=255)
+    Date_Added = models.DateField

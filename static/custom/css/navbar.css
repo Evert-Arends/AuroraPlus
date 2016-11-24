@@ -1,0 +1,17 @@
+.navbar-light{
+    background-color: rgba(250, 248, 233, 0.6) !important;
+    border-radius: 0 !important;
+    z-index: 2000!important;
+}
+
+.navbar-light > a{
+    color: rgba(36, 34, 47, 0.8) !important;
+}
+
+.navbar-light > a:hover{
+    color: rgba(65, 63, 71, 0.8) !important;
+}
+
+.navbar-item{
+    color: rgba(36, 34, 47, 0.8) !important;
+}

@@ -23,6 +23,7 @@ Communication = collector.Communication
 
 
 @login_required
+@csrf_protect
 def index(request):
     string_server = JsonAction.all_server_data()
     if not string_server:
@@ -125,3 +126,17 @@ def user_logout(request):
 
 def page_not_found(request):
     return render(request, '404.html')
+
+
+@csrf_protect
+def add_server(request):
+    if request.method == 'POST':
+        server_location = request.POST["ServerAddress"]
+        name = request.POST["Name"]
+        key = request.POST["Key"]
+
+        if server_location or name or key is None:
+            return HttpResponse(request, "Form Not Valid")
+
+    return HttpResponse(request, "Success")
+
