@@ -7,86 +7,78 @@
     <title>Aurora</title>
     {% comment %}<link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">{% endcomment %}
     <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static "custom/css/styles.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
     <script src="{% static "Chart/chart.js/dist/Chart.bundle.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/server_page.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/navbar.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/sidebar.css" %}"/>
 </head>
 <body>
-    {% include 'top.html' %}
-
-    {% for item in server_all %}
-        {% if server_id == item.ServerInfo.ID %}
-
+{% include 'top.html' %}
+{% for item in server_all %}
+    {% if server_id == item.ServerInfo.ID %}
         <div class="col-lg-10 col-lg-offset-1">
-            <h2 class="page-header">{{ item.ServerInfo.Name }}</h2>
+            <h2 class="page-header server-page-title">{{ item.ServerInfo.Name }}</h2>
             <div class="row">
-
-                {% comment %}Start Header{% endcomment %}
-                <div class="col-md-3">
-                    <div class="panel panel-default ServerOnline">
-                        <div class="panel-body">
-                            <div class="row row-table">
-                                <div class="col-xs-4">
-                                    <i class="fa fa-server fa-5x"></i>
+                {% comment %}Start collapsible heading{% endcomment %}
+                <div class="panel panel-default ServerPanel custom-margin">
+                    <div class="panel-heading">
+                        <a href="#" data-toggle="collapse" data-target="#improvementsPanel" aria-expanded="true"
+                           class="">More options.</a>
+                    </div>
+                    <div id="improvementsPanel" class="panel-collapse collapse in" aria-expanded="true">
+                        <div class="row collapsed-div">
+                            <div class="col-md-3">
+                                <div class="row row-table">
+                                    <div class="col-xs-4">
+                                        <i class="fa fa-server fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <p>Server online: Yes</p>
+                                    </div>
                                 </div>
-                                <div class="col-xs-8">
-                                    <p>Server online: Yes</p>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row row-table">
+                                    <div class="col-xs-4">
+                                        <i class="fa fa-car fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <p>Network traffic this month: 200GB</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row row-table">
+                                    <div class="col-xs-4">
+                                        <i class="fa fa-users fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <p>Users on server: 5</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row row-table">
+                                    <div class="col-xs-4">
+                                        <i class="fa fa-signal fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <p>Ping server: 200MS</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="panel panel-default ServerTraffic">
-                        <div class="panel-body">
-                            <div class="row row-table">
-                                <div class="col-xs-4">
-                                    <i class="fa fa-car fa-5x"></i>
-                                </div>
-                                <div class="col-xs-8">
-                                    <p>Network traffic this month: 200GB</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="panel panel-default ServerUsers">
-                        <div class="panel-body">
-                            <div class="row row-table">
-                                <div class="col-xs-4">
-                                    <i class="fa fa-users fa-5x"></i>
-                                </div>
-                                <div class="col-xs-8">
-                                    <p>Users on server: 5</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="panel panel-default ServerPing">
-                        <div class="panel-body">
-                            <div class="row row-table">
-                                <div class="col-xs-4">
-                                    <i class="fa fa-signal fa-5x"></i>
-                                </div>
-                                <div class="col-xs-8">
-                                    <p>Ping server: 200MS</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% comment %}End Header{% endcomment %}
-
+                {% comment %}End collapsible heading{% endcomment %}
                 {% comment %}Start LeftSidePanels{% endcomment %}
                 <div class="col-md-9 IndexColumn">
                     <div class="col-md-12">
                         <div class="serverdata">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default ServerPanel">
                                 <div class="panel-heading">
                                     <h2 class="panel-title">Properties</h2>
                                 </div>
@@ -99,10 +91,9 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="cpupanel">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default ServerPanel">
                                 <div class="panel-heading">
                                     <h2 class="panel-title">Average cpu usage (percentages).</h2>
                                 </div>
@@ -113,10 +104,9 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="networktraffic">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default ServerPanel">
                                 <div class="panel-heading">
                                     <h2 class="panel-title">Average network traffic (in bytes).</h2>
                                 </div>
@@ -129,12 +119,11 @@
                     </div>
                 </div>
                 {% comment %}End LeftSidePanels{% endcomment %}
-
                 {% comment %}Start RightSidePanels{% endcomment %}
                 <div class="col-md-3 IndexColumn">
                     <div class="col-md-12">
                         <div class="livecpu">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default ServerPanel">
                                 <div class="panel-heading">
                                     <h2 class="panel-title">Live cpu use (percentages) </h2>
                                 </div>
@@ -144,11 +133,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-12">
                         <div class="averagecpu">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default ServerPanel">
                                 <div class="panel-heading">
                                     <h2 class="panel-title">Live network usage</h2>
                                 </div>
@@ -158,27 +144,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-12">
-                        <div class="serverlatency">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h2 class="panel-title">Server latency (ping).</h2>
-                                </div>
-                                <div class="panel-body">
-                                    <p>Here comes server latency.</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
+                    {% comment %}End RightSidePanels{% endcomment %}
                 </div>
-                {% comment %}End RightSidePanels{% endcomment %}
-
             </div>
         </div>
-
-        {% endif %}
-    {% endfor %}
+    {% endif %}
+{% endfor %}
 </body>
 </html>
