@@ -2,6 +2,7 @@
 {% load current_tags %}
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="static/custom/css/login.css"/>
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">
@@ -27,9 +28,12 @@
             <label for="password">Password:</label>
             <input class="form-control login-input" id="password" type="password" autocomplete="off"
                    name="password" value=""/>
+            {% if not Login %}
+                <span class="error">Wrong username or password combination.</span>
+                <br/>
+            {% endif %}
             <br>
             <input class="btn btn-default login-button" type="submit" value="Login"/>
-            <br/>
             <span><a href="/register/" class="register-link">Register here</a></span>
         </form>
     </div>
