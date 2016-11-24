@@ -24,9 +24,13 @@ ServerManager = manage.ManageServer
 @csrf_protect
 def index(request):
     if request == 'POST':
-        ServerManager.add_server(name='test', key='testtest', address='123.461.123.12')
-    else:
-        return
+        p = request.POST
+        address = p["ServerAddress"]
+        name = p["Name"]
+        key = p["Key"]
+
+        ServerManager.add_server(name='iwaef', key='testtest', address='123.461.123.12')
+
     string_server = JsonAction.all_server_data()
     if not string_server:
         return "No data found"
