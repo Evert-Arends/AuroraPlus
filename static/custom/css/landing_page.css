@@ -1,4 +1,4 @@
-/* landing page */
+/* landing page */f
 html, body {
     overflow-x: hidden;
     /*overflow-y: hidden;*/
@@ -7,6 +7,7 @@ html, body {
     height: 100% !important;
     width: 100% !important;
 }
+
 
 .landing-page-heading {
     background-color: transparent !important;
