@@ -69,3 +69,8 @@ h1 {
     text-align: center;
     font-size: 40px;
 }
+
+.helptext{
+    color: white;
+    font-family: 'Harmattan', sans-serif !important;
+}
