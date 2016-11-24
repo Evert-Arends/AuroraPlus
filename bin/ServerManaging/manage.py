@@ -1,7 +1,7 @@
-from models import Servers
+from AuroraPlus.models import Servers
 
 
-class AddServer:
+class ManageServer:
     def __init__(self):
         pass
 
@@ -15,4 +15,4 @@ class AddServer:
 
 
 if __name__ == '__main__':
-    add_server = AddServer()
+    add_server = ManageServer()

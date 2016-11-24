@@ -27,6 +27,5 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^login/$', views.user_login, name='login'),
     url(r'^logout/$', views.user_logout, name='logout'),
-    url(r'^add_server/$', views.add_server, name='addserver'),
     url(r'^pagenotfound/$', views.page_not_found, name='pagenotfound'),
 ]

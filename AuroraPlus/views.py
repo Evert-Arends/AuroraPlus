@@ -1,37 +1,39 @@
 # imports
-from array import array
-
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render_to_response, render
 from django.template import RequestContext
-from django.template.loader import get_template
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_protect
 
-from bin import cpu, jsondata, collector
-from django.shortcuts import render_to_response, render, redirect
 from AuroraPlus.forms import UserForm
-from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth import logout
+from bin import cpu, jsondata
+from bin.ServerManaging import manage
+from bin.ServerMonitoring import collector
 from models import LandingPageImages
 
 # classes
 CPU = cpu.CPUUsage
 JsonAction = jsondata.JsonData
 Communication = collector.Communication
+ServerManager = manage.ManageServer
 
 
 @login_required
 @csrf_protect
 def index(request):
+    if request == 'POST':
+        ServerManager.add_server(name='test', key='testtest', address='123.461.123.12')
+    else:
+        return
     string_server = JsonAction.all_server_data()
     if not string_server:
         return "No data found"
     count_servers = JsonAction.count_servers()
     if not count_servers:
         return "-"
-    return render_to_response('index.html', {'server_all': string_server, 'totalservers': count_servers})
+    return render(request, 'index.html', {'server_all': string_server, 'totalservers': count_servers})
 
 
 @login_required
@@ -124,17 +126,3 @@ def user_logout(request):
 
 def page_not_found(request):
     return render(request, '404.html')
-
-
-@csrf_protect
-def add_server(request):
-    if request.method == 'POST':
-        server_location = request.POST["ServerAddress"]
-        name = request.POST["Name"]
-        key = request.POST["Key"]
-
-        if server_location or name or key is None:
-            return HttpResponse(request, "Form Not Valid")
-
-    return HttpResponse(request, "Success")
-
