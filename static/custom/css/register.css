@@ -23,6 +23,10 @@ body {
 
 }
 
+.login-link {
+    color: white !important;
+}
+
 .centered-form {
     top: 20%;
 }

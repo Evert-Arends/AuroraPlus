@@ -13,33 +13,32 @@
     <link href="https://fonts.googleapis.com/css?family=Armata|Bangers|Harmattan|Lato|Orbitron" rel="stylesheet">
 </head>
 <body>
-    <div class="col-md-3 centered">
-        <div class="col-md-12 centered-logo">
-            <h1 style="text-align: left;">AuroraPlus</h1>
-        </div>
-        {% if registered %}
-            <strong>Successfully registered.</strong>
-            <a href="/">Return to the homepage.</a><br>
-        {% else %}
-            <div class="col-md-12 centered-form">
-                <form class="form-outline" id="user_form" method="post" action="/register/" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {% comment %} {{ user_form.as_p }} _p wraps tag in <p> tag{% endcomment %}
-                    <label for="id_username">Username:</label>
-                    <input class="register-input form-control" id="id_username" maxlength="150" name="username" type="text" required />
-                    <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
-                    <br>
-                    <br>
-                    <label for="id_email">Email address:</label>
-                    <input class="register-input form-control" id="id_email" maxlength="254" name="email" type="email" />
-                    <br>
-                    <label for="id_password">Password:</label>
-                    <input class="register-input form-control" id="id_password" name="password" type="password" required />
-                    <br>
-                    <input class="btn btn-default register-button" type="submit" name="submit" value="Register" />
-                </form>
-            </div>
-        {% endif %}
+<div class="col-md-3 centered">
+    <div class="col-md-12 centered-logo">
+        <h1 style="text-align: left;">AuroraPlus</h1>
     </div>
+    {% if registered %}
+        <strong>Successfully registered.</strong>
+        <a href="/">Return to the homepage.</a><br>
+    {% else %}
+        <div class="col-md-12 centered-form">
+            <form class="form-outline" id="user_form" method="post" action="/register/" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="id_username">Username:</label>
+                <input class="register-input form-control" id="id_username" maxlength="150" name="username" type="text"
+                       required/>
+                <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+                <label for="id_email">Email address:</label>
+                <input class="register-input form-control" id="id_email" maxlength="254" name="email" type="email"/>
+                <br>
+                <label for="id_password">Password:</label>
+                <input class="register-input form-control" id="id_password" name="password" type="password" required/>
+                <br>
+                <input class="btn btn-default register-button" type="submit" name="submit" value="Register"/>
+                <span><a href="/login/" class="login-link">Login here</a></span>
+            </form>
+        </div>
+    {% endif %}
+</div>
 </body>
 </html>
