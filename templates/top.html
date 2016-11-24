@@ -1,12 +1,12 @@
 {% load static from staticfiles %}
 <nav class="navbar navbar-light bg-faded">
     {% comment %}Left side menu{% endcomment %}
-    <a class="navbar-brand" href="../../">Aurora</a>
+    <a class="navbar-brand" href="/dashboard/">Aurora</a>
 
     {% comment %}right side menu{% endcomment %}
     <div class="navbar-right col-md-4">
-        <a class="pull-right" href="#menu-toggle" id="menu-toggle"><i class="fa fa-server fa-2x"></i></a>
-        <a class="pull-right" href="/logout/" id="logout"><i class="fa fa-sign-out fa-2x"></i></a>
+        <a class="pull-right navbar-item" href="#menu-toggle" id="menu-toggle"><i class="fa fa-server fa-2x"></i></a>
+        <a class="pull-right navbar-item" href="/logout/" id="logout"><i class="fa fa-sign-out fa-2x"></i></a>
     </div>
 </nav>
 
@@ -14,9 +14,8 @@
 
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
-            <li>
-                <h2 class="sidepaneltitle">Aurora+</h2>
-            </li>
+            <br>
+            <br>
             <li>
                 <img style="max-width: 230px; margin-left: -15px;" src="{% static 'images/logo.png' %}"/>
             </li>

@@ -1,0 +1,90 @@
+/* Page style */
+
+html, body {
+    overflow-x: hidden;
+    /*overflow-y: hidden;*/
+    background: url("http://i.huffpost.com/gen/1549065/images/o-KIRUNA-SWEDEN-STARS-facebook.jpg") no-repeat !important;
+    background-size: cover !important;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.dashboard-title{
+    color: rgba(250, 248, 233, 0.6);
+    border-color: rgba(250, 248, 233, 0.6);
+}
+
+/* Columns for panels */
+
+.IndexColumn{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Buttons in table */
+
+.deletebutton{
+    border: none !important;
+    border-radius: 0 !important;
+    width: 40px !important;
+
+}
+
+.editbutton{
+    border: none !important;
+    border-radius: 0 !important;
+    width: 40px !important;
+}
+
+/* Panels on dashboard */
+
+.dashboardpanel {
+    border-style: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.dashboardpanel > .panel-heading {
+    background-color: rgba(36, 34, 47, 0.6) !important;
+    border-radius: 0px !important;
+}
+
+.dashboardpanel > .panel-heading > .panel-title {
+    color: rgba(250, 248, 233, 0.6) !important;
+    border-radius: 0px !important;
+}
+
+.dashboardpanel > .panel-body {
+    background-color: rgba(250, 248, 233, 0.6) !important;
+    border-style: none !important;
+    min-height: 105px;
+}
+
+.dashboardpanel > .panel-footer {
+    background-color: rgba(250, 248, 233, 0.6) !important;
+    border-radius: 0px !important;
+}
+
+/* Form style */
+
+.dashboard-button {
+    width: 100%;
+    background-color: rgb(135, 77, 78) !important;
+    font-size: 18px;
+    border-style: none !important;
+    color: white !important;
+    font-family: 'Harmattan', sans-serif;
+}
+
+.dashboard-button:hover {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.dashboard-input {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    border-style: none !important;
+    color: white !important;
+    font-family: 'Harmattan', sans-serif;
+
+}
