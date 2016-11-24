@@ -111,9 +111,11 @@ def user_login(request):
             return HttpResponseRedirect('/dashboard/')
         else:
             print "Invalid login details: {0}, {1}".format(username, password)
-            return HttpResponse("Invalid login details supplied.")
+            valid_login = False
+            return render(request, 'login.html', {'Login': valid_login})
+            # return HttpResponse("Invalid login details supplied.")
     else:
-        return render(request, 'login.html')
+        return render(request, 'login.html', {'Login': 'True'})
 
 
 def user_logout(request):
