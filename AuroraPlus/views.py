@@ -48,8 +48,7 @@ def index(request):
     count_servers = JsonAction.count_servers()
     if not count_servers:
         count_servers = '--'
-    return render(request, 'index.html', {
-        'server_all': string_server, 'totalservers': count_servers})
+    return render(request, 'index.html', {'server_all': string_server, 'totalservers': count_servers})
 
 
 @login_required
@@ -68,10 +67,11 @@ def test(request):
     import json
     GetJsonData = Communication.get_json_data()
 
-    print GetJsonData
     j = json.loads(GetJsonData)
     print j
-    return render(request, 'test.html', j)
+    results = j['Server']['ServerDetails']
+    print results
+    return render(request, 'test.html', j, results)
 
 
 @csrf_protect

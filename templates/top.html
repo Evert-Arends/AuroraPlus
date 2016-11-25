@@ -20,9 +20,9 @@
                 <img style="max-width: 230px; margin-left: -15px;" src="{% static 'images/logo.png' %}"/>
             </li>
             <hr class="sidebardivider"/>
-            {% for name in server_all %}
+            {% for item in totalservers %}
                 <li>
-                    <a href="/server/{{ name.ServerInfo.ID }}">{{ name.ServerInfo.Name }}</a>
+                    <a href="/server/{{ item }}"> {{ item.ServerName }} </a>
                 </li>
             {% empty %}
                 <li>No servers found.</li>

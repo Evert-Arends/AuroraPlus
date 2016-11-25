@@ -5,6 +5,7 @@ from bin.ServerMonitoring import collector
 # classes
 Communication = collector.Communication
 
+
 class JsonData:
 
     def __init__(self):
@@ -23,7 +24,7 @@ class JsonData:
     def count_servers():
         try:
             data = JsonData.get_json_data()
-            count = str(len(data['ServerList']['Servers']))
+            count = data['Server']['ServerDetails']
             return count
         except:
             return
@@ -32,6 +33,12 @@ class JsonData:
     def all_server_data():
         try:
             data = JsonData.get_json_data()
-            return data['ServerList']['Servers']
+            return data['']
         except:
             return
+
+if __name__ == '__main__':
+    c = JsonData()
+    d = c.count_servers()
+
+
