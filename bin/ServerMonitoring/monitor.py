@@ -24,4 +24,3 @@ if __name__ == "__main__":
     G = GetServerData.get_servers(1)
     for item in G:
         print item.ID
-
