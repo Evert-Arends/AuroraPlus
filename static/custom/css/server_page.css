@@ -101,3 +101,12 @@ html, body {
     margin-left: 16px;
     margin-right: 16px;
 }
+
+.custom-collapse-button{
+    text-align: right;
+}
+
+.fa-class{
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
