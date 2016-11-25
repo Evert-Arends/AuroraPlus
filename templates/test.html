@@ -6,18 +6,17 @@
     <meta charset="UTF-8">
     <title>Aurora</title>
     <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static "custom/css/styles.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
     <script src="{% static "Chart/chart.js/dist/Chart.bundle.js" %}"></script>
-    <style>body{background-color: white!important;}</style>
+    <style>body{background-color: #a6e1ec!important;}</style>
 </head>
 <body>
 {% if user.is_authenticated %}
-<h1>Rango says... hello {{ user.username }}!</h1>
+<h1>Aurora says... hello {{ user.username }}!</h1>
 {% else %}
-<h1>Rango says... hello world!</h1>
+<h1>Aurora says... hello world!</h1>
 {% endif %}
 
 {% for image in images %}

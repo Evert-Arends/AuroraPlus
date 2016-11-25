@@ -53,15 +53,13 @@ def server_page(request, server_id):
 
 
 def test(request):
-    images = LandingPageImages.objects.all().order_by('ID')
-    img_array = []
-    for image in images:
-        img_array.append(image.ID)
-        img_array.append(image.PictureLink)
-        img_array.append(image.DescText)
+    import json
+    GetJsonData = Communication.get_json_data()
 
-    print img_array
-    return render_to_response('test.html', {'images': img_array})
+    print GetJsonData
+    j = json.loads(GetJsonData)
+    print j
+    return render(request, 'test.html', j)
 
 
 @csrf_protect

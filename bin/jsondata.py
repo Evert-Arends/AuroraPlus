@@ -1,5 +1,10 @@
 import json
 
+from bin.ServerMonitoring import collector
+
+# classes
+Communication = collector.Communication
+
 class JsonData:
 
     def __init__(self):
@@ -8,7 +13,8 @@ class JsonData:
     @staticmethod
     def get_json_data():
         try:
-            data = json.loads(open('./testing/data.json').read())
+            json_string = Communication.get_json_data()
+            data = json.loads(json_string)
             return data
         except:
             return
