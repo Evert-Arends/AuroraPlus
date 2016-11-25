@@ -6,38 +6,50 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response, render
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_protect
-
 from AuroraPlus.forms import UserForm
+
+# Local imports
 from bin import cpu, jsondata
 from bin.ServerManaging import manage
 from bin.ServerMonitoring import collector
 from models import LandingPageImages
+from bin.ServerMonitoring import monitor
 
 # classes
 CPU = cpu.CPUUsage
 JsonAction = jsondata.JsonData
 Communication = collector.Communication
 ServerManager = manage.ManageServer
+Monitor = monitor.GetServerData()
 
 
 @login_required
 @csrf_protect
 def index(request):
-    if request == 'POST':
-        p = request.POST
-        address = p["ServerAddress"]
-        name = p["Name"]
-        key = p["Key"]
+    current_user = request.user
+    user_id = current_user.id
+    if request.method == 'POST':
+        r = request
+        name = r.POST["Name"]
+        key = r.POST["Key"]
+        description = r.POST["ServerDescription"]
+        if description or name or key is not None:
+            ServerManager.add_server(name=name, key=key, address='127.0.0.1', user_id=user_id, description=description)
+        else:
+            return render(request, 'index.html',
+                          {'Add_Server_Error': 'Please fill in the whole form, and try to use the accepted character.'})
 
-        ServerManager.add_server(name='iwaef', key='testtest', address='123.461.123.12')
-
-    string_server = JsonAction.all_server_data()
+    # Get all the users servers.
+    string_server = Monitor.get_servers(user_id)
     if not string_server:
-        return "No data found"
+        print string_server
+        return HttpResponse("No data found")
+
     count_servers = JsonAction.count_servers()
     if not count_servers:
-        return "-"
-    return render(request, 'index.html', {'server_all': string_server, 'totalservers': count_servers})
+        count_servers = '--'
+    return render(request, 'index.html', {
+        'server_all': string_server, 'totalservers': count_servers})
 
 
 @login_required

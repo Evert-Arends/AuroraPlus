@@ -88,3 +88,8 @@ html, body {
     font-family: 'Harmattan', sans-serif;
 
 }
+
+.error{
+    color: red;
+    font-weight: bold;
+}

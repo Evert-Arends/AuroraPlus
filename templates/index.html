@@ -15,139 +15,148 @@
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/sidebar.css" %}"/>
 </head>
 <body>
-    {% include 'top.html' %}
+{% include 'top.html' %}
 
-    <div class="col-lg-10 col-lg-offset-1">
+<div class="col-lg-10 col-lg-offset-1">
 
-        <h2 class="page-header dashboard-title">Dashboard</h2>
+    <h2 class="page-header dashboard-title">Dashboard</h2>
 
-        <div class="row">
-            <div class="col-md-3">
-                <div class="panel panel-default dashboardpanel">
-                    <div class="panel-body">
-                        <div class="row row-table">
-                            <div class="col-xs-4">
-                                <i class="fa fa-server fa-5x"></i>
-                            </div>
-                            <div class="col-xs-8">
-                                {% for item in totalservers %}
-                                    <p>Total servers: {{ item }}</p>
-                                {% endfor %}
-                            </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default dashboardpanel">
+                <div class="panel-body">
+                    <div class="row row-table">
+                        <div class="col-xs-4">
+                            <i class="fa fa-server fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8">
+                            {% for item in totalservers %}
+                                <p>Total servers: {{ item }}</p>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-3">
-                <div class="panel panel-default dashboardpanel">
-                    <div class="panel-body">
-                        <div class="row row-table">
-                            <div class="col-xs-4">
-                                <i class="fa fa-users fa-5x"></i>
-                            </div>
-                            <div class="col-xs-8">
-                                <p>Users online: 27</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="panel panel-default dashboardpanel">
-                    <div class="panel-body">
-                        <div class="row row-table">
-                            <div class="col-xs-4">
-                                <i class="fa fa-user-plus fa-5x"></i>
-                            </div>
-                            <div class="col-xs-8">
-                                <p>Users on this account: 3</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="panel panel-default dashboardpanel">
-                    <div class="panel-body">
-                        <div class="row row-table">
-                            <div class="col-xs-4">
-                                <i class="fa fa-envelope fa-5x"></i>
-                            </div>
-                            <div class="col-xs-8">
-                                <p>Messages: 5</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
-        <div class="row">
-            {% comment %}Add new server.{% endcomment %}
-            <div class="col-md-6">
-                <div class="panel panel-default dashboardpanel">
-                    <div class="panel-heading">
-                        <h2 class="panel-title">Add a server</h2>
-                    </div>
-                    <div class="panel-body">
-                        <form id="addserver" action="/dashboard/" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="InputAddress">Server address:</label>
-                                <input type="text" class="form-control dashboard-input" name="ServerAddress" id="InputAddress" maxlength="50" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="InputServerName">Server name:</label>
-                                <input type="text" class="form-control dashboard-input" name="Name" id="InputServerName" maxlength="50" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="InputServerKey">Server key:</label>
-                                <input type="text" class="form-control dashboard-input" name="Key" id="InputServerKey" maxlength="50" required>
-                            </div>
-                            <button type="submit" class="btn btn-default dashboard-button">Add server</button>
-                        </form>
+        <div class="col-md-3">
+            <div class="panel panel-default dashboardpanel">
+                <div class="panel-body">
+                    <div class="row row-table">
+                        <div class="col-xs-4">
+                            <i class="fa fa-users fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8">
+                            <p>Users online: 27</p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            {% comment %}Server list.{% endcomment %}
-            <div class="col-md-6">
-                <div class="panel panel-default dashboardpanel">
-                    <div class="panel-heading">
-                        <h2 class="panel-title">All servers</h2>
+        <div class="col-md-3">
+            <div class="panel panel-default dashboardpanel">
+                <div class="panel-body">
+                    <div class="row row-table">
+                        <div class="col-xs-4">
+                            <i class="fa fa-user-plus fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8">
+                            <p>Users on this account: 3</p>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Delete</th>
-                                <th>Edit</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for item in server_all %}
-                                <tr class="default">
-                                    <td>{{ item.ServerInfo.ID }}</td>
-                                    <td>{{ item.ServerInfo.Name }}</td>
-                                    <td>{{ item.ServerInfo.Description }}</td>
-                                    <td><a class="btn btn-danger deletebutton" href="#"><i class="fa fa-trash"></i></a></td>
-                                    <td><a class="btn btn-warning editbutton" href="#"><i class="fa fa-edit"></i></a></td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="panel panel-default dashboardpanel">
+                <div class="panel-body">
+                    <div class="row row-table">
+                        <div class="col-xs-4">
+                            <i class="fa fa-envelope fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8">
+                            <p>Messages: 5</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
+
+    <div class="row">
+        {% comment %}Add new server.{% endcomment %}
+        <div class="col-md-6">
+            <div class="panel panel-default dashboardpanel">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Add a server</h2>
+                </div>
+                <div class="panel-body">
+                    <form id="addserver" action="/dashboard/" method="post">
+                        {% csrf_token %}
+                        {#                        If there is no post data, the server will render an error.#}
+                            <span class="error">
+                                {% if Add_Server_Error %}
+                                    Error: {{ Add_Server_Error }}
+                                {% endif %}
+                            </span>
+                        <div class="form-group">
+                            <label for="InputServerName">Server name:</label>
+                            <input type="text" class="form-control dashboard-input" name="Name" id="Name" maxlength="50"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputServerKey">Server key:</label>
+                            <input type="text" class="form-control dashboard-input" name="Key" id="Key" maxlength="50"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputAddress">Server description:</label>
+                            <input type="text" class="form-control dashboard-input" name="ServerDescription"
+                                   id="ServerDescription" maxlength="50" required>
+                        </div>
+                        <button type="submit" class="btn btn-default dashboard-button">Add server</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {% comment %}Server list.{% endcomment %}
+        <div class="col-md-6">
+            <div class="panel panel-default dashboardpanel">
+                <div class="panel-heading">
+                    <h2 class="panel-title">All servers</h2>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in server_all %}
+                            <tr class="default">
+                                <td>{{ item.ID }}</td>
+                                <td>{{ item.Server_Name }}</td>
+                                <td>{{ item.Server_Description }}</td>
+                                <td><a class="btn btn-danger deletebutton" href="#"><i class="fa fa-trash"></i></a></td>
+                                <td><a class="btn btn-warning editbutton" href="#"><i class="fa fa-edit"></i></a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>
