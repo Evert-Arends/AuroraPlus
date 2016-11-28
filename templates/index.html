@@ -146,8 +146,17 @@
                                 <td>{{ item.ID }}</td>
                                 <td>{{ item.Server_Name }}</td>
                                 <td>{{ item.Server_Description }}</td>
-                                <td><a class="btn btn-danger deletebutton" href="#"><i class="fa fa-trash"></i></a></td>
-                                <td><a class="btn btn-warning editbutton" href="/server/edit/{{ item.ID }}"><i class="fa fa-edit"></i></a></td>
+                                <td><form action="/dashboard/" method="post">
+                                        <a class="btn btn-danger deletebutton" name="delete" type="submit">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </form>
+                                </td>
+                                <td>
+                                    <a class="btn btn-warning editbutton" href="/server/edit/{{ item.ID }}">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

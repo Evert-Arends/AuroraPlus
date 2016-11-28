@@ -29,6 +29,7 @@ EditServers = server_edit.EditServer
 @login_required
 @csrf_protect
 def index(request):
+    # add server form
     current_user = request.user
     user_id = current_user.id
     if request.method == 'POST':
@@ -47,11 +48,16 @@ def index(request):
     if not string_server:
         print string_server
         return HttpResponse("No data found")
+
+    # delete server button
+    if request.POST.get('delete'):
+        string_server.objects.filter(id__in=request.POST.getlist('server_all')).delete()
     return render(request, 'index.html',
                   {'server_all': string_server})
 
 
 @login_required
+@csrf_protect
 def edit_server(request, list_id):
     current_user = request.user
     user_id = current_user.id
