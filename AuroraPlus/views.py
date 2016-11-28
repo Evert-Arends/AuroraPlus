@@ -19,7 +19,7 @@ from bin.ServerMonitoring import monitor
 
 # classes
 CPU = cpu.CPUUsage
-JsonAction = jsondata.JsonData
+RetrieveData = jsondata.JsonData
 Communication = collector.Communication
 ServerManager = manage.ManageServer
 Monitor = monitor.GetServerData()
@@ -57,22 +57,23 @@ def edit_server(request, list_id):
 
 @login_required
 def server_page(request, server_id):
-
     # For a while we will store the data here, this should be moved to the controller.
-    string_server = JsonAction.all_server_data()
-    print 'String {0}'.format(string_server)
-    if not string_server:
-        return "No data found"
-    string_server = json.loads(json.dumps(string_server))
-    network_sent = string_server['Server']['ServerDetails']['NetworkLoad']['Sent']
-    cpu_average = string_server["Server"]["ServerDetails"]["CPU_Usage"]
+    string_server = json.loads(RetrieveData.all_server_data())
+    purified_string_server = json.loads(string_server)
+    if not purified_string_server:
+        purified_string_server = string_server
+
+    network_sent = purified_string_server['Server']['ServerDetails']['NetworkLoad']['Sent']
+    print network_sent
+    network_received = purified_string_server['Server']['ServerDetails']['NetworkLoad']['Received']
+    print type(network_received)
+    cpu_average = purified_string_server["Server"]["ServerDetails"]["CPU_Usage"]
 
     if not network_sent:
-        network_sent = '1.00'
-    network_sent = '1.00'
-
+        network_sent = '0'
     return render(request, 'server.html', {'server_all': string_server,
-                                           'chart_data': cpu_average})
+                                           'chart_data': cpu_average, 'network_sent': network_sent,
+                                           'network_received': network_received})
 
 
 def test(request):

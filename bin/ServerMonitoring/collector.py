@@ -19,11 +19,12 @@ class Communication:
         api = constants.API_SERVER_ADDRESS
         client_address = constants.API_CLIENT_URL
         if time != 0:
-            ## WORKING ON THIS!!
-            url = '{0}{1}{2}{3}/time/{4}'.format(constants.API_SERVER_ADDRESS, api, client_address, server, time)
-            # url = (constants.API_SERVER_PROTOCOL + api + client_address + server + '')
+            # WORKING ON THIS!!
+            # url = '{0}{1}{2}{3}/time/{4}'.format(constants.API_SERVER_PROTOCOL, api, client_address, server, time)
+            url = '{0}{1}{2}{3}/time/{4}'.format(constants.API_SERVER_PROTOCOL, api, client_address, server, time)
+
         else:
-            url = (constants.API_SERVER_PROTOCOL + api + client_address + server)
+            url = '{0}{1}{2}{3}'.format(constants.API_SERVER_PROTOCOL, api, client_address, server)
 
         request = requests.get(url)
         if request.status_code != 200:
@@ -32,10 +33,11 @@ class Communication:
 
         raw_json_content = request.content
         if raw_json_content:
-            purified_json_content = json.loads(raw_json_content)
+            purified_json_content = json.dumps(raw_json_content)
             return purified_json_content
         else:
             return
+
 
 if __name__ == "__main__":
     Collector = Communication()

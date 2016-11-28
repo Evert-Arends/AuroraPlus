@@ -2,6 +2,7 @@ import json
 
 from bin.ServerMonitoring import collector
 
+
 # classes
 Communication = collector.Communication
 
@@ -15,8 +16,7 @@ class JsonData:
     def get_json_data():
         try:
             json_string = Communication.get_json_data()
-            data = json.loads(json_string)
-            return data
+            return json_string
         except:
             return
 
