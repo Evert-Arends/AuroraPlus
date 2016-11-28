@@ -24,7 +24,7 @@ class JsonData:
     def count_servers():
         try:
             data = JsonData.get_json_data()
-            count = data['Server']['ServerDetails']
+            count = data
             return count
         except:
             return
@@ -33,7 +33,7 @@ class JsonData:
     def all_server_data():
         try:
             data = JsonData.get_json_data()
-            return data['']
+            return data
         except:
             return
 

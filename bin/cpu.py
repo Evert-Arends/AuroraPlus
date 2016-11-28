@@ -1,9 +1,9 @@
 from bin import jsondata
+
 JsonAction = jsondata.JsonData
 
 
 class CPUUsage:
-
     def __init__(self):
         return
 
@@ -11,8 +11,7 @@ class CPUUsage:
     def get_usage(server_id):
         server_id = int(server_id)
         data = JsonAction.get_json_data()
-        cpu_usage = (data["ServerList"]["Servers"][server_id]["ServerData"]["Cpu"])
-
+        cpu_usage = (data["Server"]["ServerDetails"]["CPU_Usage"])
         if not cpu_usage:
             return
         else:
@@ -21,11 +20,6 @@ class CPUUsage:
     @staticmethod
     def cpu_chart(server_id):
         chart_data = CPUUsage.get_usage(server_id)
+        chart_data = [12.3, 13.4, 15.2]
 
-        escaped = chart_data.replace(",", ".")
-        final = escaped.split(',')
-
-        item1 = float(final[0]) * 100
-        data_array = item1
-
-        return data_array
+        return chart_data

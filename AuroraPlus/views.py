@@ -1,4 +1,6 @@
 # imports
+import json
+
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -44,11 +46,8 @@ def index(request):
     if not string_server:
         print string_server
         return HttpResponse("No data found")
-
-    count_servers = JsonAction.count_servers()
-    if not count_servers:
-        count_servers = '--'
-    return render(request, 'index.html', {'server_all': string_server, 'totalservers': count_servers})
+    return render(request, 'index.html',
+                  {'server_all': string_server})
 
 
 @login_required
@@ -58,14 +57,22 @@ def edit_server(request, list_id):
 
 @login_required
 def server_page(request, server_id):
+
+    # For a while we will store the data here, this should be moved to the controller.
     string_server = JsonAction.all_server_data()
+    print 'String {0}'.format(string_server)
     if not string_server:
         return "No data found"
-    data_array = CPU.cpu_chart(server_id)
-    if not data_array:
-        return "0.00,0.00,0.00"
-    return render_to_response('server.html', {'server_id': server_id, 'server_all': string_server,
-                                              'chart_data': data_array})
+    string_server = json.loads(json.dumps(string_server))
+    network_sent = string_server['Server']['ServerDetails']['NetworkLoad']['Sent']
+    cpu_average = string_server["Server"]["ServerDetails"]["CPU_Usage"]
+
+    if not network_sent:
+        network_sent = '1.00'
+    network_sent = '1.00'
+
+    return render(request, 'server.html', {'server_all': string_server,
+                                           'chart_data': cpu_average})
 
 
 def test(request):
