@@ -1,4 +1,6 @@
 # imports
+import json
+
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -44,23 +46,22 @@ def index(request):
     if not string_server:
         print string_server
         return HttpResponse("No data found")
-
-    count_servers = JsonAction.count_servers()
-    if not count_servers:
-        count_servers = '--'
-    return render(request, 'index.html', {'server_all': string_server, 'totalservers': count_servers})
+    return render(request, 'index.html',
+                  {'server_all': string_server})
 
 
 @login_required
 def server_page(request, server_id):
     string_server = JsonAction.all_server_data()
+    print 'String {0}'.format(string_server)
     if not string_server:
         return "No data found"
-    data_array = CPU.cpu_chart(server_id)
+    data_array = ''
     if not data_array:
-        return "0.00,0.00,0.00"
-    return render_to_response('server.html', {'server_id': server_id, 'server_all': string_server,
-                                              'chart_data': data_array})
+        data_array = "3.00,5.00,8.00"
+
+    return render(request, 'server.html', {'server_all': string_server,
+                                           'chart_data': data_array})
 
 
 def test(request):

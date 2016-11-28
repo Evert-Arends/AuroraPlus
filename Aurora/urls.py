@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^$', views.landing_page, name='landing_page'),
     url(r'^admin/', admin.site.urls),
     url(r'^dashboard/', views.index, name='index'),
-    url(r'^server/(?P<server_id>\w{0,50})$', views.server_page, name='server'),
+    url(r'^server/(?P<server_id>\w{1,50})$', views.server_page, name='server'),
     url(r'^test/', views.test, name='test'),
     url(r'^register/$', views.register, name='register'),
     url(r'^login/$', views.user_login, name='login'),

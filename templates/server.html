@@ -17,8 +17,7 @@
 </head>
 <body>
 {% include 'top.html' %}
-{% for item in server_all %}
-    {% if server_id == item.ServerInfo.ID %}
+{% if server_all %}
         <div class="col-lg-10 col-lg-offset-1">
             <h2 class="page-header server-page-title">{{ item.ServerInfo.Name }}</h2>
             <div class="row">
@@ -150,7 +149,6 @@
                 </div>
             </div>
         </div>
-    {% endif %}
-{% endfor %}
+{% endif %}
 </body>
 </html>
