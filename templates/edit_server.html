@@ -1,0 +1,35 @@
+{% load static from staticfiles %}
+{% load current_tags %}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="static/custom/css/login.css"/>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">
+    <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
+    <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/edit.css" %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Armata|Bangers|Harmattan|Lato|Orbitron" rel="stylesheet">
+</head>
+<body>
+<div class="col-md-3 centered">
+    <div class="col-md-12 centered-logo">
+        <h1 style="text-align: left;">AuroraPlus</h1>
+    </div>
+    <div class="col-md-12 centered-form">
+        <form class="form form-outline" id="edit_form" method="post" autocomplete="off" action="/server/edit/">{% csrf_token %}
+            <label for="name">Name:</label>
+            <input class="form-control edit-input" id="name" type="text" autocomplete="off" name="name" value=""/>
+            <br>
+            <label for="description">Description:</label>
+            <input class="form-control edit-input" id="description" type="text" autocomplete="off" name="description" value=""/>
+            <br>
+            <input class="btn btn-default edit-button" type="submit" value="Edit"/>
+            <span><a href="/dashboard/" class="edit-link">Back</a></span>
+        </form>
+    </div>
+</div>
+</body>
+</html>

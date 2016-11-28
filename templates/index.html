@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-+
+
         <div class="col-md-3">
             <div class="panel panel-default dashboardpanel">
                 <div class="panel-body">
@@ -147,7 +147,7 @@
                                 <td>{{ item.Server_Name }}</td>
                                 <td>{{ item.Server_Description }}</td>
                                 <td><a class="btn btn-danger deletebutton" href="#"><i class="fa fa-trash"></i></a></td>
-                                <td><a class="btn btn-warning editbutton" href="#"><i class="fa fa-edit"></i></a></td>
+                                <td><a class="btn btn-warning editbutton" href="/server/edit/{{ item.ID }}"><i class="fa fa-edit"></i></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^login/$', views.user_login, name='login'),
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^pagenotfound/$', views.page_not_found, name='pagenotfound'),
+    url(r'^server/edit/(?P<list_id>\w{0,50})$', views.edit_server, name='editserver'),
 ]

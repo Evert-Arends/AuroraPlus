@@ -52,6 +52,11 @@ def index(request):
 
 
 @login_required
+def edit_server(request, list_id):
+    return render(request, 'edit_server.html')
+
+
+@login_required
 def server_page(request, server_id):
     string_server = JsonAction.all_server_data()
     if not string_server:
