@@ -52,16 +52,22 @@ def index(request):
 
 @login_required
 def server_page(request, server_id):
+
+    # For a while we will store the data here, this should be moved to the controller.
     string_server = JsonAction.all_server_data()
     print 'String {0}'.format(string_server)
     if not string_server:
         return "No data found"
-    data_array = ''
-    if not data_array:
-        data_array = "3.00,5.00,8.00"
+    string_server = json.loads(json.dumps(string_server))
+    network_sent = string_server['Server']['ServerDetails']['NetworkLoad']['Sent']
+    cpu_average = string_server["Server"]["ServerDetails"]["CPU_Usage"]
+
+    if not network_sent:
+        network_sent = '1.00'
+    network_sent = '1.00'
 
     return render(request, 'server.html', {'server_all': string_server,
-                                           'chart_data': data_array})
+                                           'chart_data': cpu_average})
 
 
 def test(request):

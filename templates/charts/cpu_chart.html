@@ -21,8 +21,11 @@ function drawCpu() {
         options: {
             scales: {
                 yAxes: [{
+                    display: true,
+                    stacked: true,
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        max: 100
                     }
                 }]
             },
