@@ -12,7 +12,7 @@ from AuroraPlus.forms import UserForm
 
 # Local imports
 from bin import cpu, jsondata
-from bin.ServerManaging import manage
+from bin.ServerManaging import manage, server_edit
 from bin.ServerMonitoring import collector
 from models import LandingPageImages
 from bin.ServerMonitoring import monitor
@@ -23,6 +23,7 @@ JsonAction = jsondata.JsonData
 Communication = collector.Communication
 ServerManager = manage.ManageServer
 Monitor = monitor.GetServerData()
+EditServers = server_edit.EditServer
 
 
 @login_required
@@ -52,7 +53,26 @@ def index(request):
 
 @login_required
 def edit_server(request, list_id):
-    return render(request, 'edit_server.html')
+    current_user = request.user
+    user_id = current_user.id
+
+    if request.method == 'POST':
+        r = request
+        name = r.POST["Name"]
+        description = r.POST["Description"]
+        if description or name is not None:
+            EditServers.edit_server(user_id=user_id, list_id=list_id, name=name, description=description)
+        else:
+            return render(request, 'edit_server.html', {'Edit_Server_Message': 'ERROR: Fill out all fields.'})
+        return render(request, 'edit_server.html', {'Edit_Server_Message': 'Successfully updated.'})
+
+    load_server_to_edit = EditServers.get_servers(user_id, list_id)
+    if not load_server_to_edit:
+        print user_id, list_id
+        return HttpResponse("No data found")
+    print user_id, list_id
+    print load_server_to_edit.values('Server_Name', 'Server_key', 'Server_Description')
+    return render(request, 'edit_server.html', {'serverdata': load_server_to_edit})
 
 
 @login_required

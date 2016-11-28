@@ -19,16 +19,24 @@
         <h1 style="text-align: left;">AuroraPlus</h1>
     </div>
     <div class="col-md-12 centered-form">
-        <form class="form form-outline" id="edit_form" method="post" autocomplete="off" action="/server/edit/">{% csrf_token %}
-            <label for="name">Name:</label>
-            <input class="form-control edit-input" id="name" type="text" autocomplete="off" name="name" value=""/>
+        {% if Edit_Server_Message %}
+            <div class="edit-message">
+                {{ Edit_Server_Message }}
+                <span><a href="/dashboard/">Dashboard</a></span>
+            </div>
+        {% endif %}
+        {% for item in serverdata %}
+        <form class="form form-outline" id="edit_form" method="post" autocomplete="off" action="/server/edit/{{ item.ID }}">{% csrf_token %}
+            <label for="Name">Name:</label>
+            <input type="text" class="form-control edit-input" name="Name" id="Name" maxlength="50" value="{{ item.Server_Name}}" required>
             <br>
-            <label for="description">Description:</label>
-            <input class="form-control edit-input" id="description" type="text" autocomplete="off" name="description" value=""/>
+            <label for="Description">Description:</label>
+            <input type="text" class="form-control edit-input" name="Description" id="Description" maxlength="100" value="{{ item.Server_Description}}" required>
             <br>
             <input class="btn btn-default edit-button" type="submit" value="Edit"/>
             <span><a href="/dashboard/" class="edit-link">Back</a></span>
         </form>
+        {% endfor %}
     </div>
 </div>
 </body>

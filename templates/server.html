@@ -19,7 +19,7 @@
 {% include 'top.html' %}
 {% if server_all %}
         <div class="col-lg-10 col-lg-offset-1">
-            <h2 class="page-header server-page-title">{{ item.ServerInfo.Name }}</h2>
+            <h2 class="page-header server-page-title">{{ server_all.Name }}</h2>
             <div class="row">
                 {% comment %}Start collapsible heading{% endcomment %}
                 <div class="panel panel-default ServerPanel custom-margin">

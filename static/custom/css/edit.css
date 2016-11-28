@@ -75,3 +75,11 @@ h1 {
 .error {
     color: red;
 }
+
+.edit-message{
+    color: white;
+}
+
+.edit-message > a{
+    color: darkslateblue !important;
+}
