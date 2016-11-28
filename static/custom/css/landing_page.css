@@ -2,7 +2,7 @@
 html, body {
     overflow-x: hidden;
     /*overflow-y: hidden;*/
-    background: url("http://imgur.com/JE68l2M.jpg") no-repeat !important;
+    background: url("/static/images/background.jpg") no-repeat !important;
     background-size: cover !important;
     height: 100% !important;
     width: 100% !important;
