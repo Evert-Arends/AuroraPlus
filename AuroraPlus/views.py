@@ -13,7 +13,7 @@ from AuroraPlus.forms import UserForm
 # Local imports
 from bin import cpu, jsondata
 from bin.ServerManaging import manage, server_edit, server_delete
-from bin.ServerMonitoring import collector
+from bin.ServerMonitoring import collector, count_servers
 from models import LandingPageImages
 from bin.ServerMonitoring import monitor
 
@@ -25,6 +25,7 @@ ServerManager = manage.ManageServer
 Monitor = monitor.GetServerData()
 EditServers = server_edit.EditServer
 DeleteServers = server_delete.DeleteServer
+CountUserServers = count_servers.CountServers
 
 
 @login_required
@@ -50,11 +51,15 @@ def index(request):
         print string_server
         return HttpResponse("No data found")
 
+    # counts users servers
+    server_count = str(CountUserServers.count_servers(user_id))
+    print server_count
+
     # delete server button
     if 'Delete' in request.POST.values():
         id = request.POST['id']
     return render(request, 'index.html',
-                  {'server_all': string_server})
+                  {'server_all': string_server, 'server_count': server_count})
 
 
 @login_required
