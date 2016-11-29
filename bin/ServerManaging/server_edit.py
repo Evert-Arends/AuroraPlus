@@ -24,9 +24,11 @@ class EditServer:
         if user_id is None or list_id is None or name is None or description is None:
             return 'Not all variables are fulfilled.'
         else:
-
-            edited_data = Servers.objects.get(User_ID=user_id, ID=list_id)
-            edited_data.Server_Name = name
-            edited_data.Server_Description = description
-            edited_data.save()
+            try:
+                edited_data = Servers.objects.get(User_ID=12, ID=12)
+                edited_data.Server_Name = name
+                edited_data.Server_Description = description
+                edited_data.save()
+            except:
+                return 'Server could not be updated.'
             return True

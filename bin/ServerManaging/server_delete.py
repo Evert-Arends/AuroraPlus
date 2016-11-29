@@ -24,6 +24,12 @@ class DeleteServer:
         if user_id is None or list_id is None:
             return 'Entry cannot be deleted.'
         else:
-            server_to_delete = Servers.objects.get(User_ID=user_id, ID=list_id)
-            server_to_delete.delete()
+            try:
+                server_to_delete = Servers.objects.get(User_ID=user_id, ID=list_id)
+                if server_to_delete is not None:
+                    server_to_delete.delete()
+                else:
+                    return 'Entry cannot be deleted.'
+            except:
+                return 'Entry cannot be deleted.'
             return True
