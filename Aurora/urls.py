@@ -17,7 +17,6 @@ from django.conf.urls import url
 from django.contrib import admin
 from AuroraPlus import views
 
-
 urlpatterns = [
     url(r'^$', views.landing_page, name='landing_page'),
     url(r'^admin/', admin.site.urls),
@@ -30,4 +29,7 @@ urlpatterns = [
     url(r'^server/edit/(?P<list_id>\w{0,50})$', views.edit_server, name='editserver'),
     url(r'^server/delete/(?P<list_id>\w{0,50})$', views.delete_server, name='deleteserver'),
     url(r'^error/$', views.error, name='error'),
+    url(r'^live/(?P<chart>\w{1,50})/key/(?P<key>\w{1,50})/time/(?P<time>\w{1,50})/$', views.live_server_updates,
+        name='user'),
+
 ]

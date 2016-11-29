@@ -4,8 +4,15 @@ function drawNetwork() {
     var rand_int = Math.floor(Math.random() * 30) + 20;
     var rand_int2 = Math.floor(Math.random() * 30) + 20;
 
-    var received = {{network_received}};
-    var sent = {{network_sent}};
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "/live/Network_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
+    xmlhttp.send();
+
+    var JsonObject = JSON.parse(xmlhttp.responseText);
+
+    var received = JsonObject.Sent;
+    var sent = JsonObject.Received;
+
 
     var NetworkChart = new Chart(network, {
         type: 'bar',
@@ -13,7 +20,7 @@ function drawNetwork() {
             labels: ["Incoming traffic", "Outgoing traffic"],
             datasets: [{
                 label: 'Traffic',
-                data: [sent, received],
+                data: [parseInt(received), parseInt(sent)],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(63, 191, 191, 0.2)'

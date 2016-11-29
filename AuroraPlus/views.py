@@ -111,12 +111,13 @@ def server_page(request, server_id):
     if string_server is not None:
         valid_json_check = is_json(string_server)
         if not valid_json_check:
-            return HttpResponse('There seems to be no useful json data.')
+            return render(request, 'error.html', {'Error_Message': ['There seems to be no useful json data']})
         else:
             json_obj = json.loads(string_server)
             print json_obj
     else:
-        return HttpResponse('There seems no json available', status=400)
+        return render(request, 'error.html', {
+            'Error_Message': ['There seems to be no useful json data', 'To fix this problem start your client']})
     network_sent = json_obj['Server']['ServerDetails']['NetworkLoad']['Sent']
     print network_sent
     network_received = json_obj['Server']['ServerDetails']['NetworkLoad']['Received']
@@ -130,9 +131,37 @@ def server_page(request, server_id):
                                            'network_received': network_received})
 
 
-def is_json(myjson):
+def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=0):
+    string_server = RetrieveData.all_server_data()
+    if string_server is not None:
+        valid_json_check = is_json(string_server)
+        if not valid_json_check:
+            return render(request, 'error.html', {'Error_Message': ['There seems to be no useful json data']})
+        else:
+            json_obj = json.loads(string_server)
+            print json_obj
+    else:
+        return render(request, 'error.html', {
+            'Error_Message': ['There seems to be no useful json data', 'To fix this problem start your client']})
+    return_json_obj = {'Sent': '0', 'Received': '0'}
+    if chart == 'CPU_Usage':
+        usage = json_obj["Server"]["ServerDetails"]["CPU_Usage"]
+    elif chart == 'Network_Usage':
+        sent = json_obj['Server']['ServerDetails']['NetworkLoad']['Sent']
+        received = json_obj['Server']['ServerDetails']['NetworkLoad']['Received']
+        return_json_obj['Sent'] = sent
+        return_json_obj['Received'] = received
+
+        usage = json.dumps(return_json_obj)
+    else:
+        usage = 'Failed'
+
+    return HttpResponse(usage)
+
+
+def is_json(my_json):
     try:
-        json_object = json.loads(myjson)
+        json_object = json.loads(my_json)
     except ValueError, e:
         print 'This json data is not valid.'
         return False

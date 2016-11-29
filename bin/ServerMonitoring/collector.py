@@ -30,7 +30,6 @@ class Communication:
 
         raw_json_content = request.content
         if raw_json_content:
-            # purified_json_content = json.dumps(raw_json_content)
             return raw_json_content
         else:
             return

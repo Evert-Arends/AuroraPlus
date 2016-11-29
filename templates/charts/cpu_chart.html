@@ -2,13 +2,22 @@
 function drawCpu() {
     var cpu = document.getElementById("CpuChart").getContext("2d");
     var rand_int = Math.floor(Math.random() * 30) + 20;
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "/live/CPU_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
+    xmlhttp.send();
+    var chart_data = xmlhttp.responseText;
+    chart_data = parseInt(chart_data);
+    console.log(chart_data);
+
+
     cpuChart = new Chart(cpu, {
         type: 'bar',
         data: {
             labels: ["CPU usage"],
             datasets: [{
                 label: 'Usage',
-                data: [{{ chart_data }}],
+                data: [chart_data],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)'
                 ],
