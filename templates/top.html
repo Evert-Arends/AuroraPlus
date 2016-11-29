@@ -20,7 +20,7 @@
                 <img style="max-width: 230px; margin-left: -15px;" src="{% static 'images/logo.png' %}"/>
             </li>
             <hr class="sidebardivider"/>
-            {% for item in server_all %}
+            {% for item in server_list %}
                 <li>
                     <a href="/server/{{ item.ID }}"> {{ item.Server_Name }} </a>
                 </li>

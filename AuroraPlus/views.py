@@ -46,9 +46,9 @@ def index(request):
                           {'Add_Server_Error': 'Please fill in the whole form, and try to use the accepted character.'})
 
     # Get all the users servers.
-    string_server = Monitor.get_servers(user_id)
-    if not string_server:
-        print string_server
+    server_list = Monitor.get_servers(user_id)
+    if not server_list:
+        print server_list
         return HttpResponse("No data found")
 
     # counts users servers
@@ -59,7 +59,7 @@ def index(request):
     if 'Delete' in request.POST.values():
         id = request.POST['id']
     return render(request, 'index.html',
-                  {'server_all': string_server, 'server_count': server_count})
+                  {'server_list': server_list, 'server_count': server_count})
 
 
 @login_required
@@ -106,6 +106,8 @@ def delete_server(request, list_id):
 
 @login_required
 def server_page(request, server_id):
+    current_user = request.user
+    user_id = current_user.id
     # For a while we will store the data here, this should be moved to the controller.
     string_server = RetrieveData.all_server_data()
     if string_server is not None:
@@ -126,9 +128,16 @@ def server_page(request, server_id):
     server_name = json_obj["Server"]["ServerDetails"]["ServerName"]
     if not network_sent:
         network_sent = '0'
+
+    # Get all the users servers.
+    server_list = Monitor.get_servers(user_id)
+    if not server_list:
+        print server_list
+        return HttpResponse("No data found")
     return render(request, 'server.html', {'server_all': string_server,
                                            'chart_data': cpu_average, 'network_sent': network_sent,
-                                           'network_received': network_received, 'server_name':server_name})
+                                           'network_received': network_received, 'server_name': server_name,
+                                           'server_list': server_list})
 
 
 def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=0):
