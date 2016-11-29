@@ -202,5 +202,8 @@ def user_logout(request):
     return render(request, 'logout.html')
 
 
-def page_not_found(request):
-    return render(request, '404.html')
+def error(request):
+    something_is_wrong = ['There is an error... I know its supposed to work.',
+                          'There seems to be two errors.',
+                          'Screw it.Im taking vacation...']
+    return render(request, 'error.html', {'Error_Message': something_is_wrong})

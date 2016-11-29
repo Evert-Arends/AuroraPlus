@@ -3,23 +3,28 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>404</title>
+    <title>Login</title>
     <link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">
     <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "custom/css/custom_errors.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/error.css" %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Armata|Bangers|Harmattan|Lato|Orbitron" rel="stylesheet">
 </head>
 <body>
-<div class="col-md-3 centered-logo">
-    <h1 style="text-align: left;">AuroraPlus</h1>
-</div>
 <div class="col-md-3 centered">
-    <h2>404</h2>
-    <p>
-        The page you are looking for is not found. If this problem continues, please contact our developers.
-    </p>
+    <div class="col-md-12 centered-logo">
+        <h1 style="text-align: left;">There has been an error.</h1>
+    </div>
+    <div class="col-md-12 centered-form">
+        <ol>
+            {% for error in Error_Message %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ol>
+    </div>
 </div>
 </body>
 </html>
+

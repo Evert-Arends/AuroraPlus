@@ -1,0 +1,46 @@
+body {
+    background: url("/static/images/background.jpg") no-repeat !important;
+    background-size: cover !important;
+    height: 100%;
+    width: 100%;
+}
+
+.centered {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: -webkit-translate(-50%, -50%);
+    transform: -ms-translate(-50%, -50%);
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 3px solid rgba(0, 0, 0, 0.4);
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+}
+
+.centered-form {
+    top: 20%;
+    text-align: left;
+}
+
+.centered-logo {
+    padding-bottom: 1%;
+}
+
+h1 {
+    font-family: 'Harmattan', sans-serif !important;
+    text-decoration: solid;
+    color: #ff6356;
+    float: none;
+    text-align: center;
+    font-size: 40px;
+}
+
+ol{
+    list-style: none;
+}
+
+li{
+    color: #ffffff;
+    font-size:17px;
+}
