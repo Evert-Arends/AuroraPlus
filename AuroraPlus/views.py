@@ -107,22 +107,37 @@ def delete_server(request, list_id):
 @login_required
 def server_page(request, server_id):
     # For a while we will store the data here, this should be moved to the controller.
-    string_server = json.loads(RetrieveData.all_server_data())
-    purified_string_server = json.loads(string_server)
-    if not purified_string_server:
-        purified_string_server = string_server
-
-    network_sent = purified_string_server['Server']['ServerDetails']['NetworkLoad']['Sent']
+    string_server = RetrieveData.all_server_data()
+    if string_server is not None:
+        valid_json_check = is_json(string_server)
+        if not valid_json_check:
+            return HttpResponse('There seems to be no useful json data.')
+        else:
+            json_obj = json.loads(string_server)
+            print json_obj
+    else:
+        return HttpResponse('There seems no json available', status=400)
+    network_sent = json_obj['Server']['ServerDetails']['NetworkLoad']['Sent']
     print network_sent
-    network_received = purified_string_server['Server']['ServerDetails']['NetworkLoad']['Received']
+    network_received = json_obj['Server']['ServerDetails']['NetworkLoad']['Received']
     print type(network_received)
-    cpu_average = purified_string_server["Server"]["ServerDetails"]["CPU_Usage"]
+    cpu_average = json_obj["Server"]["ServerDetails"]["CPU_Usage"]
 
     if not network_sent:
         network_sent = '0'
     return render(request, 'server.html', {'server_all': string_server,
                                            'chart_data': cpu_average, 'network_sent': network_sent,
                                            'network_received': network_received})
+
+
+def is_json(myjson):
+    try:
+        json_object = json.loads(myjson)
+    except ValueError, e:
+        print 'This json data is not valid.'
+        return False
+    print 'This json data is valid.'
+    return True
 
 
 def test(request):

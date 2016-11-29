@@ -19,10 +19,7 @@ class Communication:
         api = constants.API_SERVER_ADDRESS
         client_address = constants.API_CLIENT_URL
         if time != 0:
-            # WORKING ON THIS!!
-            # url = '{0}{1}{2}{3}/time/{4}'.format(constants.API_SERVER_PROTOCOL, api, client_address, server, time)
             url = '{0}{1}{2}{3}/time/{4}'.format(constants.API_SERVER_PROTOCOL, api, client_address, server, time)
-
         else:
             url = '{0}{1}{2}{3}'.format(constants.API_SERVER_PROTOCOL, api, client_address, server)
 
@@ -33,8 +30,8 @@ class Communication:
 
         raw_json_content = request.content
         if raw_json_content:
-            purified_json_content = json.dumps(raw_json_content)
-            return purified_json_content
+            # purified_json_content = json.dumps(raw_json_content)
+            return raw_json_content
         else:
             return
 
