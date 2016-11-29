@@ -110,7 +110,6 @@ def delete_server(request, list_id):
 def server_page(request, server_id):
     # For a while we will store the data here, this should be moved to the controller.
     string_server = RetrieveData.all_server_data()
-    print string_server
     if string_server is not None:
         valid_json_check = is_json(string_server)
         if not valid_json_check:
@@ -126,20 +125,12 @@ def server_page(request, server_id):
     network_received = json_obj['Server']['ServerDetails']['NetworkLoad']['Received']
     print type(network_received)
     cpu_average = json_obj["Server"]["ServerDetails"]["CPU_Usage"]
-
-    # Testing
-    time = 60
-    date_now = datetime.datetime.now()
-    old_date = date_now - datetime.timedelta(seconds=time)
-    test = 'old_date: {0}', 'date_now: {1}'.format(old_date, date_now)
-    print(test)
-    # Testing
-
+    server_name = json_obj["Server"]["ServerDetails"]["ServerName"]
     if not network_sent:
         network_sent = '0'
     return render(request, 'server.html', {'server_all': string_server,
                                            'chart_data': cpu_average, 'network_sent': network_sent,
-                                           'network_received': network_received})
+                                           'network_received': network_received, 'server_name':server_name})
 
 
 def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=0):
