@@ -123,12 +123,12 @@ def server_page(request, server_id):
     network_received = json_obj['Server']['ServerDetails']['NetworkLoad']['Received']
     print type(network_received)
     cpu_average = json_obj["Server"]["ServerDetails"]["CPU_Usage"]
-
+    server_name = json_obj["Server"]["ServerDetails"]["ServerName"]
     if not network_sent:
         network_sent = '0'
     return render(request, 'server.html', {'server_all': string_server,
                                            'chart_data': cpu_average, 'network_sent': network_sent,
-                                           'network_received': network_received})
+                                           'network_received': network_received, 'server_name':server_name})
 
 
 def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=0):
