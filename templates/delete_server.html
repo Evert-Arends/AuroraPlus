@@ -3,37 +3,31 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Edit server</title>
+    <title>Delete server</title>
     <link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">
     <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "custom/css/edit.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/delete.css" %}"/>
     <link href="https://fonts.googleapis.com/css?family=Armata|Bangers|Harmattan|Lato|Orbitron" rel="stylesheet">
 </head>
 <body>
 <div class="col-md-3 centered">
     <div class="col-md-12 centered-logo">
-        <h1 style="text-align: left;">AuroraPlus</h1>
+        <h1 style="text-align: left;">Delete server</h1>
     </div>
     <div class="col-md-12 centered-form">
-        {% if Edit_Server_Message %}
-            <div class="edit-message">
-                {{ Edit_Server_Message }}
+        {% if Delete_Server_Message %}
+            <div class="delete-message">
+                {{ Delete_Server_Message }}
                 <span><a href="/dashboard/">Dashboard</a></span>
             </div>
         {% endif %}
         {% for item in serverdata %}
-        <form class="form form-outline" id="edit_form" method="post" autocomplete="off" action="/server/edit/{{ item.ID }}">{% csrf_token %}
-            <label for="Name">Name:</label>
-            <input type="text" class="form-control edit-input" name="Name" id="Name" maxlength="50" value="{{ item.Server_Name}}" required>
-            <br>
-            <label for="Description">Description:</label>
-            <input type="text" class="form-control edit-input" name="Description" id="Description" maxlength="100" value="{{ item.Server_Description}}" required>
-            <br>
-            <input class="btn btn-default edit-button" type="submit" value="Edit"/>
-            <span><a href="/dashboard/" class="edit-link">Back</a></span>
+        <form class="form form-outline" id="delete_form" method="post" autocomplete="off" action="/server/delete/{{ item.ID }}">{% csrf_token %}
+            <input class="btn btn-default delete-button" type="submit" value="Delete"/>
+            <a class="btn btn-default delete-button custom-margin" href="/dashboard/">Cancel</a>
         </form>
         {% endfor %}
     </div>

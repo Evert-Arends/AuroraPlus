@@ -1,10 +1,9 @@
 import os
-
+from AuroraPlus.models import *
 import django
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Aurora.settings")
 django.setup()
-from AuroraPlus.models import *
 
 
 class EditServer:

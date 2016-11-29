@@ -146,11 +146,10 @@
                                 <td>{{ item.ID }}</td>
                                 <td>{{ item.Server_Name }}</td>
                                 <td>{{ item.Server_Description }}</td>
-                                <td><form action="/dashboard/" method="post">
-                                        <a class="btn btn-danger deletebutton" name="delete" type="submit">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </form>
+                                <td>
+                                    <a class="btn btn-danger deletebutton" href="/server/delete/{{ item.ID }}">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
                                 </td>
                                 <td>
                                     <a class="btn btn-warning editbutton" href="/server/edit/{{ item.ID }}">

@@ -12,7 +12,7 @@ from AuroraPlus.forms import UserForm
 
 # Local imports
 from bin import cpu, jsondata
-from bin.ServerManaging import manage, server_edit
+from bin.ServerManaging import manage, server_edit, server_delete
 from bin.ServerMonitoring import collector
 from models import LandingPageImages
 from bin.ServerMonitoring import monitor
@@ -24,6 +24,7 @@ Communication = collector.Communication
 ServerManager = manage.ManageServer
 Monitor = monitor.GetServerData()
 EditServers = server_edit.EditServer
+DeleteServers = server_delete.DeleteServer
 
 
 @login_required
@@ -50,8 +51,8 @@ def index(request):
         return HttpResponse("No data found")
 
     # delete server button
-    if request.POST.get('delete'):
-        string_server.objects.filter(id__in=request.POST.getlist('server_all')).delete()
+    if 'Delete' in request.POST.values():
+        id = request.POST['id']
     return render(request, 'index.html',
                   {'server_all': string_server})
 
@@ -79,6 +80,23 @@ def edit_server(request, list_id):
     print user_id, list_id
     print load_server_to_edit.values('Server_Name', 'Server_key', 'Server_Description')
     return render(request, 'edit_server.html', {'serverdata': load_server_to_edit})
+
+
+@login_required
+@csrf_protect
+def delete_server(request, list_id):
+    current_user = request.user
+    user_id = current_user.id
+
+    if request.method == 'POST':
+        DeleteServers.delete_server(user_id=user_id, list_id=list_id)
+        return render(request, 'delete_server.html', {'Delete_Server_Message': 'Successfully deleted.'})
+
+    load_server_to_edit = EditServers.get_servers(user_id, list_id)
+    if not load_server_to_edit:
+        print user_id, list_id
+        return HttpResponse("No data found")
+    return render(request, 'delete_server.html', {'serverdata': load_server_to_edit})
 
 
 @login_required
