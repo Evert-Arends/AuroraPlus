@@ -1,6 +1,7 @@
 # imports
 import json
 
+import datetime
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -49,7 +50,8 @@ def index(request):
     string_server = Monitor.get_servers(user_id)
     if not string_server:
         print string_server
-        return HttpResponse("No data found")
+        string_server = '--'
+        # return render(request, 'error.html', {'Error_Message': ['There seems to be no data.']})
 
     # counts users servers
     server_count = str(CountUserServers.count_servers(user_id))
@@ -108,6 +110,7 @@ def delete_server(request, list_id):
 def server_page(request, server_id):
     # For a while we will store the data here, this should be moved to the controller.
     string_server = RetrieveData.all_server_data()
+    print string_server
     if string_server is not None:
         valid_json_check = is_json(string_server)
         if not valid_json_check:
@@ -123,6 +126,14 @@ def server_page(request, server_id):
     network_received = json_obj['Server']['ServerDetails']['NetworkLoad']['Received']
     print type(network_received)
     cpu_average = json_obj["Server"]["ServerDetails"]["CPU_Usage"]
+
+    # Testing
+    time = 60
+    date_now = datetime.datetime.now()
+    old_date = date_now - datetime.timedelta(seconds=time)
+    test = 'old_date: {0}', 'date_now: {1}'.format(old_date, date_now)
+    print(test)
+    # Testing
 
     if not network_sent:
         network_sent = '0'
