@@ -31,5 +31,4 @@ urlpatterns = [
     url(r'^error/$', views.error, name='error'),
     url(r'^live/(?P<chart>\w{1,50})/key/(?P<key>\w{1,50})/time/(?P<time>\w{1,50})/$', views.live_server_updates,
         name='user'),
-
 ]
