@@ -126,6 +126,8 @@ def server_page(request, server_id):
     print type(network_received)
     cpu_average = json_obj["Server"]["ServerDetails"]["CPU_Usage"]
     server_name = json_obj["Server"]["ServerDetails"]["ServerName"]
+    server_ssl = json_obj["RequestDetails"]["Connection"]["SSL"]
+    lan_ip = json_obj["RequestDetails"]["Connection"]["LAN IPAddress"]
     if not network_sent:
         network_sent = '0'
 
@@ -134,10 +136,11 @@ def server_page(request, server_id):
     if not server_list:
         print server_list
         return HttpResponse("No data found")
+
     return render(request, 'server.html', {'server_all': string_server,
                                            'chart_data': cpu_average, 'network_sent': network_sent,
                                            'network_received': network_received, 'server_name': server_name,
-                                           'server_list': server_list})
+                                           'server_list': server_list, 'ssl': server_ssl, 'lan_ip': lan_ip})
 
 
 def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=0):
