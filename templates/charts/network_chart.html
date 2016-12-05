@@ -14,7 +14,7 @@ function drawNetwork() {
     var sent = JsonObject.Received;
 
 
-    var NetworkChart = new Chart(network, {
+    NetworkChart = new Chart(network, {
         type: 'bar',
         data: {
             labels: ["Incoming traffic", "Outgoing traffic"],
@@ -52,6 +52,7 @@ function drawNetwork() {
 drawNetwork();
 
 setInterval(function refreshNetwork() {
+    NetworkChart.destroy();
     drawNetwork();
 }, 1000);
 </script>
