@@ -30,6 +30,7 @@
                             <i class="fa fa-server fa-5x"></i>
                         </div>
                         <div class="col-xs-8">
+                            <br>
                             {% for item in server_count %}
                                 <p>Total servers: {{ item }}</p>
                             {% endfor %}
@@ -44,25 +45,11 @@
                 <div class="panel-body">
                     <div class="row row-table">
                         <div class="col-xs-4">
-                            <i class="fa fa-users fa-5x"></i>
-                        </div>
-                        <div class="col-xs-8">
-                            <p>Users online: 27</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="panel panel-default dashboardpanel">
-                <div class="panel-body">
-                    <div class="row row-table">
-                        <div class="col-xs-4">
                             <i class="fa fa-user-plus fa-5x"></i>
                         </div>
                         <div class="col-xs-8">
-                            <p>Users on this account: 3</p>
+                            <br>
+                            <p>Users on this account: {{ user_count }}</p>
                         </div>
                     </div>
                 </div>
@@ -77,7 +64,26 @@
                             <i class="fa fa-envelope fa-5x"></i>
                         </div>
                         <div class="col-xs-8">
+                            <br>
                             <p>Messages: 5</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="panel panel-default dashboardpanel">
+                <div class="panel-body">
+                    <div class="row row-table">
+                        <div class="col-xs-4">
+                            <i class="fa fa-github fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8">
+                            <p>
+                                <br>
+                                <a href="https://github.com/Evert-Arends/AuroraPlus">Our Github repository</a>
+                            </p>
                         </div>
                     </div>
                 </div>

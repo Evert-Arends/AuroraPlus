@@ -5,9 +5,11 @@ import requests
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response, render
 from django.template import RequestContext
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_protect
 from AuroraPlus.forms import UserForm
 
@@ -59,8 +61,12 @@ def index(request):
     # delete server button
     if 'Delete' in request.POST.values():
         id = request.POST['id']
+
+    # count users on account
+    count = User.objects.filter(last_login__startswith=timezone.now().date()).count()
+
     return render(request, 'index.html',
-                  {'server_list': server_list, 'server_count': server_count})
+                  {'server_list': server_list, 'server_count': server_count, 'user_count': count})
 
 
 @login_required
@@ -127,6 +133,8 @@ def server_page(request, server_id):
     print type(network_received)
     cpu_average = json_obj["Server"]["ServerDetails"]["CPU_Usage"]
     server_name = json_obj["Server"]["ServerDetails"]["ServerName"]
+    server_ssl = json_obj["RequestDetails"]["Connection"]["SSL"]
+    lan_ip = json_obj["RequestDetails"]["Connection"]["LAN IPAddress"]
     if not network_sent:
         network_sent = '0'
 
@@ -135,10 +143,11 @@ def server_page(request, server_id):
     if not server_list:
         print server_list
         return HttpResponse("No data found")
+
     return render(request, 'server.html', {'server_all': string_server,
                                            'chart_data': cpu_average, 'network_sent': network_sent,
                                            'network_received': network_received, 'server_name': server_name,
-                                           'server_list': server_list})
+                                           'server_list': server_list, 'ssl': server_ssl, 'lan_ip': lan_ip})
 
 
 def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=0):
