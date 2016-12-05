@@ -4,9 +4,11 @@ import json
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response, render
 from django.template import RequestContext
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_protect
 from AuroraPlus.forms import UserForm
 
@@ -58,8 +60,12 @@ def index(request):
     # delete server button
     if 'Delete' in request.POST.values():
         id = request.POST['id']
+
+    # count users on account
+    count = User.objects.filter(last_login__startswith=timezone.now().date()).count()
+
     return render(request, 'index.html',
-                  {'server_list': server_list, 'server_count': server_count})
+                  {'server_list': server_list, 'server_count': server_count, 'user_count': count})
 
 
 @login_required
