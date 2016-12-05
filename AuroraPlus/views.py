@@ -1,5 +1,6 @@
 # imports
 import json
+import requests
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
@@ -171,9 +172,17 @@ def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCken
         return_json_obj['Received'] = received
 
         usage = json.dumps(return_json_obj)
+    elif chart == 'ping':
+        r = requests.get('http://127.0.0.1:8001')
+        if r.status_code == 200:
+            ping = r.elapsed.total_seconds()
+        else:
+            ping = 2
+
+        usage = ping
+
     else:
         usage = 'Failed'
-
     return HttpResponse(usage)
 
 
