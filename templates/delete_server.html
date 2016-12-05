@@ -21,8 +21,12 @@
         {% if Delete_Server_Message %}
             <div class="delete-message">
                 {{ Delete_Server_Message }}
-                <span><a href="/dashboard/">Dashboard</a></span>
             </div>
+            <script>
+                window.setTimeout(function(){
+                    window.location.href = "/dashboard/";
+                }, 1000);
+            </script>
         {% endif %}
         {% for item in serverdata %}
         <form class="form form-outline" id="delete_form" method="post" autocomplete="off" action="/server/delete/{{ item.ID }}">{% csrf_token %}

@@ -21,7 +21,11 @@
         {% if Edit_Server_Message %}
             <div class="edit-message">
                 {{ Edit_Server_Message }}
-                <span><a href="/dashboard/">Dashboard</a></span>
+                <script>
+                    window.setTimeout(function(){
+                        window.location.href = "/dashboard/";
+                    }, 1000);
+                </script>
             </div>
         {% endif %}
         {% for item in serverdata %}
