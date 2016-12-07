@@ -35,6 +35,12 @@ html, body {
     width: 40px !important;
 }
 
+.view-key{
+    border: none !important;
+    border-radius: 0 !important;
+    width: 40px !important;
+
+}
 /* Panels on dashboard */
 
 .dashboardpanel {
@@ -63,6 +69,11 @@ html, body {
 .dashboardpanel > .panel-footer {
     background-color: rgba(250, 248, 233, 0.6) !important;
     border-radius: 0px !important;
+}
+
+.custom-scroll{
+    overflow: hidden;
+    overflow-x: scroll;
 }
 
 /* Form style */

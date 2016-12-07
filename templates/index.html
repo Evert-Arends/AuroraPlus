@@ -94,7 +94,7 @@
 
     <div class="row">
         {% comment %}Add new server.{% endcomment %}
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="panel panel-default dashboardpanel">
                 <div class="panel-heading">
                     <h2 class="panel-title">Add a server</h2>
@@ -130,18 +130,19 @@
         </div>
 
         {% comment %}Server list.{% endcomment %}
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="panel panel-default dashboardpanel">
                 <div class="panel-heading">
                     <h2 class="panel-title">All servers</h2>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body custom-scroll">
                     <table class="table">
                         <thead>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Show key</th>
                             <th>Delete</th>
                             <th>Edit</th>
                         </tr>
@@ -153,6 +154,11 @@
                                 <td>{{ item.Server_Name }}</td>
                                 <td>{{ item.Server_Description }}</td>
                                 <td>
+                                    <a class="btn btn-success view-key toggler" href="#" data-prod-cat={{ item.ID }}>
+                                        <i class="fa fa-key"></i>
+                                    </a>
+                                </td>
+                                <td>
                                     <a class="btn btn-danger deletebutton" href="/server/delete/{{ item.ID }}">
                                         <i class="fa fa-trash"></i>
                                     </a>
@@ -163,6 +169,14 @@
                                     </a>
                                 </td>
                             </tr>
+                            <tr class="cat{{ item.ID }}" style="display:none">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Key: {{ item.Server_key }}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                         {% endfor %}
                         </tbody>
                     </table>
@@ -170,7 +184,14 @@
             </div>
         </div>
     </div>
-
+    <script>
+        $(document).ready(function(){
+            $(".toggler").click(function(e){
+                e.preventDefault();
+                $('.cat'+$(this).attr('data-prod-cat')).toggle();
+            });
+        });
+    </script>
 </div>
 </body>
 </html>
