@@ -88,7 +88,7 @@ def edit_server(request, list_id):
     load_server_to_edit = EditServers.get_servers(user_id, list_id)
     if not load_server_to_edit:
         print user_id, list_id
-        return HttpResponse("No data found")
+        return render(request, 'edit_server.html', {'Edit_Server_Message': 'No data found.'})
     print user_id, list_id
     print load_server_to_edit.values('Server_Name', 'Server_key', 'Server_Description')
     return render(request, 'edit_server.html', {'serverdata': load_server_to_edit})
@@ -107,7 +107,7 @@ def delete_server(request, list_id):
     load_server_to_edit = EditServers.get_servers(user_id, list_id)
     if not load_server_to_edit:
         print user_id, list_id
-        return HttpResponse("No data found")
+        return render(request, 'delete_server.html', {'Delete_Server_Message': 'No data found.'})
     return render(request, 'delete_server.html', {'serverdata': load_server_to_edit})
 
 
@@ -142,7 +142,7 @@ def server_page(request, server_id):
     server_list = Monitor.get_servers(user_id)
     if not server_list:
         print server_list
-        return HttpResponse("No data found")
+        return HttpResponse("No servers.")
 
     return render(request, 'server.html', {'server_all': string_server,
                                            'chart_data': cpu_average, 'network_sent': network_sent,
@@ -274,7 +274,5 @@ def user_logout(request):
 
 
 def error(request):
-    something_is_wrong = ['There is an error... I know its supposed to work.',
-                          'There seems to be two errors.',
-                          'Screw it.Im taking vacation...']
+    something_is_wrong = ['Have you tried turning it off and on again?']
     return render(request, 'error.html', {'Error_Message': something_is_wrong})
