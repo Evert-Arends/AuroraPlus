@@ -1,8 +1,6 @@
 <script>
 function drawNetwork() {
     var network = document.getElementById("NetworkChart").getContext("2d");
-    var rand_int = Math.floor(Math.random() * 30) + 20;
-    var rand_int2 = Math.floor(Math.random() * 30) + 20;
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", "/live/Network_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
