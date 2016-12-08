@@ -1,50 +1,52 @@
 <script>
     function getData() {
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", "/live/CPU_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
+        xmlhttp.open("GET", "/live/Network_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
         xmlhttp.send();
 
-        var chart_data = xmlhttp.responseText;
-        chart_data = parseInt(chart_data);
+        var JsonObject = JSON.parse(xmlhttp.responseText);
+
+        var received = JsonObject.Sent;
+        var sent = JsonObject.Received;
+
+        chart_data = [received, sent];
         console.log(chart_data);
         return chart_data
     }
 
-        var canvas = document.getElementById('myChart');
+        var canvas = document.getElementById('testChart');
 
         var chart_data = getData(chart_data);
+        var received = parseInt(chart_data[0]);
+        var sent = parseInt(chart_data[1]);
+        console.log(received, sent);
 
         var data = {
-            labels: ["RAM usage"],
-            datasets: [
-                {
-                    label: "RAM usage",
-                    fill: false,
-                    lineTension: 0.1,
-                    backgroundColor: "rgba(75,192,192,0.4)",
-                    borderColor: "rgba(75,192,192,1)",
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: "rgba(75,192,192,1)",
-                    pointBackgroundColor: "#fff",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 5,
-                    pointHitRadius: 10,
-                    data: [chart_data]
-                }
-            ]
+            labels: ["Incoming", "Outgoing"],
+            datasets: [{
+                label: 'Traffic',
+                data: [received, sent],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(63, 191, 191, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(63, 191, 191, 1)'
+                ],
+                borderWidth: 1
+            }]
         }
 
         function adddata() {
             var chart_data = getData(chart_data);
-            myLineChart.data.datasets[0].data[0] = [chart_data];
-            myLineChart.data.labels[0] = "RAM usage: " + [chart_data];
+            var received = parseInt(chart_data[0]);
+            var sent = parseInt(chart_data[1]);
+
+            myLineChart.data.datasets[0].data[0] = [received];
+            myLineChart.data.labels[0] = "Incoming: " + [received];
+            myLineChart.data.datasets[0].data[1] = [sent];
+            myLineChart.data.labels[1] = "Outgoing: " + [sent];
             myLineChart.update();
         }
 
@@ -54,7 +56,7 @@
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        max: 100
+                        max: 1000000
                     }
                 }]
             },
@@ -73,7 +75,7 @@
             options: option
         });
 
-    setInterval(function refreshRam() {
+    setInterval(function refreshChart() {
         getData();
         adddata();
     }, 800);
