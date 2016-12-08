@@ -58,7 +58,6 @@ html, body {
 .ServerPanel > .panel-body {
     background-color: rgba(250, 248, 233, 0.6) !important;
     border-style: none !important;
-    min-height: 105px;
 }
 
 .ServerPanel > .panel-footer {

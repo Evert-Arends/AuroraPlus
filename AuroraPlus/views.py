@@ -52,7 +52,7 @@ def index(request):
     server_list = Monitor.get_servers(user_id)
     if not server_list:
         print server_list
-        return HttpResponse("No data found")
+        return HttpResponse("No servers")
 
     # counts users servers
     server_count = str(CountUserServers.count_servers(user_id))

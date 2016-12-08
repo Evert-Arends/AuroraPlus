@@ -1,26 +1,80 @@
-{% load static from staticfiles %}
-{% load current_tags %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Aurora</title>
-    <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
-    <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
-    <script src="{% static "Chart/chart.js/dist/Chart.bundle.js" %}"></script>
-    <style>body{background-color: #a6e1ec!important;}</style>
-</head>
-<body>
-{% if user.is_authenticated %}
-<h1>Aurora says... hello {{ user.username }}!</h1>
-{% else %}
-<h1>Aurora says... hello world!</h1>
-{% endif %}
+<script>
+    function getData() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "/live/CPU_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
+        xmlhttp.send();
 
-{% for image in images %}
-    {{image}}
-{% endfor %}
-</body>
-</html>
+        var chart_data = xmlhttp.responseText;
+        chart_data = parseInt(chart_data);
+        console.log(chart_data);
+        return chart_data
+    }
+
+        var canvas = document.getElementById('myChart');
+
+        var chart_data = getData(chart_data);
+
+        var data = {
+            labels: ["RAM usage"],
+            datasets: [
+                {
+                    label: "RAM usage",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHitRadius: 10,
+                    data: [chart_data]
+                }
+            ]
+        }
+
+        function adddata() {
+            var chart_data = getData(chart_data);
+            myLineChart.data.datasets[0].data[0] = [chart_data];
+            myLineChart.data.labels[0] = "RAM usage: " + [chart_data];
+            myLineChart.update();
+        }
+
+        var option = {
+            showLines: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }]
+            },
+            responsive: true,
+            legend: {
+                display: false
+            },
+            animation: false,
+            tooltips: {
+                enabled: false
+            }
+        };
+
+        var myLineChart = Chart.Bar(canvas, {
+            data: data,
+            options: option
+        });
+
+    setInterval(function refreshRam() {
+        getData();
+        adddata();
+    }, 800);
+</script>

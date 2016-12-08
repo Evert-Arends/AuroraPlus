@@ -1,24 +1,24 @@
 <script>
-    function getCpuData() {
+    function getRamData() {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("GET", "/live/CPU_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
         xmlhttp.send();
 
-        var cpu_data = xmlhttp.responseText;
-        cpu_data = parseInt(cpu_data);
-        console.log(cpu_data);
-        return cpu_data
+        var ram_data = xmlhttp.responseText;
+        ram_data = parseInt(ram_data);
+        console.log(ram_data);
+        return ram_data
     }
 
-        var cpuCanvas = document.getElementById('cpuChart');
+        var canvas = document.getElementById('ramChart');
 
-        var cpu_data = getCpuData(cpu_data);
+        var ram_data = getRamData(ram_data);
 
         var data = {
-            labels: ["CPU usage"],
+            labels: ["RAM usage"],
             datasets: [
                 {
-                    label: "CPU usage",
+                    label: "RAM usage",
                     fill: false,
                     lineTension: 0.1,
                     backgroundColor: "rgba(75,192,192,0.4)",
@@ -36,16 +36,16 @@
                     pointHoverBorderWidth: 2,
                     pointRadius: 5,
                     pointHitRadius: 10,
-                    data: [cpu_data]
+                    data: [ram_data]
                 }
             ]
         }
 
-        function CpuData() {
-            var cpu_data = getCpuData(cpu_data);
-            myCpuChart.data.datasets[0].data[0] = [cpu_data];
-            myCpuChart.data.labels[0] = "CPU usage: " + [cpu_data];
-            myCpuChart.update();
+        function RamData() {
+            var ram_data = getRamData(ram_data);
+            myRamChart.data.datasets[0].data[0] = [ram_data];
+            myRamChart.data.labels[0] = "RAM usage: " + [ram_data];
+            myRamChart.update();
         }
 
         var option = {
@@ -68,13 +68,13 @@
             }
         };
 
-        var myCpuChart = Chart.Bar(cpuCanvas, {
+        var myRamChart = Chart.Bar(canvas, {
             data: data,
             options: option
         });
 
-    setInterval(function refreshCPU() {
-        getCpuData();
-        CpuData();
+    setInterval(function refreshRam() {
+        getRamData();
+        RamData();
     }, 800);
 </script>
