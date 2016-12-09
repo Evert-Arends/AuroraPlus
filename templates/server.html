@@ -97,6 +97,21 @@
             </div>
             {% comment %}End LeftSidePanels{% endcomment %}
 
+            <div class="col-md-12 IndexColumn">
+                <div class="livecpu col-md-6">
+                    <div class="panel panel-default ServerPanel">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">NetworkChart </h2>
+                        </div>
+                        <div class="panel-body HasToScroll Refresh">
+                            <canvas id="myChart" width="400" height="250"></canvas>
+                            {% include './test.html' %}\
+                            <input type="button" value="Add Data" onclick="adddata()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {% comment %}Start RightSidePanels{% endcomment %}
             <div class="col-md-12 IndexColumn">
                 <div class="livecpu col-md-4">
@@ -116,8 +131,8 @@
                             <h2 class="panel-title">Live network usage</h2>
                         </div>
                         <div class="panel-body HasToScroll Refresh1">
-                            <canvas id="testChart" width="400" height="250"></canvas>
-                            {% include './test.html' %}
+                            <canvas id="networkChart" width="400" height="250"></canvas>
+                            {% include './charts/network_chart.html' %}
                         </div>
                     </div>
                 </div>

@@ -1,82 +1,72 @@
 <script>
-    function getData() {
+    function getChartData() {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("GET", "/live/Network_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
         xmlhttp.send();
 
         var JsonObject = JSON.parse(xmlhttp.responseText);
 
-        var received = JsonObject.Sent;
         var sent = JsonObject.Received;
 
-        chart_data = [received, sent];
+        chart_data = [sent];
         console.log(chart_data);
+        chart_data = parseInt(chart_data);
         return chart_data
     }
 
-        var canvas = document.getElementById('testChart');
-
-        var chart_data = getData(chart_data);
-        var received = parseInt(chart_data[0]);
-        var sent = parseInt(chart_data[1]);
-        console.log(received, sent);
-
-        var data = {
-            labels: ["Incoming", "Outgoing"],
-            datasets: [{
-                label: 'Traffic',
-                data: [received, sent],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(63, 191, 191, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(63, 191, 191, 1)'
-                ],
-                borderWidth: 1
-            }]
-        }
-
-        function adddata() {
-            var chart_data = getData(chart_data);
-            var received = parseInt(chart_data[0]);
-            var sent = parseInt(chart_data[1]);
-
-            myLineChart.data.datasets[0].data[0] = [received];
-            myLineChart.data.labels[0] = "Incoming: " + [received];
-            myLineChart.data.datasets[0].data[1] = [sent];
-            myLineChart.data.labels[1] = "Outgoing: " + [sent];
-            myLineChart.update();
-        }
-
-        var option = {
-            showLines: true,
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        max: 1000000
-                    }
-                }]
-            },
-            responsive: true,
-            legend: {
-                display: false
-            },
-            animation: false,
-            tooltips: {
-                enabled: false
+    var chart_data = getChartData(chart_data);
+    var canvas = document.getElementById('myChart');
+    var data = {
+        labels: ["35 sec. ago: ", "30 sec. ago: ", "25 sec. ago: ", "20 sec. ago: ", "15 sec. ago: ", "10 sec. ago: ", "5 sec. ago: ", "Now: "],
+        datasets: [
+            {
+                label: "Outgoing: ",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(75,192,192,0.4)",
+                borderColor: "rgba(75,192,192,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(75,192,192,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 5,
+                pointHitRadius: 10,
+                data: [0,0,0,0,0,0,0,0]
             }
-        };
+        ]
+    };
 
-        var myLineChart = Chart.Bar(canvas, {
-            data: data,
-            options: option
-        });
+    function adddata() {
+        myLineChart.data.datasets[0].data[0] = myLineChart.data.datasets[0].data[1];
+        myLineChart.data.datasets[0].data[1] = myLineChart.data.datasets[0].data[2];
+        myLineChart.data.datasets[0].data[2] = myLineChart.data.datasets[0].data[3];
+        myLineChart.data.datasets[0].data[3] = myLineChart.data.datasets[0].data[4];
+        myLineChart.data.datasets[0].data[4] = myLineChart.data.datasets[0].data[5];
+        myLineChart.data.datasets[0].data[5] = myLineChart.data.datasets[0].data[6];
+        myLineChart.data.datasets[0].data[6] = myLineChart.data.datasets[0].data[7];
+        myLineChart.data.datasets[0].data[7] = getChartData(chart_data);
+        myLineChart.data.labels[7] = "Now: ";
+        myLineChart.update();
+    }
 
-    setInterval(function refreshChart() {
-        getData();
+    var option = {
+        showLines: true,
+        animation: false
+    };
+    var myLineChart = Chart.Line(canvas, {
+        data: data,
+        options: option
+    });
+
+    setInterval(function myLineChart() {
+        getChartData();
         adddata();
-    }, 800);
+    }, 5000);
 </script>

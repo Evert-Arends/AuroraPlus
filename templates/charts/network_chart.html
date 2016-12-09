@@ -1,56 +1,92 @@
 <script>
-function drawNetwork() {
-    var network = document.getElementById("networkChart").getContext("2d");
+    function getNetworkData() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "/live/Network_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
+        xmlhttp.send();
 
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "/live/Network_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
-    xmlhttp.send();
+        var JsonObject = JSON.parse(xmlhttp.responseText);
 
-    var JsonObject = JSON.parse(xmlhttp.responseText);
+        var received = JsonObject.Sent;
+        var sent = JsonObject.Received;
 
-    var received = JsonObject.Sent;
-    var sent = JsonObject.Received;
+        network_data = [received, sent];
+        console.log(network_data);
+        return network_data
+    }
+
+    var network_chart = document.getElementById('networkChart');
+
+    var network_data = getNetworkData(network_data);
+    var received = parseInt(network_data[0]);
+    var sent = parseInt(network_data[1]);
+    console.log(received, sent);
+
+    var data = {
+        labels: ["Incoming", "Outgoing"],
+        datasets: [{
+            label: 'Traffic',
+
+            data: [received, sent],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(63, 191, 191, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(63, 191, 191, 1)'
+            ],
+            borderWidth: 1
+        }]
+    }
 
 
-    NetworkChart = new Chart(network, {
-        type: 'bar',
-        data: {
-            labels: ["Incoming traffic", "Outgoing traffic"],
-            datasets: [{
-                label: 'Traffic',
-                data: [parseInt(received), parseInt(sent)],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(63, 191, 191, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(63, 191, 191, 1)'
-                ],
-                borderWidth: 1
+
+    function NetworkData() {
+        var network_data = getNetworkData(network_data);
+        var received = parseInt(network_data[0]);
+        var sent = parseInt(network_data[1]);
+
+        var maximum = parseInt(received * 2);
+        console.log(maximum);
+
+        networkChart.data.datasets[0].data[0] = [received];
+        networkChart.data.labels[0] = "Incoming: " + [received];
+        networkChart.data.datasets[0].data[1] = [sent];
+        networkChart.data.labels[1] = "Outgoing: " + [sent];
+        networkChart.config.options.scales.yAxes[0].ticks.max = maximum;
+        networkChart.update();
+    }
+
+    var option = {
+        showLines: true,
+        scales: {
+            yAxes: [{
+                display: true,
+                stacked: true,
+                ticks: {
+                    min: 1000,
+                    max: 100000
+                }
             }]
         },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            },
-            responsive: true,
-            legend: {
-                display: false
-            },
-            animation: false
+        responsive: true,
+        legend: {
+            display: false
+        },
+        animation: false,
+        tooltips: {
+            enabled: false
         }
+    };
+
+    var networkChart = Chart.Bar(network_chart, {
+        scaleOverride:true,
+        data: data,
+        options: option
     });
-}
 
-drawNetwork();
-
-setInterval(function refreshNetwork() {
-    NetworkChart.destroy();
-    drawNetwork();
-}, 1000);
+    setInterval(function updateNetworkChart() {
+        getNetworkData();
+        NetworkData();
+    }, 800);
 </script>
