@@ -7,14 +7,16 @@
         var JsonObject = JSON.parse(xmlhttp.responseText);
 
         var sent = JsonObject.Received;
+        var received = JsonObject.Sent;
 
-        chart_data = [sent];
+        chart_data = [sent, received];
         console.log(chart_data);
-        chart_data = parseInt(chart_data);
-        return chart_data
+
+        return chart_data;
     }
 
     var chart_data = getChartData(chart_data);
+
     var canvas = document.getElementById('myChart');
     var data = {
         labels: ["35 sec. ago: ", "30 sec. ago: ", "25 sec. ago: ", "20 sec. ago: ", "15 sec. ago: ", "10 sec. ago: ", "5 sec. ago: ", "Now: "],
@@ -23,18 +25,39 @@
                 label: "Outgoing: ",
                 fill: false,
                 lineTension: 0.1,
-                backgroundColor: "rgba(75,192,192,0.4)",
-                borderColor: "rgba(75,192,192,1)",
+                backgroundColor: "blue",
+                borderColor: "blue",
                 borderCapStyle: 'butt',
                 borderDash: [],
                 borderDashOffset: 0.0,
                 borderJoinStyle: 'miter',
-                pointBorderColor: "rgba(75,192,192,1)",
+                pointBorderColor: "blue",
                 pointBackgroundColor: "#fff",
                 pointBorderWidth: 1,
                 pointHoverRadius: 5,
-                pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBackgroundColor: "blue",
+                pointHoverBorderColor: "blue",
+                pointHoverBorderWidth: 2,
+                pointRadius: 5,
+                pointHitRadius: 10,
+                data: [0, 0, 0, 0, 0, 0, 0, 0]
+            },
+            {
+                label: "Incoming: ",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "red",
+                borderColor: "red",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "red",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "red",
+                pointHoverBorderColor: "red",
                 pointHoverBorderWidth: 2,
                 pointRadius: 5,
                 pointHitRadius: 10,
@@ -44,17 +67,11 @@
     };
 
     function adddata() {
-        var maxNow = getChartData(chart_data);
+        var chart_data = getChartData(chart_data);
 
-        if (maxNow < 100000) {
-            var maximum = 1000000;
-        }
-        else if(maxNow < 1000000) {
-            var maximum = 10000000;
-        }
-        else if(maxNow < 10000000) {
-            var maximum = 100000000;
-        }
+        var sent_data = parseInt(chart_data[0]);
+        var received_data = parseInt(chart_data[1]);
+
         myLineChart.data.datasets[0].data[0] = myLineChart.data.datasets[0].data[7];
         myLineChart.data.datasets[0].data[0] = myLineChart.data.datasets[0].data[1];
         myLineChart.data.datasets[0].data[1] = myLineChart.data.datasets[0].data[2];
@@ -63,9 +80,19 @@
         myLineChart.data.datasets[0].data[4] = myLineChart.data.datasets[0].data[5];
         myLineChart.data.datasets[0].data[5] = myLineChart.data.datasets[0].data[6];
         myLineChart.data.datasets[0].data[6] = myLineChart.data.datasets[0].data[7];
-        myLineChart.data.datasets[0].data[7] = getChartData(chart_data);
+        myLineChart.data.datasets[0].data[7] = sent_data;
+
+        myLineChart.data.datasets[1].data[0] = myLineChart.data.datasets[1].data[7];
+        myLineChart.data.datasets[1].data[0] = myLineChart.data.datasets[1].data[1];
+        myLineChart.data.datasets[1].data[1] = myLineChart.data.datasets[1].data[2];
+        myLineChart.data.datasets[1].data[2] = myLineChart.data.datasets[1].data[3];
+        myLineChart.data.datasets[1].data[3] = myLineChart.data.datasets[1].data[4];
+        myLineChart.data.datasets[1].data[4] = myLineChart.data.datasets[1].data[5];
+        myLineChart.data.datasets[1].data[5] = myLineChart.data.datasets[1].data[6];
+        myLineChart.data.datasets[1].data[6] = myLineChart.data.datasets[1].data[7];
+        myLineChart.data.datasets[1].data[7] = received_data;
+
         myLineChart.data.labels[7] = "Now: ";
-        myLineChart.config.options.scales.yAxes[0].ticks.max = maximum;
         myLineChart.update();
     }
 
@@ -75,13 +102,12 @@
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
-                    max: 100000
                 }
             }]
         },
         responsive: true,
         legend: {
-            display: false
+            display: true
         },
         animation: false,
         tooltips: {
