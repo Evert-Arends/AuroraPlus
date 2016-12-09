@@ -38,12 +38,24 @@
                 pointHoverBorderWidth: 2,
                 pointRadius: 5,
                 pointHitRadius: 10,
-                data: [0,0,0,0,0,0,0,0]
+                data: [0, 0, 0, 0, 0, 0, 0, 0]
             }
         ]
     };
 
     function adddata() {
+        var maxNow = getChartData(chart_data);
+
+        if (maxNow < 100000) {
+            var maximum = 1000000;
+        }
+        else if(maxNow < 1000000) {
+            var maximum = 10000000;
+        }
+        else if(maxNow < 10000000) {
+            var maximum = 100000000;
+        }
+        myLineChart.data.datasets[0].data[0] = myLineChart.data.datasets[0].data[7];
         myLineChart.data.datasets[0].data[0] = myLineChart.data.datasets[0].data[1];
         myLineChart.data.datasets[0].data[1] = myLineChart.data.datasets[0].data[2];
         myLineChart.data.datasets[0].data[2] = myLineChart.data.datasets[0].data[3];
@@ -53,20 +65,37 @@
         myLineChart.data.datasets[0].data[6] = myLineChart.data.datasets[0].data[7];
         myLineChart.data.datasets[0].data[7] = getChartData(chart_data);
         myLineChart.data.labels[7] = "Now: ";
+        myLineChart.config.options.scales.yAxes[0].ticks.max = maximum;
         myLineChart.update();
     }
 
     var option = {
         showLines: true,
-        animation: false
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    max: 100000
+                }
+            }]
+        },
+        responsive: true,
+        legend: {
+            display: false
+        },
+        animation: false,
+        tooltips: {
+            enabled: false
+        }
     };
     var myLineChart = Chart.Line(canvas, {
         data: data,
+        beginAtZero: true,
         options: option
     });
 
     setInterval(function myLineChart() {
         getChartData();
         adddata();
-    }, 5000);
+    }, 1000);
 </script>
