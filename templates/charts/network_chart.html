@@ -28,12 +28,13 @@
 
             data: [received, sent],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(63, 191, 191, 0.2)'
+                'rgba(63, 191, 191, 0.8)',
+                'rgba(255,99,132,0.8)'
+
             ],
             borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(63, 191, 191, 1)'
+                'rgba(63, 191, 191, 0.8)',
+                'rgba(255,99,132,0.8)'
             ],
             borderWidth: 1
         }]
@@ -46,10 +47,38 @@
         var received = parseInt(network_data[0]);
         var sent = parseInt(network_data[1]);
 
+        var highestValue;
+        if (received > sent) {
+            highestValue = received;
+        }else{
+            highestValue = sent;
+        }
+
+        var maximum;
+        if (highestValue < 50000) {
+            maximum = 50000
+        }
+        else if (highestValue > 50000 && highestValue < 100000) {
+            maximum = 100000
+        }
+        else if(highestValue > 100000 && highestValue < 500000) {
+            maximum = 500000
+        }
+        else if(highestValue > 500000 && highestValue < 1000000) {
+            maximum = 1000000
+        }
+        else if(highestValue > 1000000 && highestValue < 10000000) {
+            maximum = 10000000
+        }
+        else if(highestValue > 10000000 && highestValue < 100000000) {
+            maximum = 100000000
+        }
+
         networkChart.data.datasets[0].data[0] = [received];
         networkChart.data.labels[0] = "Incoming: " + [received];
         networkChart.data.datasets[0].data[1] = [sent];
         networkChart.data.labels[1] = "Outgoing: " + [sent];
+        networkChart.config.options.scales.yAxes[0].ticks.max = parseInt(maximum);
         networkChart.update();
     }
 
@@ -58,9 +87,8 @@
         scales: {
             yAxes: [{
                 display: true,
-                stacked: true,
                 ticks: {
-                    min: 0
+                    beginAtZero: true
                 }
             }]
         },
