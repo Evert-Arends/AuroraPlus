@@ -46,21 +46,10 @@
         var received = parseInt(network_data[0]);
         var sent = parseInt(network_data[1]);
 
-        if (received < 100000) {
-            var net_max = 500000;
-        }
-        else if(received < 1000000) {
-            var net_max = 5000000;
-        }
-        else if(received < 10000000) {
-            var net_max = 50000000;
-        }
-
         networkChart.data.datasets[0].data[0] = [received];
         networkChart.data.labels[0] = "Incoming: " + [received];
         networkChart.data.datasets[0].data[1] = [sent];
         networkChart.data.labels[1] = "Outgoing: " + [sent];
-        networkChart.config.options.scales.yAxes[0].ticks.max = net_max;
         networkChart.update();
     }
 
@@ -71,8 +60,7 @@
                 display: true,
                 stacked: true,
                 ticks: {
-                    min: 1000,
-                    max: 100000
+                    min: 0
                 }
             }]
         },
@@ -87,7 +75,6 @@
     };
 
     var networkChart = Chart.Bar(network_chart, {
-        scaleOverride:true,
         data: data,
         options: option
     });
