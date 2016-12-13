@@ -160,6 +160,7 @@ def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCken
             json_obj = json.loads(string_server)
             print json_obj
     else:
+        #test
         return render(request, 'error.html', {
             'Error_Message': ['There seems to be no useful json data', 'To fix this problem start your client']})
     return_json_obj = {'Sent': '0', 'Received': '0'}
