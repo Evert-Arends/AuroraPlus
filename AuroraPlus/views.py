@@ -181,9 +181,14 @@ def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCken
 
         usage = ping
 
+    elif chart == 'RAM_Usage':
+        usage = json_obj["Server"]["ServerDetails"]["Ram_Usage"]
+        if not usage:
+            usage = 0
+
     else:
         usage = 'Failed'
-    return HttpResponse(usage)
+    return HttpResponse(usage, status=400)
 
 
 def is_json(my_json):
