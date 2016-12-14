@@ -25,7 +25,7 @@ class EditServer:
             return 'Not all variables are fulfilled.'
         else:
             try:
-                edited_data = Servers.objects.get(User_ID=12, ID=12)
+                edited_data = Servers.objects.get(User_ID=user_id, ID=list_id)
                 edited_data.Server_Name = name
                 edited_data.Server_Description = description
                 edited_data.save()
