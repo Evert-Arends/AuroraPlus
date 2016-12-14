@@ -1,0 +1,90 @@
+<script>
+    function GetRamLineChartData() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "/live/RAM_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
+        xmlhttp.send();
+
+        var ram_data = xmlhttp.responseText;
+        ram_data = parseInt(ram_data);
+        console.log(ram_data);
+        return ram_data
+    }
+
+    var ram_data = GetRamLineChartData(ram_data);
+
+    var canvas = document.getElementById('ramLineChart');
+    var data = {
+        labels: ["35 sec. ago: ", "30 sec. ago: ", "25 sec. ago: ", "20 sec. ago: ", "15 sec. ago: ", "10 sec. ago: ", "5 sec. ago: ", "Now: "],
+        datasets: [
+            {
+                label: "Ram usage: ",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "blue",
+                borderColor: "blue",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "blue",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "blue",
+                pointHoverBorderColor: "blue",
+                pointHoverBorderWidth: 2,
+                pointRadius: 5,
+                pointHitRadius: 10,
+                data: [0, 0, 0, 0, 0, 0, 0, 0]
+            }
+        ]
+    };
+
+    function updateRamChart() {
+        var ram_data = GetRamLineChartData(ram_data);
+
+        MyRamLineChart.data.datasets[0].data[0] = MyRamLineChart.data.datasets[0].data[7];
+        MyRamLineChart.data.datasets[0].data[0] = MyRamLineChart.data.datasets[0].data[1];
+        MyRamLineChart.data.datasets[0].data[1] = MyRamLineChart.data.datasets[0].data[2];
+        MyRamLineChart.data.datasets[0].data[2] = MyRamLineChart.data.datasets[0].data[3];
+        MyRamLineChart.data.datasets[0].data[3] = MyRamLineChart.data.datasets[0].data[4];
+        MyRamLineChart.data.datasets[0].data[4] = MyRamLineChart.data.datasets[0].data[5];
+        MyRamLineChart.data.datasets[0].data[5] = MyRamLineChart.data.datasets[0].data[6];
+        MyRamLineChart.data.datasets[0].data[6] = MyRamLineChart.data.datasets[0].data[7];
+        MyRamLineChart.data.datasets[0].data[7] = ram_data;
+
+        MyRamLineChart.data.labels[7] = "Now: ";
+        MyRamLineChart.update(400);
+    }
+
+    var option = {
+        showLines: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: false,
+                    max: 100
+                }
+            }]
+        },
+        responsive: true,
+        legend: {
+            display: true
+        },
+        tooltips: {
+            enabled: false
+        }
+    };
+    var MyRamLineChart = Chart.Line(canvas, {
+        data: data,
+        beginAtZero: false,
+        options: option
+    });
+
+    updateRamChart();
+
+    setInterval(function MyRamLineChart() {
+        GetRamLineChartData();
+        updateRamChart();
+    }, 4000);
+</script>
