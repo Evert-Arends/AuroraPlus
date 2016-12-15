@@ -1,0 +1,231 @@
+{% load static from staticfiles %}
+{% load current_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aurora</title>
+    {% comment %}<link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">{% endcomment %}
+    <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
+    <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/navbar.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/sidebar.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/messages.css" %}"/>
+</head>
+<body>
+{% include 'top.html' %}
+<div id="side">
+    <table class="table">
+        {% comment %}begin for each{% endcomment %}
+        <tr class="message">
+            <td>RAM is too high</td>
+        </tr>
+        <tr class="message">
+            <td>CPU is too high</td>
+        </tr>
+        <tr class="message">
+            <td>New update</td>
+        </tr>
+        {% comment %}end for each loop{% endcomment %}
+    </table>
+</div>
+<div id="content">
+    <table class="table table-striped">
+        <tr>
+            <th>Entry Header 1</th>
+            <th>Entry Header 2</th>
+            <th>Entry Header 3</th>
+            <th>Entry Header 4</th>
+        </tr>
+        <tr class="success">
+            <td>Entry First Line 1</td>
+            <td>Entry First Line 2</td>
+            <td>Entry First Line 3</td>
+            <td>Entry First Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Line 1</td>
+            <td>Entry Line 2</td>
+            <td>Entry Line 3</td>
+            <td>Entry Line 4</td>
+        </tr>
+        <tr>
+            <td>Entry Last Line 1</td>
+            <td>Entry Last Line 2</td>
+            <td>Entry Last Line 3</td>
+            <td>Entry Last Line 4</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

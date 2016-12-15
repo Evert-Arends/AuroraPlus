@@ -22,7 +22,7 @@
         labels: ["35 sec. ago: ", "30 sec. ago: ", "25 sec. ago: ", "20 sec. ago: ", "15 sec. ago: ", "10 sec. ago: ", "5 sec. ago: ", "Now: "],
         datasets: [
             {
-                label: "Incoming: ",
+                label: "Incoming",
                 fill: false,
                 lineTension: 0.1,
                 backgroundColor: "blue",
@@ -43,7 +43,7 @@
                 data: [0, 0, 0, 0, 0, 0, 0, 0]
             },
             {
-                label: "Outgoing: ",
+                label: "Outgoing",
                 fill: false,
                 lineTension: 0.1,
                 backgroundColor: "red",
@@ -110,7 +110,7 @@
             display: true
         },
         tooltips: {
-            enabled: false
+            enabled: true
         }
     };
     var myLineChart = Chart.Line(canvas, {

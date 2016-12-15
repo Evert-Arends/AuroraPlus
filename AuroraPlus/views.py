@@ -18,7 +18,7 @@ from bin import cpu, jsondata
 from bin.ServerManaging import manage, server_edit, server_delete
 from bin.ServerMonitoring import collector, count_servers
 from models import LandingPageImages
-from bin.ServerMonitoring import monitor
+from bin.ServerMonitoring import monitor, messages
 
 # classes
 CPU = cpu.CPUUsage
@@ -29,6 +29,7 @@ Monitor = monitor.GetServerData()
 EditServers = server_edit.EditServer
 DeleteServers = server_delete.DeleteServer
 CountUserServers = count_servers.CountServers
+GetMessages = messages.MessagesHandler
 
 
 @login_required
@@ -282,3 +283,9 @@ def user_logout(request):
 def error(request):
     something_is_wrong = ['Have you tried turning it off and on again?']
     return render(request, 'error.html', {'Error_Message': something_is_wrong})
+
+
+def messages(request):
+    all_messages = GetMessages.get_messages()
+    print all_messages
+    return render(request, 'messages.html')
