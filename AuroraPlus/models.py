@@ -27,3 +27,10 @@ class Servers(models.Model):
     Server_Name = models.TextField(max_length=50)
     Server_Description = models.TextField(max_length=255)
     Date_Added = models.DateField
+
+
+class Messages(models.Model):
+    ID = models.AutoField(primary_key=True)
+    Message_Name = models.TextField(max_length=20)
+    Message_Text = models.TextField(max_length=500)
+    Date_Received = models.DateField
