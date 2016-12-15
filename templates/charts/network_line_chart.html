@@ -1,0 +1,128 @@
+<script>
+    function getChartData() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "/live/Network_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
+        xmlhttp.send();
+
+        var JsonObject = JSON.parse(xmlhttp.responseText);
+
+        var sent = JsonObject.Received;
+        var received = JsonObject.Sent;
+
+        line_data = [sent, received];
+        console.log(line_data);
+
+        return line_data;
+    }
+
+    var line_data = getChartData(line_data);
+
+    var canvas = document.getElementById('networkLineChart');
+    var data = {
+        labels: ["35 sec. ago: ", "30 sec. ago: ", "25 sec. ago: ", "20 sec. ago: ", "15 sec. ago: ", "10 sec. ago: ", "5 sec. ago: ", "Now: "],
+        datasets: [
+            {
+                label: "Incoming: ",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "blue",
+                borderColor: "blue",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "blue",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "blue",
+                pointHoverBorderColor: "blue",
+                pointHoverBorderWidth: 2,
+                pointRadius: 5,
+                pointHitRadius: 10,
+                data: [0, 0, 0, 0, 0, 0, 0, 0]
+            },
+            {
+                label: "Outgoing: ",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "red",
+                borderColor: "red",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "red",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "red",
+                pointHoverBorderColor: "red",
+                pointHoverBorderWidth: 2,
+                pointRadius: 5,
+                pointHitRadius: 10,
+                data: [0, 0, 0, 0, 0, 0, 0, 0]
+            }
+        ]
+    };
+
+    function adddata() {
+        var line_data = getChartData(line_data);
+
+        var sent_data = parseInt(line_data[0]);
+        var received_data = parseInt(line_data[1]);
+
+        myLineChart.data.datasets[1].data[0] = myLineChart.data.datasets[1].data[7];
+        myLineChart.data.datasets[1].data[0] = myLineChart.data.datasets[1].data[1];
+        myLineChart.data.datasets[1].data[1] = myLineChart.data.datasets[1].data[2];
+        myLineChart.data.datasets[1].data[2] = myLineChart.data.datasets[1].data[3];
+        myLineChart.data.datasets[1].data[3] = myLineChart.data.datasets[1].data[4];
+        myLineChart.data.datasets[1].data[4] = myLineChart.data.datasets[1].data[5];
+        myLineChart.data.datasets[1].data[5] = myLineChart.data.datasets[1].data[6];
+        myLineChart.data.datasets[1].data[6] = myLineChart.data.datasets[1].data[7];
+        myLineChart.data.datasets[1].data[7] = sent_data;
+
+        myLineChart.data.datasets[0].data[0] = myLineChart.data.datasets[0].data[7];
+        myLineChart.data.datasets[0].data[0] = myLineChart.data.datasets[0].data[1];
+        myLineChart.data.datasets[0].data[1] = myLineChart.data.datasets[0].data[2];
+        myLineChart.data.datasets[0].data[2] = myLineChart.data.datasets[0].data[3];
+        myLineChart.data.datasets[0].data[3] = myLineChart.data.datasets[0].data[4];
+        myLineChart.data.datasets[0].data[4] = myLineChart.data.datasets[0].data[5];
+        myLineChart.data.datasets[0].data[5] = myLineChart.data.datasets[0].data[6];
+        myLineChart.data.datasets[0].data[6] = myLineChart.data.datasets[0].data[7];
+        myLineChart.data.datasets[0].data[7] = received_data;
+
+        myLineChart.data.labels[7] = "Now: ";
+        myLineChart.update(400);
+    }
+
+    var option = {
+        showLines: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: false
+                }
+            }]
+        },
+        responsive: true,
+        legend: {
+            display: true
+        },
+        tooltips: {
+            enabled: false
+        }
+    };
+    var myLineChart = Chart.Line(canvas, {
+        data: data,
+        beginAtZero: false,
+        options: option
+    });
+
+    adddata();
+
+    setInterval(function myLineChart() {
+        getChartData();
+        adddata();
+    }, 4000);
+</script>

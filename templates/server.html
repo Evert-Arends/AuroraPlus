@@ -104,8 +104,19 @@
                             <h2 class="panel-title">NetworkChart </h2>
                         </div>
                         <div class="panel-body HasToScroll Refresh">
-                            <canvas id="myChart" width="400" height="250"></canvas>
-                            {% include './test.html' %}
+                            <canvas id="networkLineChart" width="400" height="250"></canvas>
+                            {% include 'charts/network_line_chart.html' %}
+                        </div>
+                    </div>
+                </div>
+                <div class="livecpu col-md-6">
+                    <div class="panel panel-default ServerPanel">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">RamChart </h2>
+                        </div>
+                        <div class="panel-body HasToScroll Refresh">
+                            <canvas id="ramLineChart" width="400" height="250"></canvas>
+                            {% include 'charts/ram_line_chart.html' %}
                         </div>
                     </div>
                 </div>
