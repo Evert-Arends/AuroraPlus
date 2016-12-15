@@ -79,6 +79,25 @@
             {% comment %}Start LeftSidePanels{% endcomment %}
             <div class="panel panel-default ServerPanel custom-margin">
                 <div class="panel-heading custom-collapse-button">
+                    <h2 class="panel-title pull-left">Options</h2>
+                    <a href="#" data-toggle="collapse" data-target="#Options" aria-expanded="true"
+                       class=""><i class="fa fa-bars" aria-hidden="true"></i></a>
+                </div>
+                <div id="Options" class="panel-collapse collapse in" aria-expanded="true">
+                    <div class="row collapsed-div">
+                        <div class="col-md-3">
+                            <p>
+                                Name: {{ server_name }}<br>
+                                Server SSL: {{ ssl }}<br>
+                                Server Lan address: {{ lan_ip }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default ServerPanel custom-margin">
+                <div class="panel-heading custom-collapse-button">
                     <h2 class="panel-title pull-left">Properties</h2>
                     <a href="#" data-toggle="collapse" data-target="#properties" aria-expanded="true"
                        class=""><i class="fa fa-bars" aria-hidden="true"></i></a>
