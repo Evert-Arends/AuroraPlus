@@ -1,83 +1,37 @@
-
-
-HTML {
+html {
     height: 100%;
 }
-BODY {
+
+body {
     font-family: arial;
     font-size: 13px;
     position: relative;
     height: 100%;
 }
-HEADER {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 139px;
-    border-bottom: 1px solid #ddd;
-}
-HEADER .super {
-    background-color: #2D2D2D;
-    padding-left: 16px;
-}
-HEADER .super a {
-    display: inline-block;
-    padding: 2px 8px;
-    font-weight: bold;
-    color: #aaa;
-}
-#logo {
-    margin:0 32px 0 16px;
-}
-HEADER .search {
-    padding: 4px;
-    border-bottom: 1px solid #ddd;
-    background-color: #f3f3f3;
-}
-HEADER .controls {
-    padding: 8px 16px;
-}
-HEADER .controls h1 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: normal;
-    color: #DD4B39;
-    display: inline-block;
-    width: 160px;
-}
+
 #side {
     position: absolute;
-    top: 140px;
+    top: 50px;
     left: 0;
     bottom: 0;
-    padding: 8px;
     width: 300px;
-    background-color: #f5f5f5;
+    background-color: #ffa181;
     overflow: auto;
 }
 #content {
     position: absolute;
-    top: 140px;
+    top: 50px;
     left: 300px;
     bottom: 0;
     right: 0;
+    padding-left: 20px;
     overflow: auto;
+    background-color: #8782ff;
 }
 
-#content h2{
-    font-size: 16px;
-    font-weight: normal;
+.navbar-light{
+    background-color: #69ff8d !important;
 }
-
-.btn .caret {
-    margin-left: 16px;
-}
-.unread-message {
-    text-align: center;
-    margin: 1em;
-}
-#compose-button {
-    width: 120px;
-    margin-bottom: 2em;
+.navbar-right {
+    margin-right: 0;
 }

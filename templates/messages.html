@@ -18,214 +18,73 @@
 {% include 'top.html' %}
 <div id="side">
     <table class="table">
-        {% comment %}begin for each{% endcomment %}
-        <tr class="message">
-            <td>RAM is too high</td>
+        <tr>
+            <td>
+                <h3>Messages</h3>
+            </td>
         </tr>
-        <tr class="message">
-            <td>CPU is too high</td>
-        </tr>
-        <tr class="message">
-            <td>New update</td>
-        </tr>
-        {% comment %}end for each loop{% endcomment %}
+        {% for message in Messages %}
+            {% if message.Message_Read == 0 %}
+                <tr class="message unread">
+                    <td><a href="/messages/{{ message.ID }}">{{ message.Message_Name }}</a></td>
+                    <td><b>{{ message.Date_Received }}</b></td>
+                </tr>
+            {% elif message.Message_Read == 1 %}
+                <tr class="message read">
+                    <td><a href="/messages/{{ message.ID }}">{{ message.Message_Name }}</a></td>
+                    <td>{{ message.Date_Received }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
     </table>
 </div>
 <div id="content">
-    <table class="table table-striped">
-        <tr>
-            <th>Entry Header 1</th>
-            <th>Entry Header 2</th>
-            <th>Entry Header 3</th>
-            <th>Entry Header 4</th>
-        </tr>
-        <tr class="success">
-            <td>Entry First Line 1</td>
-            <td>Entry First Line 2</td>
-            <td>Entry First Line 3</td>
-            <td>Entry First Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Line 1</td>
-            <td>Entry Line 2</td>
-            <td>Entry Line 3</td>
-            <td>Entry Line 4</td>
-        </tr>
-        <tr>
-            <td>Entry Last Line 1</td>
-            <td>Entry Last Line 2</td>
-            <td>Entry Last Line 3</td>
-            <td>Entry Last Line 4</td>
-        </tr>
-    </table>
+    {% if message_id == "0" %}
+        <h2 class="message-title">Message</h2>
+        <p class="message-text">You can view all messaes about your servers.</p>
+    {% else %}
+        {% for item in selected_message %}
+            <h2 class="message-title">{{ item.Message_Name }}</h2>
+            <p class="message-date">{{ item.Date_Received }}</p>
+            <p class="message-text">{{ item.Message_Text }}</p>
+        {% endfor %}
+    {% endif %}
 </div>
 </body>
 </html>
+
+<style>
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    #child{
+        position: absolute;
+        display: none;
+        top: 200px;
+        z-index: 9;
+        color: red;
+    }
+
+    #child:target{
+
+        display: block;
+    }
+
+    table.coolTable td {
+        background-color: purple;
+        color: green;
+    }
+
+    table.coolTable td:hover {
+        background-color: green;
+        color: green;
+    }
+
+    td a {
+        display: block;
+        width: 100%;
+    }
+
+</style>

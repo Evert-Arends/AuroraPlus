@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^server/edit/(?P<list_id>\w{0,50})$', views.edit_server, name='editserver'),
     url(r'^server/delete/(?P<list_id>\w{0,50})$', views.delete_server, name='deleteserver'),
-    url(r'^messages/$', views.messages, name='messages'),
+    url(r'^messages/(?P<message_id>\w{0,50000})$', views.messages, name='messages'),
     url(r'^error/$', views.error, name='error'),
     url(r'^live/(?P<chart>\w{1,50})/key/(?P<key>\w{1,50})/time/(?P<time>\w{1,50})/$', views.live_server_updates,
         name='user'),

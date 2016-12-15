@@ -31,6 +31,9 @@ class Servers(models.Model):
 
 class Messages(models.Model):
     ID = models.AutoField(primary_key=True)
+    User_ID = models.TextField(max_length=10)
     Message_Name = models.TextField(max_length=20)
     Message_Text = models.TextField(max_length=500)
-    Date_Received = models.DateField
+    Date_Received = models.DateField(auto_now=True)
+    Message_Read = models.BooleanField(default=0)
+

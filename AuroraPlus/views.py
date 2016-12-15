@@ -59,6 +59,9 @@ def index(request):
     server_count = str(CountUserServers.count_servers(user_id))
     print server_count
 
+    # counting messages
+    count_messages = GetMessages.count_messages(user_id)
+    print count_messages
     # delete server button
     if 'Delete' in request.POST.values():
         id = request.POST['id']
@@ -67,7 +70,8 @@ def index(request):
     count = User.objects.filter(last_login__startswith=timezone.now().date()).count()
 
     return render(request, 'index.html',
-                  {'server_list': server_list, 'server_count': server_count, 'user_count': count})
+                  {'server_list': server_list, 'server_count': server_count, 'user_count': count,
+                   'message_count': count_messages})
 
 
 @login_required
@@ -285,7 +289,19 @@ def error(request):
     return render(request, 'error.html', {'Error_Message': something_is_wrong})
 
 
-def messages(request):
-    all_messages = GetMessages.get_messages()
+def messages(request, message_id):
+
+    # get user_id
+    current_user = request.user
+    user_id = current_user.id
+
+    # get messages on user_id
+    all_messages = GetMessages.get_messages(user_id)
     print all_messages
-    return render(request, 'messages.html')
+
+    # select message from menu
+    select_message = GetMessages.select_message(user_id, message_id)
+    print select_message
+
+    return render(request, 'messages.html', {'Messages': all_messages, 'selected_message': select_message,
+                                             'message_id': message_id})

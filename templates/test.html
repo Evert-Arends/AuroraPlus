@@ -1,1 +1,51 @@
 <h1>THISISATESTPAGE</h1>
+
+<table class="coolTable">
+    <tr>
+        <th colspan="2">Title</th>
+    </tr>
+    <tr>
+        <td onClick="document.location.href='#child;">
+            <a href='#child' class="parent1">Parent1</a>
+            <div id="child"><h3>Child1</h3>
+                <p> Here pops Info on something when parent1 is clicked.</p>
+            </div><!--EO Child1 -->
+        </td>
+    </tr>
+</table>
+
+<style>
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    #child, #child2, #child3, #child4 {
+        position: absolute;
+        display: none;
+        top: 200px;
+        z-index: 9;
+        color: red;
+    }
+
+    #child:target, #child2:target, #child3:target, #child4:target {
+
+        display: block;
+    }
+
+    table.coolTable td {
+        background-color: purple;
+        color: green;
+    }
+
+    table.coolTable td:hover {
+        background-color: green;
+        color: green;
+    }
+
+    td a {
+        display: block;
+        width: 100%;
+    }
+
+</style>
