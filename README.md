@@ -21,7 +21,7 @@ The dashboard and API are build on the famous Django framework, so you’ll be n
 
 <h2>What can Aurora+ do for me?</h2>
 <p>
-Aurora is limited by your own knowledge <small>(and ours).</small> We are writing a plugin compatible version as we write.
+Aurora is limited by your own knowledge <small>(and ours).</small> We are writing a plugin compatible version as we <strike>speak</strike> write.
 Aurora will standard monitor: 
 <ul>
 <li>Network (In and out)</li>
