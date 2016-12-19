@@ -40,3 +40,4 @@ Here are a few screenshots for the current version (1.2) We are already working 
 <img src="http://i.imgur.com/d42jxg6.png"/>
 <img src="http://i.imgur.com/snKTICs.png"/>
 
+<small>Thanks for reading this, we certainly hope that Aurora left a good impression.</small>
