@@ -29,6 +29,7 @@ Aurora will standard monitor:
 <li>Disk usage (Used Memory)</li>
 <li>RAM usage</li>
 <li>Latency (From dashboard app to agent)</li>
+<li>Network and RAM both have their own timeline, for compensation)</li>
 </ul>
 
 These are at the moment just a few, but with many more to come!
