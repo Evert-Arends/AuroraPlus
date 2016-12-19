@@ -2,7 +2,7 @@
 <p>
 <h2>Hello and welcome to the Aurora+ project page.</h2>
 
-AuroraPlus is an awesome open-source server monitoring tool. It’s created by two Dutch developers with passion, and excitement. 
+AuroraPlus is an awesome open-source server monitoring tool. It’s created by two Dutch developers with passion and excitement. 
 </p>
 <h2>What operating systems does Aurora+ support?</h2>
 <p>
