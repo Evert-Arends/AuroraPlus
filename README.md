@@ -19,7 +19,7 @@ Aurora+ makes use of the following python libraries (Which are supported cross-p
 The dashboard and API are build on the famous Django framework, so you’ll be needing that too.
 </p>
 
-<h2>What can Aurora+ do for me?<h2>
+<h2>What can Aurora+ do for me?</h2>
 <p>
 Aurora is limited by your own knowledge <small>(and ours).</small> We are writing a plugin compatible version as we write.
 Aurora will standard monitor: 
