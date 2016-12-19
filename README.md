@@ -9,8 +9,8 @@ Aurora is designed to work on almost all operating systems. It runs on (most) li
 ##What are the requirements for Aurora?
 Aurora+ is fully written in python, and logically needs it to survive.
 Aurora+ makes use of the following python libraries (Which are supported cross-platform).
-   Psutill
-   Requests
+   - Psutill
+   - Requests
 
 The dashboard and API are build on the famous Django framework, so you’ll be needing that too. 
 
