@@ -12,5 +12,9 @@ Aurora+ makes use of the following python libraries (Which are supported cross-p
    - Psutill
    - Requests
 
-The dashboard and API are build on the famous Django framework, so you’ll be needing that too. 
+The dashboard and API are build on the famous Django framework, so you’ll be needing that too.
+
+Here are a few screenshots for the current version (1.2) We are already working on 1.3 and 1.4.
+<img src="http://i.imgur.com/d42jxg6.png"/>
+<img src="http://i.imgur.com/snKTICs.png"/>
 
