@@ -140,6 +140,10 @@ def server_page(request, server_id):
     server_name = json_obj["Server"]["ServerDetails"]["ServerName"]
     server_ssl = json_obj["RequestDetails"]["Connection"]["SSL"]
     lan_ip = json_obj["RequestDetails"]["Connection"]["LAN IPAddress"]
+    disk_usage = json_obj["Server"]["ServerDetails"]["Disk_Usage"]
+    disk_usage_read = json_obj['Server']['ServerDetails']['Disk_Load']['Read']
+    disk_usage_write = json_obj['Server']['ServerDetails']['Disk_Load']['Write']
+
     if not network_sent:
         network_sent = '0'
 
@@ -152,7 +156,9 @@ def server_page(request, server_id):
     return render(request, 'server.html', {'server_all': string_server,
                                            'chart_data': cpu_average, 'network_sent': network_sent,
                                            'network_received': network_received, 'server_name': server_name,
-                                           'server_list': server_list, 'ssl': server_ssl, 'lan_ip': lan_ip})
+                                           'server_list': server_list, 'ssl': server_ssl, 'lan_ip': lan_ip,
+                                           'disk_usage': disk_usage, 'disk_read': disk_usage_read,
+                                           'disk_write': disk_usage_write})
 
 
 def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=0):
@@ -165,7 +171,7 @@ def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCken
             json_obj = json.loads(string_server)
             print json_obj
     else:
-        #test
+        # test
         return render(request, 'error.html', {
             'Error_Message': ['There seems to be no useful json data', 'To fix this problem start your client']})
     return_json_obj = {'Sent': '0', 'Received': '0'}
@@ -182,9 +188,9 @@ def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCken
         r = requests.get('http://127.0.0.1:8001')
         if r.status_code == 200:
             ping = r.elapsed.total_seconds()
+            ping *= 1000
         else:
             ping = 2
-
         usage = ping
 
     elif chart == 'RAM_Usage':
@@ -194,7 +200,8 @@ def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCken
 
     else:
         usage = 'Failed'
-    return HttpResponse(usage, status=400)
+        return HttpResponse(usage, status=400)
+    return HttpResponse(usage, status=200)
 
 
 def is_json(my_json):
@@ -208,14 +215,8 @@ def is_json(my_json):
 
 
 def test(request):
-    import json
-    GetJsonData = Communication.get_json_data()
-
-    j = json.loads(GetJsonData)
-    print j
-    results = j['Server']['ServerDetails']
-    print results
-    return render(request, 'test.html', j, results)
+    # return render(request, 'server_page_properties/ping.html')
+    return HttpResponse('test')
 
 
 @csrf_protect
@@ -290,7 +291,6 @@ def error(request):
 
 
 def messages(request, message_id):
-
     # get user_id
     current_user = request.user
     user_id = current_user.id

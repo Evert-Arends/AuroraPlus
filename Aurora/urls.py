@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^$', views.landing_page, name='landing_page'),
     url(r'^admin/', admin.site.urls),
     url(r'^dashboard/', views.index, name='index'),
+    url(r'^test/', views.test, name='test'),
     url(r'^server/(?P<server_id>\w{1,50})$', views.server_page, name='server'),
     url(r'^test/', views.test, name='test'),
     url(r'^register/$', views.register, name='register'),
