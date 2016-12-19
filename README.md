@@ -24,7 +24,7 @@ The dashboard and API are build on the famous Django framework, so you’ll be n
 Aurora is limited by your own knowledge <small>(and ours).</small> We are writing a plugin compatible version as we write.
 Aurora will standard monitor: 
 <ul>
-<li>Network</li>
+<li>Network (In and out)</li>
 <li>Disk load (Read/Write)</li>
 <li>Disk usage (Used Memory)</li>
 <li>RAM usage</li>
