@@ -1,37 +1,55 @@
-html {
-    height: 100%;
-}
-
-body {
+html, body {
+    overflow-x: hidden;
+    background: url("/static/images/background.jpg") no-repeat !important;
     font-family: arial;
     font-size: 13px;
     position: relative;
-    height: 100%;
+    background-size: cover !important;
+    height: 100% !important;
+    width: 100% !important;
 }
 
 #side {
     position: absolute;
-    top: 50px;
+    top: 52px;
     left: 0;
     bottom: 0;
     width: 300px;
-    background-color: #ffa181;
+    color: rgba(250, 248, 233, 0.6);
     overflow: auto;
+    border-right: 1px solid rgba(250, 248, 233, 0.6);
+    background-color: rgba(250, 248, 233, 0.2);
 }
 #content {
     position: absolute;
-    top: 50px;
+    top: 52px;
     left: 300px;
     bottom: 0;
     right: 0;
     padding-left: 20px;
     overflow: auto;
-    background-color: #8782ff;
+    color: rgba(250, 248, 233, 0.6);
 }
 
-.navbar-light{
-    background-color: #69ff8d !important;
-}
 .navbar-right {
     margin-right: 0;
+}
+
+/* Page style */
+
+.messages-title{
+    color: white;
+    border-color: rgba(250, 248, 233, 0.6);
+}
+
+.message-title{
+    color: white;
+}
+
+.message-date{
+    color: rgba(250, 248, 233, 0.6);
+}
+
+.message-text{
+    color: white;
 }

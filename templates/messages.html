@@ -17,12 +17,8 @@
 <body>
 {% include 'top.html' %}
 <div id="side">
+    <h3 class="messages-title">Messages</h3>
     <table class="table">
-        <tr>
-            <td>
-                <h3>Messages</h3>
-            </td>
-        </tr>
         {% for message in Messages %}
             {% if message.Message_Read == 0 %}
                 <tr class="message unread">
@@ -41,7 +37,7 @@
 <div id="content">
     {% if message_id == "0" %}
         <h2 class="message-title">Message</h2>
-        <p class="message-text">You can view all messaes about your servers.</p>
+        <p class="message-text">You can view all messages about your servers.</p>
     {% else %}
         {% for item in selected_message %}
             <h2 class="message-title">{{ item.Message_Name }}</h2>
