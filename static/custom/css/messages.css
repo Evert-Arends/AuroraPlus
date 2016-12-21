@@ -93,6 +93,7 @@ html, body {
 .messages-title{
     color: white;
     border-color: rgba(250, 248, 233, 0.6);
+    margin-left: 8px;
 }
 
 .message-title{
@@ -104,5 +105,14 @@ html, body {
 }
 
 .message-text{
+    color: white;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+a:hover{
     color: white;
 }

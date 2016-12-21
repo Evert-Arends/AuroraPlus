@@ -303,5 +303,8 @@ def messages(request, message_id):
     select_message = GetMessages.select_message(user_id, message_id)
     print select_message
 
+    # update messages from unread to read
+    message_read = GetMessages.message_read(user_id, message_id)
+    print message_read
     return render(request, 'messages.html', {'Messages': all_messages, 'selected_message': select_message,
                                              'message_id': message_id})
