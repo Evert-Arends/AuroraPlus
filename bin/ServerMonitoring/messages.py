@@ -26,7 +26,7 @@ class MessagesHandler:
         if user_id is None:
             return 'No messages found.'
         else:
-            messages_to_count = Messages.objects.filter(User_ID=user_id).count()
+            messages_to_count = Messages.objects.filter(User_ID=user_id, Message_Read=0).count()
             print messages_to_count
             return messages_to_count
 

@@ -143,6 +143,7 @@ def server_page(request, server_id):
     disk_usage = json_obj["Server"]["ServerDetails"]["Disk_Usage"]
     disk_usage_read = json_obj['Server']['ServerDetails']['Disk_Load']['Read']
     disk_usage_write = json_obj['Server']['ServerDetails']['Disk_Load']['Write']
+    ram_usage = json_obj["Server"]["ServerDetails"]["Ram_Usage"]
 
     if not network_sent:
         network_sent = '0'
@@ -153,12 +154,18 @@ def server_page(request, server_id):
         print server_list
         return HttpResponse("No servers.")
 
+    # check height RAM usage
+    if ram_usage >= 90:
+        too_high = 1
+    else:
+        too_high = 0
+
     return render(request, 'server.html', {'server_all': string_server,
                                            'chart_data': cpu_average, 'network_sent': network_sent,
                                            'network_received': network_received, 'server_name': server_name,
                                            'server_list': server_list, 'ssl': server_ssl, 'lan_ip': lan_ip,
                                            'disk_usage': disk_usage, 'disk_read': disk_usage_read,
-                                           'disk_write': disk_usage_write})
+                                           'disk_write': disk_usage_write, 'ram_height': too_high})
 
 
 def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=0):

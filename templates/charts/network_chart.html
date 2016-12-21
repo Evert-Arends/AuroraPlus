@@ -24,7 +24,7 @@
     var data = {
         labels: ["Incoming", "Outgoing"],
         datasets: [{
-            label: 'Traffic',
+            label: "Traffic",
 
             data: [received, sent],
             backgroundColor: [
@@ -75,9 +75,9 @@
         }
 
         networkChart.data.datasets[0].data[0] = [received];
-        networkChart.data.labels[0] = "Incoming: " + [received];
+        networkChart.data.labels[0] = "In: " + [received];
         networkChart.data.datasets[0].data[1] = [sent];
-        networkChart.data.labels[1] = "Outgoing: " + [sent];
+        networkChart.data.labels[1] = "Out: " + [sent];
         networkChart.config.options.scales.yAxes[0].ticks.max = parseInt(maximum);
         networkChart.update();
     }
