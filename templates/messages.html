@@ -22,7 +22,7 @@
         {% for message in Messages %}
             {% if message.Message_Read == 0 %}
                 <tr class="message unread">
-                    <td><a href="/messages/{{ message.ID }}">{{ message.Message_Name }}</a></td>
+                    <td><b><a href="/messages/{{ message.ID }}">{{ message.Message_Name }}</a></b></td>
                     <td><b>{{ message.Date_Received }}</b></td>
                 </tr>
             {% elif message.Message_Read == 1 %}
