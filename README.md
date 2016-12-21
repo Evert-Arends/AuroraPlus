@@ -1,4 +1,4 @@
-<h1> AuroraPlus </h1>
+<h1> <a href="https://evert-arends.github.io/AuroraPlus/">AuroraPlus</a> </h1>
 <p>
 <h2>Hello and welcome to the Aurora+ project page.</h2>
 
