@@ -1,5 +1,8 @@
 # imports
 import json
+
+import datetime
+import time
 import requests
 
 from django.contrib.auth import authenticate, login
@@ -197,7 +200,17 @@ def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCken
         usage = json_obj["Server"]["ServerDetails"]["Ram_Usage"]
         if not usage:
             usage = 0
-
+    elif chart == 'Online':
+        old_date = json_obj["RequestDetails"]["Time"]["RequestSent"]
+        if not old_date:
+            usage = False
+        old_date = float(old_date)
+        old_date = datetime.datetime.fromtimestamp(old_date)
+        print old_date
+        if old_date < datetime.datetime.now()-datetime.timedelta(seconds=2.5):
+            usage = 'Server is offline!'
+        else:
+            usage = 'Server is online!'
     else:
         usage = 'Failed'
         return HttpResponse(usage, status=400)
