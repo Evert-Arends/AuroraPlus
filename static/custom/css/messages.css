@@ -1,5 +1,4 @@
 html, body {
-    overflow-x: hidden;
     background: url("/static/images/background.jpg") no-repeat !important;
     font-family: arial;
     font-size: 13px;
@@ -9,28 +8,82 @@ html, body {
     width: 100% !important;
 }
 
-#side {
-    position: absolute;
-    top: 52px;
-    left: 0;
-    bottom: 0;
-    width: 300px;
-    color: rgba(250, 248, 233, 0.6);
-    overflow: auto;
-    border-right: 1px solid rgba(250, 248, 233, 0.6);
-    background-color: rgba(250, 248, 233, 0.2);
-}
-#content {
-    position: absolute;
-    top: 52px;
-    left: 300px;
-    bottom: 0;
-    right: 0;
-    padding-left: 20px;
-    overflow: auto;
-    color: rgba(250, 248, 233, 0.6);
+/*Default*/
+@media (min-width: 1024px) {
+    #side {
+        position: absolute;
+        top: 52px;
+        left: 0;
+        bottom: 0;
+        width: 20%;
+        color: rgba(250, 248, 233, 0.6);
+        overflow: auto;
+        border-right: 1px solid rgba(250, 248, 233, 0.6);
+        background-color: rgba(250, 248, 233, 0.2);
+    }
+
+    #content {
+        position: relative;
+        left: 20%;
+        bottom: 0;
+        right: 600px;
+        padding-left: 20px;
+        color: rgba(250, 248, 233, 0.6);
+        width: 80%;
+    }
 }
 
+/*Phone*/
+@media (max-width: 768px) {
+    #side {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        top: -20px;
+        width: 100%;
+        color: rgba(250, 248, 233, 0.6);
+        overflow: auto;
+        background-color: rgba(250, 248, 233, 0.2);
+    }
+
+    #content {
+        position: relative;
+        left: 0;
+        top: -20px;
+        padding-left: 20px;
+        color: rgba(250, 248, 233, 0.6);
+        width: 100%;
+        background-color: rgba(250, 248, 233, 0.3);
+        border: 1px solid rgba(250, 248, 233, 0.5);
+    }
+}
+
+/*Tablet*/
+@media (min-width: 768px) and (max-width: 1024px) {
+    #side {
+        position: absolute;
+        top: 52px;
+        left: 0;
+        bottom: 0;
+        width: 30%;
+        color: rgba(250, 248, 233, 0.6);
+        overflow: auto;
+        border-right: 1px solid rgba(250, 248, 233, 0.6);
+        background-color: rgba(250, 248, 233, 0.2);
+    }
+
+    #content {
+        position: relative;
+        left: 30%;
+        bottom: 0;
+        padding-left: 20px;
+        color: rgba(250, 248, 233, 0.6);
+        width: 70%;
+    }
+}
+
+
+/* Navbar*/
 .navbar-right {
     margin-right: 0;
 }
@@ -40,6 +93,7 @@ html, body {
 .messages-title{
     color: white;
     border-color: rgba(250, 248, 233, 0.6);
+    margin-left: 8px;
 }
 
 .message-title{
@@ -51,5 +105,14 @@ html, body {
 }
 
 .message-text{
+    color: white;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+a:hover{
     color: white;
 }

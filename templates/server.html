@@ -136,7 +136,12 @@
                 <div class="livecpu col-md-6">
                     <div class="panel panel-default ServerPanel">
                         <div class="panel-heading">
-                            <h2 class="panel-title">RamChart </h2>
+                            <h2 class="panel-title">
+                                RamChart
+                                {% if ram_height == 1 %}
+                                    <i class="fa fa-exclamation-circle" style="color: red"></i>
+                                {% endif %}
+                            </h2>
                         </div>
                         <div class="panel-body HasToScroll Refresh">
                             <canvas id="ramLineChart" width="400" height="250"></canvas>
@@ -173,7 +178,12 @@
                 <div class="averagecpu col-md-4">
                     <div class="panel panel-default ServerPanel">
                         <div class="panel-heading">
-                            <h2 class="panel-title">Live RAM usage</h2>
+                            <h2 class="panel-title">
+                                Live RAM usage
+                                {% if ram_height == 1 %}
+                                        <i class="fa fa-exclamation-circle" style="color: red"></i>
+                                {% endif %}
+                            </h2>
                         </div>
                         <div class="panel-body HasToScroll Refresh1">
                             <canvas id="ramChart" width="400" height="250"></canvas>

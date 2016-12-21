@@ -22,7 +22,7 @@
         {% for message in Messages %}
             {% if message.Message_Read == 0 %}
                 <tr class="message unread">
-                    <td><a href="/messages/{{ message.ID }}">{{ message.Message_Name }}</a></td>
+                    <td><b><a href="/messages/{{ message.ID }}">{{ message.Message_Name }}</a></b></td>
                     <td><b>{{ message.Date_Received }}</b></td>
                 </tr>
             {% elif message.Message_Read == 1 %}
@@ -48,39 +48,3 @@
 </div>
 </body>
 </html>
-
-<style>
-    a {
-        color: white;
-        text-decoration: none;
-    }
-
-    #child{
-        position: absolute;
-        display: none;
-        top: 200px;
-        z-index: 9;
-        color: red;
-    }
-
-    #child:target{
-
-        display: block;
-    }
-
-    table.coolTable td {
-        background-color: purple;
-        color: green;
-    }
-
-    table.coolTable td:hover {
-        background-color: green;
-        color: green;
-    }
-
-    td a {
-        display: block;
-        width: 100%;
-    }
-
-</style>

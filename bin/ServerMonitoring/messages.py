@@ -26,7 +26,7 @@ class MessagesHandler:
         if user_id is None:
             return 'No messages found.'
         else:
-            messages_to_count = Messages.objects.filter(User_ID=user_id).count()
+            messages_to_count = Messages.objects.filter(User_ID=user_id, Message_Read=0).count()
             print messages_to_count
             return messages_to_count
 
@@ -39,3 +39,17 @@ class MessagesHandler:
             print item.ID, item.Date_Received
 
         return selected_message
+
+    @staticmethod
+    def message_read(user_id, message_id):
+        print user_id, message_id
+        if user_id is None or message_id is None:
+            return 'There has been an error.'
+        else:
+            try:
+                message_to_edit = Messages.objects.get(User_ID=user_id, ID=message_id)
+                message_to_edit.Message_Read = 1
+                message_to_edit.save()
+            except:
+                return 'There has been an error(2).'
+            return True
