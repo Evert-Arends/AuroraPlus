@@ -176,13 +176,22 @@ def server_page(request, server_id):
     receive_error_mails = GetMessages.receive_mails(user_id, server_id, checkboxvalue)
     print receive_error_mails
 
+    mail_state = GetMessages.get_mail_state(user_id, server_id)
+    mail_state_ts = ""
+    for item in mail_state:
+        mail_state_ts = item.Receive_Mail
+        print mail_state_ts
+
+    id_to_url = server_id
+
     return render(request, 'server.html', {'server_all': string_server,
                                            'chart_data': cpu_average, 'network_sent': network_sent,
                                            'network_received': network_received, 'server_name': server_name,
                                            'server_list': server_list, 'ssl': server_ssl, 'lan_ip': lan_ip,
                                            'disk_usage': disk_usage, 'disk_read': disk_usage_read,
                                            'disk_write': disk_usage_write, 'ram_height': too_high,
-                                           'cpu_height': cpu_high})
+                                           'cpu_height': cpu_high, 'mailState': mail_state_ts,
+                                           'server_id': id_to_url})
 
 
 def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=0):

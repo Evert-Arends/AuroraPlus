@@ -66,15 +66,18 @@ class MessagesHandler:
                 receive_mail.save()
             except:
                 return 'There has been an error(4).'
-            return True
+            return "Success"
 
     @staticmethod
-    def get_mail_state(user_id, server_id, checkboxvalue):
-        print user_id, server_id, checkboxvalue
-        if user_id is None or server_id is None or checkboxvalue is None:
+    def get_mail_state(user_id, server_id):
+        print user_id, server_id
+        if user_id is None or server_id is None:
             return 'There has been an error(5).'
         else:
             mail_state = Servers.objects.filter(User_ID=user_id, ID=server_id).all()
             print mail_state
+
+            for item in mail_state:
+                print item.Receive_Mail
 
             return mail_state
