@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
     <script src="{% static "Chart/chart.js/dist/Chart.js" %}"></script>
     <script type="text/javascript" src="{% static "custom/js/ServerPage/Ping.js" %}"></script>
+    <script type="text/javascript" src="{% static "custom/js/ServerPage/CheckServer.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/server_page.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/navbar.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/sidebar.css" %}"/>
@@ -39,7 +40,7 @@
                                     <i class="fa fa-server fa-3x"></i>
                                 </div>
                                 <div class="col-xs-9">
-                                    <p>Server online: Yes</p>
+                                    <div id="ServerOnlineOutput">...</div>
                                 </div>
                             </div>
                         </div>
