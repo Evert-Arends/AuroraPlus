@@ -18,7 +18,7 @@ from bin import cpu, jsondata
 from bin.ServerManaging import manage, server_edit, server_delete
 from bin.ServerMonitoring import collector, count_servers
 from models import LandingPageImages
-from bin.ServerMonitoring import monitor, messages
+from bin.ServerMonitoring import monitor, messages, checkbox
 
 # classes
 CPU = cpu.CPUUsage
@@ -30,6 +30,7 @@ EditServers = server_edit.EditServer
 DeleteServers = server_delete.DeleteServer
 CountUserServers = count_servers.CountServers
 GetMessages = messages.MessagesHandler
+CheckBoxHandler = checkbox.CheckboxHandler
 
 
 @login_required
@@ -160,12 +161,25 @@ def server_page(request, server_id):
     else:
         too_high = 0
 
+    # check cpu height
+    if cpu_average >= 90:
+        cpu_high = 1
+    else:
+        cpu_high = 0
+
+    checkboxvalue = CheckBoxHandler.get_checkbox_value(request)
+    print checkboxvalue
+
+    receive_error_mails = GetMessages.receive_mails(user_id, server_id, checkboxvalue)
+    print receive_error_mails
+
     return render(request, 'server.html', {'server_all': string_server,
                                            'chart_data': cpu_average, 'network_sent': network_sent,
                                            'network_received': network_received, 'server_name': server_name,
                                            'server_list': server_list, 'ssl': server_ssl, 'lan_ip': lan_ip,
                                            'disk_usage': disk_usage, 'disk_read': disk_usage_read,
-                                           'disk_write': disk_usage_write, 'ram_height': too_high})
+                                           'disk_write': disk_usage_write, 'ram_height': too_high,
+                                           'cpu_height': cpu_high})
 
 
 def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=0):

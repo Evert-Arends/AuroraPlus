@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/server_page.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/navbar.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/sidebar.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/onoffswitch.css" %}"/>
 </head>
 <body>
 {% include 'top.html' %}
@@ -89,12 +90,25 @@
                 </div>
                 <div id="Options" class="panel-collapse collapse in" aria-expanded="true">
                     <div class="row collapsed-div">
-                        <div class="col-md-3">
-                            <p>
-                                Name: {{ server_name }}<br>
-                                Server SSL: {{ ssl }}<br>
-                                Server Lan address: {{ lan_ip }}
-                            </p>
+                        <div class="col-md-4">
+                            <p><b>Active monitoring</b></p>
+                            <form name="checkboxform" method="post" id="form" action="">{% csrf_token %}
+                                <div class="onoffswitch">
+                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" value="true">
+                                    <label class="onoffswitch-label" for="myonoffswitch">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
+                            </form>
+                            <p>When activated, you will receive an email when the Ram or Cpu is spiking.</p>
+                            <script type="text/javascript">
+                                $(function(){
+                                    $('.onoffswitch-checkbox').on('change',function(){
+                                        $('#form').submit();
+                                    }   );
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -166,7 +180,12 @@
                 <div class="averagecpu col-md-4">
                     <div class="panel panel-default ServerPanel">
                         <div class="panel-heading">
-                            <h2 class="panel-title">Live network usage</h2>
+                            <h2 class="panel-title">
+                                Live network usage
+                                {% if chart_data == 1 %}
+                                    <i class="fa fa-exclamation-circle" style="color: red"></i>
+                                {% endif %}
+                            </h2>
                         </div>
                         <div class="panel-body HasToScroll Refresh1">
                             <canvas id="networkChart" width="400" height="250"></canvas>
@@ -180,7 +199,7 @@
                             <h2 class="panel-title">
                                 Live RAM usage
                                 {% if ram_height == 1 %}
-                                        <i class="fa fa-exclamation-circle" style="color: red"></i>
+                                    <i class="fa fa-exclamation-circle" style="color: red"></i>
                                 {% endif %}
                             </h2>
                         </div>

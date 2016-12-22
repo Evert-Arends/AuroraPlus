@@ -27,6 +27,7 @@ class Servers(models.Model):
     Server_Name = models.TextField(max_length=50)
     Server_Description = models.TextField(max_length=255)
     Date_Added = models.DateField
+    Receive_Mail = models.BooleanField(default=False)
 
 
 class Messages(models.Model):
@@ -36,4 +37,3 @@ class Messages(models.Model):
     Message_Text = models.TextField(max_length=500)
     Date_Received = models.DateField(auto_now=True)
     Message_Read = models.BooleanField(default=0)
-
