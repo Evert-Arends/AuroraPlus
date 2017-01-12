@@ -11,5 +11,5 @@ class CheckboxHandler:
 
     @staticmethod
     def get_checkbox_value(request):
-        checkbox_value = 'onoffswitch' in request.POST
+        checkbox_value = 'active_monitoring' in request.POST
         return checkbox_value

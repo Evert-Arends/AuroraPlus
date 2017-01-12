@@ -13,10 +13,17 @@
     <script src="{% static "Chart/chart.js/dist/Chart.js" %}"></script>
     <script type="text/javascript" src="{% static "custom/js/ServerPage/Ping.js" %}"></script>
     <script type="text/javascript" src="{% static "custom/js/ServerPage/CheckServer.js" %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static "custom/css/server_page.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/navbar.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/sidebar.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/onoffswitch.css" %}"/>
+    {% if Opacity == 1 %}
+        <link rel="stylesheet" type="text/css" href="{% static "custom/css/server_page.css" %}"/>
+    {% elif Opacity == 0 %}
+        <link rel="stylesheet" type="text/css" href="{% static "custom/css/server_page_no_opacity.css" %}"/>
+    {% else %}
+        <link rel="stylesheet" type="text/css" href="{% static "custom/css/server_page.css" %}"/>
+        <h1>{{ Opacity }}</h1>
+    {% endif %}
 </head>
 <body>
 {% include 'top.html' %}
@@ -92,40 +99,13 @@
                 <div id="Options" class="panel-collapse collapse in" aria-expanded="true">
                     <div class="row collapsed-div">
                         <div class="col-md-4">
-                            <p><b>Active monitoring</b></p>
-                            {% if mailState == True %}
-                                <form name="checkboxform" id="checkboxform" method="post"
-                                      action="/server/{{ server_id }}">{% csrf_token %}
-                                    <div class="onoffswitch">
-                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                                               id="myonoffswitch" checked>
-                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                            <span class="onoffswitch-inner"></span>
-                                            <span class="onoffswitch-switch"></span>
-                                        </label>
-                                    </div>
-                                </form>
-                            {% elif mailState == False %}
-                                <form name="checkboxform" id="checkboxform" method="post"
-                                      action="/server/{{ server_id }}">{% csrf_token %}
-                                    <div class="onoffswitch">
-                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                                               id="myonoffswitch" >
-                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                            <span class="onoffswitch-inner"></span>
-                                            <span class="onoffswitch-switch"></span>
-                                        </label>
-                                    </div>
-                                </form>
-                            {% endif %}
+                            <form action="" method="post" id="OptionsForm" name="OptionsForm">
+                                {% csrf_token %}
+                                <input type="checkbox" name="active_monitoring" {{ fillCheckBox }} value="active_monitoring">Active monitoring<br>
+                                <input type="checkbox" name="opacity" {{ opacitystate }} value="opacity">Panel opacity<br>
+                                <input type="submit" value="Submit">
+                            </form>
                             <p>When activated, you will receive an email when the Ram or Cpu is spiking.</p>
-                            <script type="text/javascript">
-                                $(function () {
-                                    $('.onoffswitch-checkbox').on('change', function () {
-                                        $('#checkboxform').submit();
-                                    });
-                                });
-                            </script>
                         </div>
                     </div>
                 </div>

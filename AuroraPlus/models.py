@@ -28,6 +28,7 @@ class Servers(models.Model):
     Server_Description = models.TextField(max_length=255)
     Date_Added = models.DateField
     Receive_Mail = models.BooleanField(default=False)
+    Server_Opacity = models.BooleanField(default=True)
 
 
 class Messages(models.Model):

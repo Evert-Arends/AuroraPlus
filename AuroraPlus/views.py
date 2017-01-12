@@ -14,12 +14,12 @@ from django.shortcuts import render_to_response, render
 from django.template import RequestContext
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_protect
-from AuroraPlus.forms import UserForm
+from AuroraPlus.forms import UserForm, OptionsForm
 
 # Local imports
 from bin import cpu, jsondata
 from bin.ServerManaging import manage, server_edit, server_delete
-from bin.ServerMonitoring import collector, count_servers
+from bin.ServerMonitoring import collector, count_servers, opacity
 from models import LandingPageImages
 from bin.ServerMonitoring import monitor, messages, checkbox
 
@@ -34,6 +34,7 @@ DeleteServers = server_delete.DeleteServer
 CountUserServers = count_servers.CountServers
 GetMessages = messages.MessagesHandler
 CheckBoxHandler = checkbox.CheckboxHandler
+Opacity = opacity.OpacityHandler
 
 
 @login_required
@@ -56,16 +57,13 @@ def index(request):
     # Get all the users servers.
     server_list = Monitor.get_servers(user_id)
     if not server_list:
-        print server_list
         return HttpResponse("No servers")
 
     # counts users servers
     server_count = str(CountUserServers.count_servers(user_id))
-    print server_count
 
     # counting messages
     count_messages = GetMessages.count_messages(user_id)
-    print count_messages
     # delete server button
     if 'Delete' in request.POST.values():
         id = request.POST['id']
@@ -137,9 +135,7 @@ def server_page(request, server_id):
         return render(request, 'error.html', {
             'Error_Message': ['There seems to be no useful json data', 'To fix this problem start your client']})
     network_sent = json_obj['Server']['ServerDetails']['NetworkLoad']['Sent']
-    print network_sent
     network_received = json_obj['Server']['ServerDetails']['NetworkLoad']['Received']
-    print type(network_received)
     cpu_average = json_obj["Server"]["ServerDetails"]["CPU_Usage"]
     server_name = json_obj["Server"]["ServerDetails"]["ServerName"]
     server_ssl = json_obj["RequestDetails"]["Connection"]["SSL"]
@@ -155,7 +151,6 @@ def server_page(request, server_id):
     # Get all the users servers.
     server_list = Monitor.get_servers(user_id)
     if not server_list:
-        print server_list
         return HttpResponse("No servers.")
 
     # check height RAM usage
@@ -170,19 +165,27 @@ def server_page(request, server_id):
     else:
         cpu_high = 0
 
-    checkboxvalue = CheckBoxHandler.get_checkbox_value(request)
-    print checkboxvalue
+    getmailstate = GetMessages.get_mail_state(user_id, server_id)
+    fillcheckbox = ""
+    if getmailstate == 1:
+        fillcheckbox = "checked"
 
-    receive_error_mails = GetMessages.receive_mails(user_id, server_id, checkboxvalue)
-    print receive_error_mails
+    getopacitystate = Opacity.get_opacity(user_id, server_id)
+    opacitystate = ""
+    if getopacitystate == 1:
+        opacitystate = "checked"
 
-    mail_state = GetMessages.get_mail_state(user_id, server_id)
-    mail_state_ts = ""
-    for item in mail_state:
-        mail_state_ts = item.Receive_Mail
-        print mail_state_ts
+    form = OptionsForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            checkboxvalue = request.POST.get("active_monitoring", False)
 
-    id_to_url = server_id
+            opacity = request.POST.get("opacity", False)
+
+            receive_error_mails = GetMessages.receive_mails(user_id, server_id, checkboxvalue)
+            set_opacity = Opacity.edit_opacity(user_id, server_id, opacity)
+
+    panel_opacity = Opacity.get_opacity(user_id, server_id)
 
     return render(request, 'server.html', {'server_all': string_server,
                                            'chart_data': cpu_average, 'network_sent': network_sent,
@@ -190,8 +193,8 @@ def server_page(request, server_id):
                                            'server_list': server_list, 'ssl': server_ssl, 'lan_ip': lan_ip,
                                            'disk_usage': disk_usage, 'disk_read': disk_usage_read,
                                            'disk_write': disk_usage_write, 'ram_height': too_high,
-                                           'cpu_height': cpu_high, 'mailState': mail_state_ts,
-                                           'server_id': id_to_url})
+                                           'cpu_height': cpu_high, 'fillCheckBox': fillcheckbox,
+                                           'Opacity': panel_opacity, 'opacitystate': opacitystate})
 
 
 def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=0):
@@ -202,7 +205,6 @@ def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCken
             return render(request, 'error.html', {'Error_Message': ['There seems to be no useful json data']})
         else:
             json_obj = json.loads(string_server)
-            print json_obj
     else:
         # test
         return render(request, 'error.html', {
@@ -236,7 +238,6 @@ def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCken
             usage = False
         old_date = float(old_date)
         old_date = datetime.datetime.fromtimestamp(old_date)
-        print old_date
         if old_date < datetime.datetime.now()-datetime.timedelta(seconds=2.5):
             usage = 'Server is offline!'
         else:
@@ -251,9 +252,7 @@ def is_json(my_json):
     try:
         json_object = json.loads(my_json)
     except ValueError, e:
-        print 'This json data is not valid.'
         return False
-    print 'This json data is valid.'
     return True
 
 
@@ -270,7 +269,6 @@ def landing_page(request):
     for image in images:
         img_array.append([image.ID, image.PictureLink, image.DescText])
 
-    print img_array
     return render(request, 'base.html', {'images': img_array}, context)
 
 
@@ -340,14 +338,11 @@ def messages(request, message_id):
 
     # get messages on user_id
     all_messages = GetMessages.get_messages(user_id)
-    print all_messages
 
     # select message from menu
     select_message = GetMessages.select_message(user_id, message_id)
-    print select_message
 
     # update messages from unread to read
     message_read = GetMessages.message_read(user_id, message_id)
-    print message_read
     return render(request, 'messages.html', {'Messages': all_messages, 'selected_message': select_message,
                                              'message_id': message_id})

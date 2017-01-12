@@ -27,7 +27,6 @@ class MessagesHandler:
             return 'No messages found.'
         else:
             messages_to_count = Messages.objects.filter(User_ID=user_id, Message_Read=0).count()
-            print messages_to_count
             return messages_to_count
 
     @staticmethod
@@ -74,10 +73,6 @@ class MessagesHandler:
         if user_id is None or server_id is None:
             return 'There has been an error(5).'
         else:
-            mail_state = Servers.objects.filter(User_ID=user_id, ID=server_id).all()
-            print mail_state
+            mail_state = Servers.objects.get(User_ID=user_id, ID=server_id)
 
-            for item in mail_state:
-                print item.Receive_Mail
-
-            return mail_state
+            return mail_state.Receive_Mail
