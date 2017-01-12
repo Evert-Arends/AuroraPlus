@@ -1,0 +1,36 @@
+html, body {
+    background: url("/static/images/background.jpg") no-repeat !important;
+}
+
+.dashboard-title{
+    color: rgb(250, 248, 233);
+    border-color: rgb(250, 248, 233);
+}
+
+.dashboardpanel {
+    background-color: transparent !important;
+}
+
+.dashboardpanel > .panel-heading {
+    background-color: rgb(36, 34, 47) !important;
+}
+
+.dashboardpanel > .panel-heading > .panel-title {
+    color: rgb(250, 248, 233) !important;
+}
+
+.dashboardpanel > .panel-body {
+    background-color: rgb(250, 248, 233) !important;
+}
+
+.dashboardpanel > .panel-footer {
+    background-color: rgb(250, 248, 233) !important;
+}
+
+.dashboard-button {
+    background-color: rgb(135, 77, 78) !important;
+}
+
+.dashboard-input {
+    background-color: rgb(0, 0, 0) !important;
+}

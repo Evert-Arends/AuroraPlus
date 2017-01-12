@@ -10,9 +10,12 @@
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "custom/css/dashboard.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/navbar.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/sidebar.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/dashboard.css" %}"/>
+    {% if Opacity == 0 %}
+        <link rel="stylesheet" type="text/css" href="{% static "custom/css/dashboard_no_opacity.css" %}"/>
+    {% endif %}
 </head>
 <body>
 {% include 'top.html' %}

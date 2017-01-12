@@ -16,13 +16,9 @@
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/navbar.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/sidebar.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "custom/css/onoffswitch.css" %}"/>
-    {% if Opacity == 1 %}
-        <link rel="stylesheet" type="text/css" href="{% static "custom/css/server_page.css" %}"/>
-    {% elif Opacity == 0 %}
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/server_page.css" %}"/>
+    {% if Opacity == 0 %}
         <link rel="stylesheet" type="text/css" href="{% static "custom/css/server_page_no_opacity.css" %}"/>
-    {% else %}
-        <link rel="stylesheet" type="text/css" href="{% static "custom/css/server_page.css" %}"/>
-        <h1>{{ Opacity }}</h1>
     {% endif %}
 </head>
 <body>
@@ -37,7 +33,7 @@
                 <div class="panel-heading custom-collapse-button">
                     <h2 class="panel-title pull-left">General</h2>
                     <a href="#" data-toggle="collapse" data-target="#improvementsPanel" aria-expanded="true"
-                       class=""><i class="fa fa-bars" aria-hidden="true"></i></a>
+                       class="tune_it"><i class="fa fa-bars" aria-hidden="true"></i></a>
                 </div>
                 <div id="improvementsPanel" class="panel-collapse collapse in" aria-expanded="true">
                     <div class="row collapsed-div">
@@ -87,14 +83,12 @@
                     </div>
                 </div>
             </div>
-            {% comment %}End collapsible heading{% endcomment %}
 
-            {% comment %}Start LeftSidePanels{% endcomment %}
             <div class="panel panel-default ServerPanel custom-margin">
                 <div class="panel-heading custom-collapse-button">
                     <h2 class="panel-title pull-left">Options</h2>
                     <a href="#" data-toggle="collapse" data-target="#Options" aria-expanded="true"
-                       class=""><i class="fa fa-bars" aria-hidden="true"></i></a>
+                       class="tune_it"><i class="fa fa-bars" aria-hidden="true"></i></a>
                 </div>
                 <div id="Options" class="panel-collapse collapse in" aria-expanded="true">
                     <div class="row collapsed-div">
@@ -115,7 +109,7 @@
                 <div class="panel-heading custom-collapse-button">
                     <h2 class="panel-title pull-left">Properties</h2>
                     <a href="#" data-toggle="collapse" data-target="#properties" aria-expanded="true"
-                       class=""><i class="fa fa-bars" aria-hidden="true"></i></a>
+                       class="tune_it"><i class="fa fa-bars" aria-hidden="true"></i></a>
                 </div>
                 <div id="properties" class="panel-collapse collapse in" aria-expanded="true">
                     <div class="row collapsed-div">
@@ -129,8 +123,9 @@
                     </div>
                 </div>
             </div>
-            {% comment %}End LeftSidePanels{% endcomment %}
+            {% comment %}End collapsible heading{% endcomment %}
 
+            {% comment %}Begin chart body{% endcomment %}
             <div class="col-md-12 IndexColumn">
                 <div class="livecpu col-md-6">
                     <div class="panel panel-default ServerPanel">
@@ -161,7 +156,6 @@
                 </div>
             </div>
 
-            {% comment %}Start RightSidePanels{% endcomment %}
             <div class="col-md-12 IndexColumn">
                 <div class="livecpu col-md-4">
                     <div class="panel panel-default ServerPanel">
@@ -207,7 +201,7 @@
                     </div>
                 </div>
             </div>
-            {% comment %}End RightSidePanels{% endcomment %}
+            {% comment %}End chart body{% endcomment %}
 
         </div>
     </div>
