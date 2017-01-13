@@ -1,4 +1,4 @@
-Hello and welcome to the official documentation of AuroraPlus. 
+#Hello and welcome to the official documentation of AuroraPlus. 
 
 This guide is created to install and maintain the software, Aurora is officially split in 3 parts (dashboard, API, agent). We will try and handle them in that order. This guide is only for *unix users, this is a django application, so it will run on windows, we just don’t  have the resources at the moment to create the documentation.
 
