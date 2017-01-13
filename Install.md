@@ -2,7 +2,7 @@
 
 This guide is created to install and maintain the software, Aurora is officially split in 3 parts (dashboard, API, agent). We will try and handle them in that order. *This guide is only for unix users, this is a django application, so it will run on windows, we just don’t  have the resources at the moment to handle the documentation.*
 
-First off, download all 3 of the projects onto the specific servers, you can find them HERE HERE and HERE. Next off install apache and mod_wsgi, if you prefer nginx, you can go wild, it will not affect the application, but it is not official supported by Aurora. You can use the official guides for those installs.
+First off, download all 3 of the projects onto the specific servers, you can find them <a href="https://github.com/Evert-Arends/AuroraPlus/">HERE</a>, <a href="https://github.com/Evert-Arends/AuroraPlusBackend/">HERE</a> and <a href="https://github.com/Evert-Arends/AuroraPlusClient/">HERE</a>. Next off install apache and mod_wsgi, if you prefer nginx, you can go wild, it will not affect the application, but it is not official supported by Aurora. You can use the official guides for those installs.
 
 Go to the home folder of your user, and create a new folder: ‘Applications’, enter it and place ‘master.zip’ there. Unzip it, rename AuroraPlus-master to AuroraPlus, and if everything is right this should be your filetree:
 
