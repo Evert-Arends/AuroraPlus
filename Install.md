@@ -18,7 +18,7 @@ Go to the home folder of your user, and create a new folder: ‘Applications’,
 	./AuroraPlus/testing 
 	./AuroraPlus/assets
 
-To let the Aurora dashboard run we need to configure apache to host our application, therefore we need to configure the default website config. 
+To let the Aurora dashboard run we need to configure apache to work with our application, therefore we need to configure the default website config. 
 
   	sudo nano /etc/apache2/sites-available/000-default.conf
 
