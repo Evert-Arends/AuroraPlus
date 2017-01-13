@@ -6,17 +6,17 @@ First off, download all 3 of the projects onto the specific servers, you can fin
 
 Go to the home folder of your user, and create a new folder: ‘Applications’, enter it and place ‘master.zip’ there. Unzip it, rename AuroraPlus-master to AuroraPlus, and if everything is right this should be your filetree:
 
-berm@batsboem:~/Applications $ find . -maxdepth 2 -type d <br />
-. <br />
-./AuroraPlus <br />
-./AuroraPlus/AuroraPlus <br />
-./AuroraPlus/static <br />
-./AuroraPlus/Aurora <br />
-./AuroraPlus/controllers <br />
-./AuroraPlus/bin <br />
-./AuroraPlus/templates <br />
-./AuroraPlus/testing <br />
-./AuroraPlus/assets <br />
+	berm@batsboem:~/Applications $ find . -maxdepth 2 -type d 
+	. 
+	./AuroraPlus 
+	./AuroraPlus/AuroraPlus
+	./AuroraPlus/static 
+	./AuroraPlus/Aurora 
+	./AuroraPlus/controllers
+	./AuroraPlus/bin 
+	./AuroraPlus/templates
+	./AuroraPlus/testing 
+	./AuroraPlus/assets
 
 To let the Aurora dashboard run we need to configure apache to host our application, therefore we need to configure the default website config. 
 
