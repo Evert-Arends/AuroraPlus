@@ -83,10 +83,10 @@ Edit the settings.py file, and search for STATIC_ROOT
 Replace 
 
 	STATIC_ROOT 
-with:
+With:
 
 	STATIC_ROOT = os.path.join(BASE_DIR, "assets/")
-Replace
+And replace
 
 	ALLOWED_HOSTS = []
 With:
