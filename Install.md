@@ -80,9 +80,18 @@ Now we should edit the application to add your server IP to the known hosts, and
 Edit the settings.py file, and search for STATIC_ROOT
 
 	nano settings.py 
-Replace STATIC_ROOT with:
+Replace 
+
+	STATIC_ROOT 
+with:
 
 	STATIC_ROOT = os.path.join(BASE_DIR, "assets/")
+Replace
+
+	ALLOWED_HOSTS = []
+With:
+
+	ALLOWED_HOSTS = ['127.0.0.1', 'YOUR SERVER IP HERE']
 
 Close nano, and go back to the project folder (AuroraPlus) 
 
