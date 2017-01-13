@@ -16,6 +16,7 @@ class JsonData:
     def get_json_data():
         try:
             json_string = Communication.get_json_data()
+            print json_string
             return json_string
         except:
             return

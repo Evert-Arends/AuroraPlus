@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Aurora</title>
-    {% comment %}<link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">{% endcomment %}
+    <link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">
     <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
     <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
@@ -24,6 +24,7 @@
 
     <h2 class="page-header dashboard-title">Dashboard</h2>
 
+    {% comment %}Start dashboard header.{% endcomment %}
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default dashboardpanel">
@@ -42,7 +43,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-md-3">
             <div class="panel panel-default dashboardpanel">
                 <div class="panel-body">
@@ -58,7 +58,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-md-3">
             <div class="panel panel-default dashboardpanel">
                 <div class="panel-body">
@@ -69,7 +68,7 @@
                         <div class="col-xs-8">
                             <br>
                             <p>
-                                Messages: {{ message_count }}
+                                New messages: {{ message_count }}
                                 <br>
                                 <a href="/messages/0">View messages</a>
                             </p>
@@ -78,7 +77,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-md-3">
             <div class="panel panel-default dashboardpanel">
                 <div class="panel-body">
@@ -96,11 +94,11 @@
                 </div>
             </div>
         </div>
-
     </div>
+    {% comment %}End dashboard header.{% endcomment %}
 
+    {% comment %}Start add-server panel{% endcomment %}
     <div class="row">
-        {% comment %}Add new server.{% endcomment %}
         <div class="col-md-5">
             <div class="panel panel-default dashboardpanel">
                 <div class="panel-heading">
@@ -110,7 +108,7 @@
                     <form id="addserver" action="/dashboard/" method="post">
                         {% csrf_token %}
                         {#                        If there is no post data, the server will render an error.#}
-                            <span class="error">
+                        <span class="error">
                                 {% if Add_Server_Error %}
                                     Error: {{ Add_Server_Error }}
                                 {% endif %}
@@ -135,8 +133,9 @@
                 </div>
             </div>
         </div>
+        {% comment %}End add-server panel{% endcomment %}
 
-        {% comment %}Server list.{% endcomment %}
+        {% comment %}Start server table{% endcomment %}
         <div class="col-md-7">
             <div class="panel panel-default dashboardpanel">
                 <div class="panel-heading">
@@ -190,12 +189,15 @@
                 </div>
             </div>
         </div>
+        {% comment %}End server table{% endcomment %}
+
     </div>
+
     <script>
-        $(document).ready(function(){
-            $(".toggler").click(function(e){
+        $(document).ready(function () {
+            $(".toggler").click(function (e) {
                 e.preventDefault();
-                $('.cat'+$(this).attr('data-prod-cat')).toggle();
+                $('.cat' + $(this).attr('data-prod-cat')).toggle();
             });
         });
     </script>
