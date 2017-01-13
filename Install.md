@@ -20,7 +20,7 @@ Go to the home folder of your user, and create a new folder: ‘Applications’,
 
 To let the Aurora dashboard run we need to configure apache to host our application, therefore we need to configure the default website config. 
 
-  sudo nano /etc/apache2/sites-available/000-default.conf
+  	sudo nano /etc/apache2/sites-available/000-default.conf
 
 If there is a document root specified in the config, it would be recommended to remove / out comment that line.
 
