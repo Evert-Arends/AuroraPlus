@@ -2,6 +2,8 @@
 import json
 import datetime
 import requests
+import thread
+
 
 # Django imports
 from django.contrib.auth import authenticate, login
@@ -345,9 +347,19 @@ def messages(request, message_id):
 
 
 def logs(request):
-    all_logs = GetLogs.get_json_data(server='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=3600)
-    json_logs = json.loads(all_logs)
+    def getlogs():
+        all_logs = GetLogs.get_json_data(time=3600)
+        json_data = json.loads(all_logs)
+        a = []
+        for item in json_data:
+            user_logs = item
+            user_logs = json.loads(user_logs)
+            a.append(user_logs['Server']['Messages']['Log'])
 
-    render_log = {'logs': all_logs}
+        render_log = {'logs': a}
+        return render_log
 
-    return render(request, 'logs.html', render_log)
+    thread.start_new_thread(getlogs, ())
+
+    return render(request, 'logs.html', getlogs())
+

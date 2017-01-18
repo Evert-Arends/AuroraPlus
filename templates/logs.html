@@ -1,3 +1,32 @@
-<p>
-    {{ logs }}
-</p>
+{% load static from staticfiles %}
+{% load current_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aurora</title>
+    <link rel="icon" type="image/png" href="{% static "images/favicon.ico" %}">
+    <script type="text/javascript" src="{% static "jQuery/jquery-2.2.4.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
+    <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/navbar.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/sidebar.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "custom/css/logs.css" %}"/>
+</head>
+<body>
+{% include 'top.html' %}
+
+<div class="col-lg-10 col-lg-offset-1">
+    <p>
+        {% for item in logs %}
+            {% if item != '' %}
+                <ul>
+                    <li>{{ item }}</li>
+                </ul>
+            {% endif %}
+        {% endfor %}
+    </p>
+</div>
+</body>
+</html>
