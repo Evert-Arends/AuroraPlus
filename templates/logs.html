@@ -18,15 +18,31 @@
 {% include 'top.html' %}
 
 <div class="col-lg-10 col-lg-offset-1">
-    <p>
-        {% for item in logs %}
-            {% if item != '' %}
-                <ul>
-                    <li>{{ item }}</li>
-                </ul>
-            {% endif %}
-        {% endfor %}
-    </p>
+    <h1 class="page-header logs-title">Logs</h1>
+    <h3 class="page-subtitle">These are the logs from the past three hours.</h3>
+    <div class="col-md-8 logs-panel">
+        <p>
+            {% for item in logs %}
+                {% if item != '' %}
+                    <ul class="logs-list">
+                        <li>{{ item }}</li>
+                    </ul>
+                {% endif %}
+            {% endfor %}
+        </p>
+    </div>
+    <div class="col-md-3 col-md-offset-1 side-panel">
+        <h4>Info</h4>
+        <p>
+            These are the logs from the last three hours the client was active. In the future we will implement a
+            system so that the user can select which period he wants to view back. The newest logs are in the bottom
+            off the logs.
+        </p>
+        <p>
+            Only if there is something important happening to RAM or CPU it is visible here. If one of them is spiking
+            for a longer time you will see that there are more logs displaying the percentage.
+        </p>
+    </div>
 </div>
 </body>
 </html>

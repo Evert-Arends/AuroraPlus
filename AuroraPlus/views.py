@@ -348,16 +348,25 @@ def messages(request, message_id):
 
 def logs(request):
     def getlogs():
-        all_logs = GetLogs.get_json_data(time=3600)
-        json_data = json.loads(all_logs)
-        a = []
-        for item in json_data:
-            user_logs = item
-            user_logs = json.loads(user_logs)
-            a.append(user_logs['Server']['Messages']['Log'])
-
-        render_log = {'logs': a}
-        return render_log
+        try:
+            all_logs = GetLogs.get_json_data(time=4)
+            json_data = json.loads(all_logs)
+            print json_data
+            a = []
+            for item in json_data:
+                user_logs = item
+                user_logs = json.loads(user_logs)
+                a.append(user_logs['Server']['Messages']['Log'])
+                unix_time = user_logs['RequestDetails']['Time']
+                datetime.datetime.fromtimestamp(
+                    int(unix_time)
+                ).strftime('%Y-%m-%d %H:%M:%S')
+            render_log = {'logs': a}
+            return render_log
+        except:
+            b = ["Error: No logs to be shown."]
+            render_log = {'logs': b}
+            return render_log
 
     thread.start_new_thread(getlogs, ())
 

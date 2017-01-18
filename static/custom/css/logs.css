@@ -1,0 +1,34 @@
+/* Page style */
+
+html, body {
+    overflow-x: hidden;
+    background: url("/static/images/background.jpg") no-repeat !important;
+    background-size: cover !important;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.logs-title{
+    color: rgba(250, 248, 233, 0.6);
+    border-color: rgba(250, 248, 233, 0.6);
+}
+
+.page-subtitle{
+    color: rgba(250, 248, 233, 0.6);
+    border-color: rgba(250, 248, 233, 0.6);
+}
+
+.logs-panel{
+    background-color: rgba(250, 248, 233, 0.6);
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.side-panel{
+    background-color: rgba(250, 248, 233, 0.6);
+}
+
+.logs-list{
+    text-decoration: none;
+    list-style: none;
+}
