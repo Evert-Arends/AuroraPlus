@@ -1,0 +1,24 @@
+html, body {
+    overflow-x: hidden;
+    background: url("/static/images/background.jpg") no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.logs_panel{
+    background-color: rgba(250, 248, 233, 0.6);
+}
+
+.info_panel{
+    background-color: rgba(250, 248, 233, 0.6);
+}
+
+.logs-title{
+    color: rgba(250, 248, 233, 0.6);
+    border-color: rgba(250, 248, 233, 0.6);
+}
+
+.logs_subtitle{
+    color: rgba(250, 248, 233, 0.6);
+}

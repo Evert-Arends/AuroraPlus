@@ -354,7 +354,9 @@ def logs(request):
         for item in json_data:
             user_logs = item
             user_logs = json.loads(user_logs)
-            a.append(user_logs['Server']['Messages']['Log'])
+
+            append_log = user_logs['Server']['Messages']['Log']
+            a.append(append_log)
 
         render_log = {'logs': a}
         return render_log
