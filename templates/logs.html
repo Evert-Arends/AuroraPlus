@@ -23,13 +23,19 @@
     <br>
     <div class="col-md-8 logs_panel">
         <p>
-            {% for item in logs %}
-                {% if item != '' %}
-                    <ul>
-                        <li>{{ item }}</li>
-                    </ul>
-                {% endif %}
-            {% endfor %}
+            {% if logs == "" %}
+                <p>
+                    No logs.
+                </p>
+            {% else %}
+                {% for item in logs %}
+                    {% if item != '' %}
+                        <ul>
+                            <li>{{ item }}</li>
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </p>
     </div>
     <div class="col-md-3 col-md-offset-1 info_panel">

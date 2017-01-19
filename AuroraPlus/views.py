@@ -348,6 +348,13 @@ def messages(request, message_id):
 
 def logs(request):
     def getlogs():
+        current_user = request.user
+        user_id = current_user.id
+
+        server_list = Monitor.get_servers(user_id)
+        if not server_list:
+            return HttpResponse("No servers.")
+
         all_logs = GetLogs.get_json_data(time=3600)
         json_data = json.loads(all_logs)
         a = []
@@ -358,10 +365,9 @@ def logs(request):
             append_log = user_logs['Server']['Messages']['Log']
             a.append(append_log)
 
-        render_log = {'logs': a}
+        render_log = {'logs': a, 'server_list': server_list}
         return render_log
 
     thread.start_new_thread(getlogs, ())
 
     return render(request, 'logs.html', getlogs())
-

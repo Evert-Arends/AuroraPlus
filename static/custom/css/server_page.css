@@ -114,3 +114,16 @@ html, body {
 .latency {
     white-space: nowrap;
 }
+
+.options_form{
+
+}
+
+.options_input{
+
+}
+
+.options_button{
+    background-color: #3c3c3c !important;
+    color: white;
+}
