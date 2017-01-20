@@ -93,13 +93,15 @@
                 <div id="Options" class="panel-collapse collapse in" aria-expanded="true">
                     <div class="row collapsed-div">
                         <div class="col-md-4">
-                            <form action="" method="post" id="OptionsForm" name="OptionsForm">
+                            <form class="options_form" action="" method="post" id="OptionsForm" name="OptionsForm">
                                 {% csrf_token %}
-                                <input type="checkbox" name="active_monitoring" {{ fillCheckBox }} value="active_monitoring">Active monitoring<br>
-                                <input type="checkbox" name="opacity" {{ opacitystate }} value="opacity">Panel opacity<br>
-                                <input type="submit" value="Submit">
+
+                                <input id="iwenf" class="options_input" type="checkbox" name="active_monitoring" {{ fillCheckBox }} value="active_monitoring">
+                                <label for="iwenf">Active monitoring</label><br>
+                                <input id="iwenf2" class="options_input" type="checkbox" name="opacity" {{ opacitystate }} value="opacity">
+                                <label for="iwenf2">Plain design</label><br>
+                                <input class="options_button" type="submit" value="Submit">
                             </form>
-                            <p>When activated, you will receive an email when the Ram or Cpu is spiking.</p>
                         </div>
                     </div>
                 </div>
@@ -118,10 +120,7 @@
                                 Name: {{ server_name }}<br>
                                 Server SSL: {{ ssl }}<br>
                                 Server Lan address: {{ lan_ip }}
-                            </p>
-                        </div>
-                        <div class="col-md-3">
-                            <p>
+                                <br>
                                 <a href="/logs/">View logs.</a>
                             </p>
                         </div>
