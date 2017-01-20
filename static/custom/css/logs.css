@@ -22,3 +22,7 @@ html, body {
 .logs_subtitle{
     color: rgba(250, 248, 233, 0.6);
 }
+
+.logs_list{
+    list-style: none;
+}
