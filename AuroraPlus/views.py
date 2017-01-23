@@ -23,7 +23,7 @@ from AuroraPlus.forms import UserForm, OptionsForm
 from bin import cpu, jsondata
 from bin.ServerManaging import manage, server_edit, server_delete
 from bin.ServerMonitoring import collector, count_servers, opacity
-from models import LandingPageImages
+from models import LandingPageImages, Servers
 from bin.ServerMonitoring import monitor, messages, checkbox, collector
 
 # Classes
@@ -119,9 +119,12 @@ def delete_server(request, list_id):
 
 @login_required
 def server_page(request, server_id):
+    serverd = Servers.objects.get(ID=server_id)
+    server_key = serverd.Server_key
+    print 'TSADGADFGDFHFLDSDFJHFDDHDFHDFJHDFJHDSFSDFJDFS {0}'.format(server_key)
     current_user = request.user
     user_id = current_user.id
-    string_server = RetrieveData.all_server_data()
+    string_server = RetrieveData.all_server_data(server=server_key)
     if string_server is not None:
         valid_json_check = is_json(string_server)
         if not valid_json_check:
@@ -188,13 +191,13 @@ def server_page(request, server_id):
                           'server_list': server_list, 'ssl': server_ssl, 'lan_ip': lan_ip,
                           'disk_usage': disk_usage, 'disk_read': disk_usage_read, 'disk_write': disk_usage_write,
                           'ram_height': too_high, 'cpu_height': cpu_high, 'fillCheckBox': fillcheckbox,
-                          'Opacity': panel_opacity, 'opacitystate': opacitystate}
+                          'Opacity': panel_opacity, 'opacitystate': opacitystate, 'ServerKey': server_key}
 
     return render(request, 'server.html', render_server_page)
 
 
 def live_server_updates(request, chart='CPU_Usage', key='Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN', time=0):
-    string_server = RetrieveData.all_server_data()
+    string_server = RetrieveData.all_server_data(server=key)
     if string_server is not None:
         valid_json_check = is_json(string_server)
         if not valid_json_check:

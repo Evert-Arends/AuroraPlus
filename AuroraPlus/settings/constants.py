@@ -1,11 +1,11 @@
 # Define server variables here.
 
-DEBUG = False
+DEBUG = True
 
 if DEBUG:
     API_SERVER_PROTOCOL = 'http://'  # Change this to https when you switch to SSL.
     API_SERVER_BASE = '127.0.0.1'
-    API_SERVER_PORT = '8001'
+    API_SERVER_PORT = '8002'
     API_CLIENT_URL = '/client_details/'
 else:
     API_SERVER_PROTOCOL = 'http://'  # Change this to https when you switch to SSL.

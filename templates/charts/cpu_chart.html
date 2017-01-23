@@ -1,7 +1,17 @@
 <script>
     function getCpuData() {
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", "/live/CPU_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
+        var ServerKey = "";
+        ServerKey = "{{ ServerKey }}";
+        if (ServerKey != "") {
+            xmlhttp.open("GET", "/live/CPU_Usage/key/" + ServerKey + "/time/0/", false);
+            console.log(ServerKey);
+        }else {
+            {#            xmlhttp.open("GET", "/live/CPU_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);#}
+            xmlhttp.open("GET", "/live/CPU_Usage/key/" + ServerKey + "/time/0/", false);
+
+        }
+
         xmlhttp.send();
 
         var cpu_data = xmlhttp.responseText;

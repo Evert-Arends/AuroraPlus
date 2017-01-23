@@ -1,16 +1,20 @@
 /**
  * Created by berm on 21-12-16.
  */
-function CheckIfServerIsOnline() {
+function CheckIfServerIsOnline(key) {
+    var ServerKey = key;
     var xml_http = new XMLHttpRequest();
-    xml_http.open("GET", "/live/Online/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
+    if (ServerKey != "") {
+        xml_http.open("GET", "/live/Online/key/" + ServerKey + "/time/0/", false);
+        console.log(ServerKey);
+    } else {
+        xml_http.open("GET", "/live/Online/key/" + ServerKey + "/time/0/", false);
+
+    }
     xml_http.send();
     document.getElementById("ServerOnlineOutput").innerHTML = xml_http.responseText;
 }
-$( document ).ready(function() {
-    CheckIfServerIsOnline();
-    UpdateServerOnline();
-});
-function UpdateServerOnline() {
-    setInterval(CheckIfServerIsOnline, 1000);
+
+function UpdateServerOnline(key) {
+    setInterval(CheckIfServerIsOnline(key), 1000);
 }

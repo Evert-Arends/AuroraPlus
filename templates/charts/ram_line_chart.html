@@ -1,7 +1,16 @@
 <script>
     function GetRamLineChartData() {
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", "/live/RAM_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);
+        var ServerKey = "";
+        ServerKey = "{{ ServerKey }}";
+        if (ServerKey != "") {
+            xmlhttp.open("GET", "/live/RAM_Usage/key/" + ServerKey + "/time/0/", false);
+            console.log(ServerKey);
+        }else {
+{#            xmlhttp.open("GET", "/live/RAM_Usage/key/Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN/time/0/", false);#}
+            xmlhttp.open("GET", "/live/RAM_Usage/key/" + ServerKey + "/time/0/", false);
+
+        }
         xmlhttp.send();
 
         var ram_data = xmlhttp.responseText;
